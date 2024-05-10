@@ -9,7 +9,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-
 @Entity
 @Data
 @AllArgsConstructor
@@ -19,6 +18,7 @@ import jakarta.persistence.Id;
 public class Municipio {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
+    private int id;
     private String Descripcion;
     private String Localidad;
 }
