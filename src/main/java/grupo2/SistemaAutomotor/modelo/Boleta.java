@@ -16,8 +16,6 @@ import jakarta.persistence.ForeignKey;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import org.hibernate.annotations.ManyToAny;
-
 @Entity
 @Data
 @NoArgsConstructor
