@@ -26,4 +26,5 @@ public class Patente {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Automotor", foreignKey = @ForeignKey(name = "dominio"))
     private Automotor dominio;
+    private String estado;
 }

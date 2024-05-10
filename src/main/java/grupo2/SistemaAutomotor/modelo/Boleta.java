@@ -25,10 +25,10 @@ import java.util.Date;
 public class Boleta {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
+    private Integer IdBoleta;
     @ManyToOne (cascade = CascadeType.ALL)
     @JoinColumn (name = "Patente", foreignKey = @ForeignKey(name = "IdPatente"))
     private Patente idPatente;
-    private Integer IdBoleta;
     private String Estado;
     private BigDecimal Monto;
     private Date FechaVencimiento;

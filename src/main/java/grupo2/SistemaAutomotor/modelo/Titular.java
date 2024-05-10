@@ -21,5 +21,4 @@ public class Titular {
     private String email;
     private String telefono;
     private String direccion;
-    private String dominioVehiculo;
 }
