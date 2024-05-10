@@ -1,4 +1,4 @@
-package grupo2.SistemaAutomotor.servicio;
+package grupo2.SistemaAutomotor.servicio.automotor;
 
 import grupo2.SistemaAutomotor.modelo.Automotor;
 import grupo2.SistemaAutomotor.repositorio.AutomotorRepositorio;
@@ -19,22 +19,17 @@ public class AutomotorServicio implements IAutomotorServicio {
     }
 
     @Override
-    public Automotor buscarAutomotor(int id) {
-        return automotorRepositorio.findById(id).orElse(null);
+    public Automotor buscarAutomotor(String dominio) {
+        return automotorRepositorio.findById(dominio).orElse(null);
     }
 
     @Override
-    public void insertarAutomotor(Automotor automotor) {
+    public void guardarAutomotor(Automotor automotor) {
         automotorRepositorio.save(automotor);
     }
 
     @Override
-    public void modificarAutomotor(Automotor automotor) {
-        automotorRepositorio.save(automotor);
-    }
-
-    @Override
-    public void eliminarAutomotor(int id) {
-        automotorRepositorio.deleteById(id);
+    public void eliminarAutomotor(String dominio) {
+        automotorRepositorio.deleteById(dominio);
     }
 }

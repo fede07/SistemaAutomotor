@@ -1,4 +1,4 @@
-package grupo2.SistemaAutomotor.servicio;
+package grupo2.SistemaAutomotor.servicio.titular;
 
 import grupo2.SistemaAutomotor.modelo.Titular;
 import grupo2.SistemaAutomotor.repositorio.TitularRepositorio;
@@ -14,22 +14,17 @@ public class TitularServicio implements ITitularServicio{
     private TitularRepositorio titularRepositorio;
 
     @Override
-    public List<Titular> listarTitular() {
+    public List<Titular> listarTitulares() {
         return titularRepositorio.findAll();
     }
 
     @Override
     public Titular buscarTitular(Integer dni) {
-        return titularRepositorio.getReferenceById(dni);
+        return titularRepositorio.findById(dni).orElse(null);
     }
 
     @Override
-    public void insertarTitular(Titular titular) {
-        titularRepositorio.save(titular);
-    }
-
-    @Override
-    public void modificarTitular(Titular titular) {
+    public void guardarTitular(Titular titular) {
         titularRepositorio.save(titular);
     }
 
