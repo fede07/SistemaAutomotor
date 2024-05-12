@@ -22,6 +22,5 @@ public class Automotor {
     private int anoFabricacion;
     @OneToOne
     @JoinColumn(name = "Municipio", foreignKey = @ForeignKey(name = "id"))
-    private Municipio iDmunicipio;
-
+    private Municipio idMunicipio;
 }

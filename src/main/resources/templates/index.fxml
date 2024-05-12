@@ -2,9 +2,21 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo2.SistemaAutomotor.controlador.IndexControlador">
-   <Label layoutX="249.0" layoutY="47.0" text="Sistema Automotor"/>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo2.SistemaAutomotor.controlador.IndexControlador">
+   <Label layoutX="185.0" layoutY="30.0" text="Sistema Automotor" textAlignment="CENTER">
+      <font>
+         <Font name="System Bold" size="25.0" />
+      </font></Label>
+   <TableView fx:id="automotorTabla" layoutX="53.0" layoutY="100.0" prefHeight="200.0" prefWidth="495.0">
+     <columns>
+       <TableColumn fx:id="dominioAutomotorColumna" prefWidth="75.0" text="Dominio" />
+       <TableColumn fx:id="titularAutomotorColumna" prefWidth="101.0" text="DNI Titular" />
+         <TableColumn fx:id="modeloAutomotorColumna" prefWidth="92.0" text="Modelo" />
+         <TableColumn fx:id="marcaAutomotorColumna" text="Marca" />
+         <TableColumn fx:id="anioAutomotorColumna" text="Año" />
+         <TableColumn fx:id="municipioAutomotorColumna" prefWidth="67.0" text="Municipio" />
+     </columns>
+   </TableView>
 </AnchorPane>

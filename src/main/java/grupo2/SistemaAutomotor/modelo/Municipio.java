@@ -19,6 +19,5 @@ public class Municipio {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
-    private String Descripcion;
-    private String Localidad;
+    private String nombre;
 }
