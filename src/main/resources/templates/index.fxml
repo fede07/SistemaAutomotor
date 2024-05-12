@@ -9,14 +9,14 @@
       <font>
          <Font name="System Bold" size="25.0" />
       </font></Label>
-   <TableView fx:id="automotorTabla" layoutX="53.0" layoutY="100.0" prefHeight="200.0" prefWidth="495.0">
+   <TableView fx:id="automotorTabla" layoutX="74.0" layoutY="100.0" prefHeight="200.0" prefWidth="452.0">
      <columns>
        <TableColumn fx:id="dominioAutomotorColumna" prefWidth="75.0" text="Dominio" />
-       <TableColumn fx:id="titularAutomotorColumna" prefWidth="101.0" text="DNI Titular" />
-         <TableColumn fx:id="modeloAutomotorColumna" prefWidth="92.0" text="Modelo" />
-         <TableColumn fx:id="marcaAutomotorColumna" text="Marca" />
-         <TableColumn fx:id="anioAutomotorColumna" text="Año" />
-         <TableColumn fx:id="municipioAutomotorColumna" prefWidth="67.0" text="Municipio" />
+       <TableColumn fx:id="titularAutomotorColumna" prefWidth="75.0" text="DNI Titular" />
+         <TableColumn fx:id="modeloAutomotorColumna" prefWidth="75.0" text="Modelo" />
+         <TableColumn fx:id="marcaAutomotorColumna" prefWidth="75.0" text="Marca" />
+         <TableColumn fx:id="anioAutomotorColumna" prefWidth="75.0" text="Año" />
+         <TableColumn fx:id="municipioAutomotorColumna" prefWidth="75.0" text="Municipio" />
      </columns>
    </TableView>
 </AnchorPane>

@@ -5,13 +5,11 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 
 public class Titular {
     @Id
@@ -21,4 +19,10 @@ public class Titular {
     private String email;
     private String telefono;
     private String direccion;
+
+    @Override
+    public String toString() {
+        return String.valueOf(this.dni);
+    }
 }
+

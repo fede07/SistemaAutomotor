@@ -32,7 +32,7 @@ public class IndexControlador implements Initializable {
     private TableColumn<Automotor, String> dominioAutomotorColumna;
 
     @FXML
-    private TableColumn<Automotor, Titular> titularAutomotorColumna;
+    private TableColumn<Titular, Integer> titularAutomotorColumna;
 
     @FXML
     private TableColumn<Automotor, String> modeloAutomotorColumna;
