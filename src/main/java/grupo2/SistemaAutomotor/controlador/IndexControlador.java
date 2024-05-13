@@ -85,7 +85,7 @@ public class IndexControlador implements Initializable {
         titularAutomotorColumna.setCellValueFactory(new PropertyValueFactory<>("dniTitular"));
         modeloAutomotorColumna.setCellValueFactory(new PropertyValueFactory<>("modelo"));
         marcaAutomotorColumna.setCellValueFactory(new PropertyValueFactory<>("marca"));
-        anioAutomotorColumna.setCellValueFactory(new PropertyValueFactory<>("anoFabricacion"));
+        anioAutomotorColumna.setCellValueFactory(new PropertyValueFactory<>("anioFabricacion"));
         municipioAutomotorColumna.setCellValueFactory(new PropertyValueFactory<>("idMunicipio"));
     }
 
