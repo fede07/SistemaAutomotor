@@ -2,16 +2,16 @@ package grupo2.SistemaAutomotor.modelo;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 
 public class Titular {
+    @Getter
     @Id
     private int dni;
     private String nombre;
@@ -20,9 +20,5 @@ public class Titular {
     private String telefono;
     private String direccion;
 
-    @Override
-    public String toString() {
-        return String.valueOf(this.dni);
-    }
 }
 

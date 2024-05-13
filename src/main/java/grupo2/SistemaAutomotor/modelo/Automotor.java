@@ -23,4 +23,13 @@ public class Automotor {
     @OneToOne
     @JoinColumn(name = "Municipio", foreignKey = @ForeignKey(name = "id"))
     private Municipio idMunicipio;
+
+    public int getDniTitular(){
+        return dniTitular.getDni();
+    }
+
+    public String getIdMunicipio(){
+        return idMunicipio.getNombre();
+    }
+
 }
