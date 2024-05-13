@@ -19,8 +19,8 @@ public class Automotor {
     private Titular dniTitular;
     private String marca;
     private String modelo;
-    private int anoFabricacion;
-    @OneToOne
+    private int anioFabricacion;
+    @ManyToOne
     @JoinColumn(name = "Municipio", foreignKey = @ForeignKey(name = "id"))
     private Municipio idMunicipio;
 

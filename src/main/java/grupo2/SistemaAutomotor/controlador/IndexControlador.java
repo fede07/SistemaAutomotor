@@ -1,8 +1,11 @@
 package grupo2.SistemaAutomotor.controlador;
 
 import grupo2.SistemaAutomotor.modelo.Automotor;
+import grupo2.SistemaAutomotor.modelo.Municipio;
 import grupo2.SistemaAutomotor.modelo.Titular;
 import grupo2.SistemaAutomotor.servicio.automotor.AutomotorServicio;
+import grupo2.SistemaAutomotor.servicio.municipio.MunicipioServicio;
+import grupo2.SistemaAutomotor.servicio.titular.TitularServicio;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -48,6 +51,28 @@ public class IndexControlador implements Initializable {
 
     private final ObservableList<Automotor> automotorList = FXCollections.observableArrayList();
 
+    @FXML
+    private TextField dominioAutomotorTexto;
+
+    @FXML
+    private TextField titularAutomotorTexto;
+
+    @FXML
+    private TextField modeloAutomotorTexto;
+
+    @FXML
+    private TextField marcaAutomotorTexto;
+
+    @FXML
+    private TextField anioAutomotorTexto;
+
+    @FXML
+    private TextField municipioAutomotorTexto;
+    @Autowired
+    private TitularServicio titularServicio;
+    @Autowired
+    private MunicipioServicio municipioServicio;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         automotorTabla.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -69,6 +94,76 @@ public class IndexControlador implements Initializable {
         automotorList.clear();
         automotorList.addAll(automotorServicio.listarAutomotor());
         automotorTabla.setItems(automotorList);
+    }
+
+    public void agregarAutomotor() {
+        if(dominioAutomotorTexto.getText().isEmpty()) {
+            mostrarMensaje("Error Validacion", "Los campos dominio y titular no pueden estar vacios");
+        }
+        else {
+            var automotor = new Automotor();
+            if (recolecarDatos(automotor)){
+                mostrarDatos(automotor); //DEBUG
+                automotorServicio.guardarAutomotor(automotor);
+                mostrarMensaje("Información", "Automotor guardado correctamente");
+            }
+
+            limpiarFormulario();
+            listarAutomotor();
+        }
+    }
+
+    private void mostrarMensaje(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void mostrarDatos(Automotor automotor) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Informacion");
+        alert.setHeaderText(null);
+        alert.setContentText(automotor.toString());
+        alert.showAndWait();
+    }
+
+    private boolean recolecarDatos(Automotor automotor) {
+        automotor.setDominio(dominioAutomotorTexto.getText());
+
+        Titular titular = titularServicio.buscarTitular(Integer.valueOf(titularAutomotorTexto.getText()));
+
+        if(titular == null) {
+            mostrarMensaje("Error Validacion", "Titular no encontrado");
+            return false;
+        }
+
+        automotor.setDniTitular(titular);
+
+        automotor.setMarca(marcaAutomotorTexto.getText());
+        automotor.setModelo(modeloAutomotorTexto.getText());
+        automotor.setAnioFabricacion(Integer.parseInt(anioAutomotorTexto.getText()));
+
+        Municipio municipio = municipioServicio.buscarMunicipio(Integer.parseInt(municipioAutomotorTexto.getText()));
+
+        //TODO Crear desplegable de municipios, el siguiente if seria redundante. Quitar mensajes de error del metodo
+        if(municipio == null) {
+            mostrarMensaje("Error Validacion", "Municipio no encontrado");
+            return false;
+        }
+        automotor.setIdMunicipio(municipio);
+
+        return true;
+    }
+
+    private void limpiarFormulario() {
+        dominioAutomotorTexto.clear();
+        titularAutomotorTexto.clear();
+        modeloAutomotorTexto.clear();
+        marcaAutomotorTexto.clear();
+        anioAutomotorTexto.clear();
+        municipioAutomotorTexto.clear();
     }
 
 }
