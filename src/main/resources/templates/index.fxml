@@ -55,10 +55,10 @@
         <TextField fx:id="modeloAutomotorTexto" layoutX="14.0" layoutY="107.0" prefHeight="25.0" prefWidth="202.0" />
         <TextField fx:id="marcaAutomotorTexto" layoutX="14.0" layoutY="149.0" prefHeight="25.0" prefWidth="202.0" />
         <TextField fx:id="anioAutomotorTexto" layoutX="14.0" layoutY="193.0" prefHeight="25.0" prefWidth="202.0" />
-        <Button fx:id="agregarBoton" layoutX="14.0" layoutY="277.0" mnemonicParsing="false" onAction="#agregarAutomotor" style="-fx-background-color: #6161dc;" text="Agregar" textFill="WHITE" />
+        <Button fx:id="agregarBoton" layoutX="16.0" layoutY="277.0" mnemonicParsing="false" onAction="#agregarAutomotor" style="-fx-background-color: #6161dc;" text="Agregar" textFill="WHITE" />
         <Button fx:id="modificarBoton" layoutX="82.0" layoutY="277.0" mnemonicParsing="false" onAction="#modificarAutomotor" style="-fx-background-color: #6161dc;" text="Modificar" textFill="WHITE" />
         <Button fx:id="EliminarBoton" layoutX="157.0" layoutY="277.0" mnemonicParsing="false" onAction="#eliminarAutomotor" style="-fx-background-color: #ff4545;" text="Eliminar" textFill="WHITE" />
-        <Button fx:id="limpiarBoton" layoutX="13.0" layoutY="314.0" mnemonicParsing="false" onAction="#limpiarFormulario" prefHeight="25.0" prefWidth="202.0" style="-fx-background-color: #ffc44a;" text="Limpiar Formulario" />
+        <Button fx:id="limpiarBoton" layoutX="16.0" layoutY="314.0" mnemonicParsing="false" onAction="#limpiarFormulario" prefHeight="25.0" prefWidth="202.0" style="-fx-background-color: #ffc44a;" text="Limpiar Formulario" />
       <ComboBox fx:id="municipioComboBox" layoutX="16.0" layoutY="235.0" prefHeight="25.0" prefWidth="202.0" />
     </AnchorPane>
    <Label layoutX="371.0" layoutY="50.0" text="Automotores" />
