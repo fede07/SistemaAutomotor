@@ -90,7 +90,7 @@ public class IndexControlador implements Initializable {
     }
 
     private void listarAutomotor() {
-        logger.info("Listando automotor");
+        //logger.info("Listando automotor");
         automotorList.clear();
         automotorList.addAll(automotorServicio.listarAutomotor());
         automotorTabla.setItems(automotorList);
@@ -103,13 +103,13 @@ public class IndexControlador implements Initializable {
         else {
             var automotor = new Automotor();
             if (recolecarDatos(automotor)){
-                mostrarDatos(automotor); //DEBUG
+                //mostrarDatos(automotor); //DEBUG
                 automotorServicio.guardarAutomotor(automotor);
                 mostrarMensaje("Información", "Automotor guardado correctamente");
+                limpiarFormulario();
             }
-
-            limpiarFormulario();
             listarAutomotor();
+            //TODO generarBoletas();
         }
     }
 
