@@ -32,6 +32,7 @@ public class Automotor {
         return idMunicipio.getId();
     }
 
+    @SuppressWarnings("unused")
     public String getNombreMunicipio(){
         return idMunicipio.getNombre();
     }

@@ -98,14 +98,12 @@ public class IndexControlador implements Initializable {
     }
 
     private void listarAutomotores() {
-        //logger.info("Listando automotor");
         automotorList.clear();
         automotorList.addAll(automotorServicio.listarAutomotor());
         automotorTabla.setItems(automotorList);
     }
 
     private void listarMunicipios() {
-
         List<Municipio> municipioList = municipioServicio.listarMunicipios();
         for (Municipio municipio : municipioList) {
             municipioComboBox.getItems().add(municipio);
