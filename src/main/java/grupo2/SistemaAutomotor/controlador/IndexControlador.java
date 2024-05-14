@@ -70,8 +70,6 @@ public class IndexControlador implements Initializable {
     @FXML
     private ComboBox<Municipio> municipioComboBox;
 
-
-
     private String dominioAutomotorInterno;
 
     public IndexControlador(AutomotorServicio automotorServicio, TitularServicio titularServicio, MunicipioServicio municipioServicio) {
@@ -119,8 +117,8 @@ public class IndexControlador implements Initializable {
             return;
         }
         var automotor = new Automotor();
-        if (recolecarDatosFormulario(automotor)){
-            mostrarDatos(automotor); //DEBUG
+        if (recolectarDatosFormulario(automotor)){
+            //mostrarDatos(automotor); //DEBUG
             automotorServicio.guardarAutomotor(automotor);
             mostrarMensaje("Información", "Automotor guardado correctamente");
             limpiarFormulario();
@@ -150,6 +148,7 @@ public class IndexControlador implements Initializable {
         alert.showAndWait();
     }
 
+    @SuppressWarnings("unused")
     private void mostrarDatos(Automotor automotor) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Informacion");
@@ -158,7 +157,7 @@ public class IndexControlador implements Initializable {
         alert.showAndWait();
     }
 
-    private boolean recolecarDatosFormulario(Automotor automotor) {
+    private boolean recolectarDatosFormulario(Automotor automotor) {
 
         automotor.setDominio(dominioAutomotorTexto.getText());
 
@@ -199,8 +198,8 @@ public class IndexControlador implements Initializable {
             return;
         }
         var automotor = new Automotor();
-        recolecarDatosFormulario(automotor);
-        mostrarDatos(automotor);
+        recolectarDatosFormulario(automotor);
+        //mostrarDatos(automotor);
         automotorServicio.guardarAutomotor(automotor);
         mostrarMensaje("Informacion", "Automotor modificado correctamente");
         limpiarFormulario();
@@ -217,10 +216,10 @@ public class IndexControlador implements Initializable {
             return;
         }
         var automotor = new Automotor();
-        recolecarDatosFormulario(automotor);
-        mostrarDatos(automotor);
+        recolectarDatosFormulario(automotor);
+        //mostrarDatos(automotor);
         automotorServicio.eliminarAutomotor(automotor.getDominio());
-        mostrarMensaje("Informacion", "Automotor eliminado correctamente");
+        mostrarMensaje("Informacion", "Automotor " + automotor.getDominio() + " eliminado correctamente");
         limpiarFormulario();
         listarAutomotores();
     }
