@@ -28,7 +28,11 @@ public class Automotor {
         return dniTitular.getDni();
     }
 
-    public String getIdMunicipio(){
+    public int getIdMunicipio(){
+        return idMunicipio.getId();
+    }
+
+    public String getNombreMunicipio(){
         return idMunicipio.getNombre();
     }
 

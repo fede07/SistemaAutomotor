@@ -12,21 +12,18 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 @Component
 public class IndexControlador implements Initializable {
 
-    private static final Logger logger = LoggerFactory.getLogger(IndexControlador.class);
-
-    @Autowired
-    private AutomotorServicio automotorServicio;
+    private final AutomotorServicio automotorServicio;
+    private final TitularServicio titularServicio;
+    private final MunicipioServicio municipioServicio;
 
     @FXML
     private TableView<Automotor> automotorTabla = new TableView<>();
@@ -67,17 +64,24 @@ public class IndexControlador implements Initializable {
     private TextField anioAutomotorTexto;
 
     @FXML
-    private TextField municipioAutomotorTexto;
-    @Autowired
-    private TitularServicio titularServicio;
-    @Autowired
-    private MunicipioServicio municipioServicio;
+    private ComboBox<Municipio> municipioComboBox;
+
+
+
+    private String dominioAutomotorInterno;
+
+    public IndexControlador(AutomotorServicio automotorServicio, TitularServicio titularServicio, MunicipioServicio municipioServicio) {
+        this.automotorServicio = automotorServicio;
+        this.titularServicio = titularServicio;
+        this.municipioServicio = municipioServicio;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         automotorTabla.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         configurarColumnas();
-        listarAutomotor();
+        listarAutomotores();
+        listarMunicipios();
     }
 
     private void configurarColumnas() {
@@ -86,30 +90,53 @@ public class IndexControlador implements Initializable {
         modeloAutomotorColumna.setCellValueFactory(new PropertyValueFactory<>("modelo"));
         marcaAutomotorColumna.setCellValueFactory(new PropertyValueFactory<>("marca"));
         anioAutomotorColumna.setCellValueFactory(new PropertyValueFactory<>("anioFabricacion"));
-        municipioAutomotorColumna.setCellValueFactory(new PropertyValueFactory<>("idMunicipio"));
+        municipioAutomotorColumna.setCellValueFactory(new PropertyValueFactory<>("nombreMunicipio"));
     }
 
-    private void listarAutomotor() {
+    private void listarAutomotores() {
         //logger.info("Listando automotor");
         automotorList.clear();
         automotorList.addAll(automotorServicio.listarAutomotor());
         automotorTabla.setItems(automotorList);
     }
 
+    private void listarMunicipios() {
+
+        List<Municipio> municipioList = municipioServicio.listarMunicipios();
+        for (Municipio municipio : municipioList) {
+            municipioComboBox.getItems().add(municipio);
+        }
+        municipioComboBox.setEditable(false);
+
+    }
+
     public void agregarAutomotor() {
         if(dominioAutomotorTexto.getText().isEmpty()) {
-            mostrarMensaje("Error Validacion", "Los campos dominio y titular no pueden estar vacios");
+            mostrarMensaje("Error Validacion", "El campo Dominio no puede estar vacio");
+            dominioAutomotorTexto.requestFocus();
+            return;
         }
-        else {
-            var automotor = new Automotor();
-            if (recolecarDatos(automotor)){
-                //mostrarDatos(automotor); //DEBUG
-                automotorServicio.guardarAutomotor(automotor);
-                mostrarMensaje("Información", "Automotor guardado correctamente");
-                limpiarFormulario();
-            }
-            listarAutomotor();
+        var automotor = new Automotor();
+        if (recolecarDatosFormulario(automotor)){
+            mostrarDatos(automotor); //DEBUG
+            automotorServicio.guardarAutomotor(automotor);
+            mostrarMensaje("Información", "Automotor guardado correctamente");
+            limpiarFormulario();
+            listarAutomotores();
             //TODO generarBoletas();
+        }
+    }
+
+    public void cargarAutomotorFormulario() {
+        var automotor = automotorTabla.getSelectionModel().getSelectedItem();
+        if (automotor != null) {
+            dominioAutomotorInterno = automotor.getDominio();
+            dominioAutomotorTexto.setText(automotor.getDominio());
+            titularAutomotorTexto.setText(String.valueOf(automotor.getDniTitular()));
+            modeloAutomotorTexto.setText(String.valueOf(automotor.getModelo()));
+            marcaAutomotorTexto.setText(String.valueOf(automotor.getMarca()));
+            anioAutomotorTexto.setText(String.valueOf(automotor.getAnioFabricacion()));
+            municipioComboBox.getSelectionModel().select(automotor.getIdMunicipio()-1);
         }
     }
 
@@ -129,7 +156,8 @@ public class IndexControlador implements Initializable {
         alert.showAndWait();
     }
 
-    private boolean recolecarDatos(Automotor automotor) {
+    private boolean recolecarDatosFormulario(Automotor automotor) {
+
         automotor.setDominio(dominioAutomotorTexto.getText());
 
         Titular titular = titularServicio.buscarTitular(Integer.valueOf(titularAutomotorTexto.getText()));
@@ -145,7 +173,8 @@ public class IndexControlador implements Initializable {
         automotor.setModelo(modeloAutomotorTexto.getText());
         automotor.setAnioFabricacion(Integer.parseInt(anioAutomotorTexto.getText()));
 
-        Municipio municipio = municipioServicio.buscarMunicipio(Integer.parseInt(municipioAutomotorTexto.getText()));
+        Municipio municipio = municipioServicio.buscarMunicipio(municipioComboBox.getSelectionModel().getSelectedIndex()+1);
+
 
         //TODO Crear desplegable de municipios, el siguiente if seria redundante. Quitar mensajes de error del metodo
         if(municipio == null) {
@@ -157,13 +186,51 @@ public class IndexControlador implements Initializable {
         return true;
     }
 
-    private void limpiarFormulario() {
+    public void modificarAutomotor() {
+        if(dominioAutomotorInterno == null){
+            mostrarMensaje("Informacion", "Debe Seleccionar un automotor");
+            return;
+        }
+        if(dominioAutomotorTexto.getText().isEmpty()) {
+            mostrarMensaje("Error Validacion", "El campo Dominio no puede estar vacio");
+            dominioAutomotorTexto.requestFocus();
+            return;
+        }
+        var automotor = new Automotor();
+        recolecarDatosFormulario(automotor);
+        mostrarDatos(automotor);
+        automotorServicio.guardarAutomotor(automotor);
+        mostrarMensaje("Informacion", "Automotor modificado correctamente");
+        limpiarFormulario();
+        listarAutomotores();
+    }
+
+    public void eliminarAutomotor() {
+        if(dominioAutomotorInterno == null){
+            mostrarMensaje("Informacion", "Debe Seleccionar un automotor");
+            return;
+        }
+        if(dominioAutomotorTexto.getText().isEmpty()) {
+            mostrarMensaje("Error Validacion", "Debe Seleccionar un automotor");
+            return;
+        }
+        var automotor = new Automotor();
+        recolecarDatosFormulario(automotor);
+        mostrarDatos(automotor);
+        automotorServicio.eliminarAutomotor(automotor.getDominio());
+        mostrarMensaje("Informacion", "Automotor eliminado correctamente");
+        limpiarFormulario();
+        listarAutomotores();
+    }
+
+    public void limpiarFormulario() {
+        dominioAutomotorInterno = null;
         dominioAutomotorTexto.clear();
         titularAutomotorTexto.clear();
         modeloAutomotorTexto.clear();
         marcaAutomotorTexto.clear();
         anioAutomotorTexto.clear();
-        municipioAutomotorTexto.clear();
+        municipioComboBox.getSelectionModel().clearSelection();
     }
 
 }
