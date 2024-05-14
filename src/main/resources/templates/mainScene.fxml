@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="528.0" prefWidth="823.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo2.SistemaAutomotor.controlador.MainControlador">
+   <Label layoutX="360.0" layoutY="41.0" text="Sistema Automotor"/>
+   <Button layoutX="374.0" layoutY="252.0" mnemonicParsing="false" onAction="#abrirAutomotorScene"
+           text="Automotor"/>
+</AnchorPane>

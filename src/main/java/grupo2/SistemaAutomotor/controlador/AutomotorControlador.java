@@ -8,10 +8,15 @@ import grupo2.SistemaAutomotor.servicio.municipio.MunicipioServicio;
 import grupo2.SistemaAutomotor.servicio.titular.TitularServicio;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
@@ -19,11 +24,13 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 @Component
-public class IndexControlador implements Initializable {
+public class AutomotorControlador implements Initializable {
 
     private final AutomotorServicio automotorServicio;
     private final TitularServicio titularServicio;
     private final MunicipioServicio municipioServicio;
+    @Setter
+    private Scene mainScene;
     public Button agregarBoton;
     public Button modificarBoton;
     public Button EliminarBoton;
@@ -72,7 +79,7 @@ public class IndexControlador implements Initializable {
 
     private String dominioAutomotorInterno;
 
-    public IndexControlador(AutomotorServicio automotorServicio, TitularServicio titularServicio, MunicipioServicio municipioServicio) {
+    public AutomotorControlador(AutomotorServicio automotorServicio, TitularServicio titularServicio, MunicipioServicio municipioServicio) {
         this.automotorServicio = automotorServicio;
         this.titularServicio = titularServicio;
         this.municipioServicio = municipioServicio;
@@ -107,7 +114,6 @@ public class IndexControlador implements Initializable {
             municipioComboBox.getItems().add(municipio);
         }
         municipioComboBox.setEditable(false);
-
     }
 
     public void agregarAutomotor() {
@@ -232,6 +238,11 @@ public class IndexControlador implements Initializable {
         marcaAutomotorTexto.clear();
         anioAutomotorTexto.clear();
         municipioComboBox.getSelectionModel().clearSelection();
+    }
+
+    public void abrirMainScene(ActionEvent actionEvent) {
+        Stage mainStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        mainStage.setScene(mainScene);
     }
 
 }

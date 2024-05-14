@@ -1,6 +1,8 @@
 package grupo2.SistemaAutomotor.presentacion;
 
 import grupo2.SistemaAutomotor.SistemaAutomotorApplication;
+import grupo2.SistemaAutomotor.controlador.AutomotorControlador;
+import grupo2.SistemaAutomotor.controlador.MainControlador;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -19,10 +21,25 @@ public class SistemaAutomotorFX extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(SistemaAutomotorApplication.class.getResource("/templates/index.fxml"));
-        loader.setControllerFactory(contexto::getBean);
-        Scene scene = new Scene(loader.load());
-        stage.setScene(scene);
+
+        //Creo las escenas
+        FXMLLoader mainLoader = new FXMLLoader(SistemaAutomotorApplication.class.getResource("/templates/mainScene.fxml"));
+        mainLoader.setControllerFactory(contexto::getBean);
+        Scene mainScene = new Scene(mainLoader.load());
+
+        FXMLLoader automotorLoader = new FXMLLoader(SistemaAutomotorApplication.class.getResource("/templates/automotorScene.fxml"));
+        automotorLoader.setControllerFactory(contexto::getBean);
+        Scene automotorScene = new Scene(automotorLoader.load());
+
+        //Vinculo las escenas
+        AutomotorControlador automotorControlador = automotorLoader.getController();
+        automotorControlador.setMainScene(mainScene);
+
+        MainControlador mainControlador = mainLoader.getController();
+        mainControlador.setScene(automotorScene);
+
+        //Inicio la escena principal
+        stage.setScene(mainScene);
         stage.show();
     }
 
