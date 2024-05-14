@@ -19,9 +19,22 @@ public class Automotor {
     private Titular dniTitular;
     private String marca;
     private String modelo;
-    private int anoFabricacion;
-    @OneToOne
+    private int anioFabricacion;
+    @ManyToOne
     @JoinColumn(name = "Municipio", foreignKey = @ForeignKey(name = "id"))
-    private Municipio iDmunicipio;
+    private Municipio idMunicipio;
+
+    public int getDniTitular(){
+        return dniTitular.getDni();
+    }
+
+    public int getIdMunicipio(){
+        return idMunicipio.getId();
+    }
+
+    @SuppressWarnings("unused")
+    public String getNombreMunicipio(){
+        return idMunicipio.getNombre();
+    }
 
 }

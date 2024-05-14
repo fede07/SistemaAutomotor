@@ -2,10 +2,7 @@ package grupo2.SistemaAutomotor.modelo;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @Entity
 @Data
@@ -14,6 +11,7 @@ import lombok.ToString;
 @ToString
 
 public class Titular {
+    @Getter
     @Id
     private int dni;
     private String nombre;
@@ -21,4 +19,6 @@ public class Titular {
     private String email;
     private String telefono;
     private String direccion;
+
 }
+
