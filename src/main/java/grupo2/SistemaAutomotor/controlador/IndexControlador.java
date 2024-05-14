@@ -24,6 +24,10 @@ public class IndexControlador implements Initializable {
     private final AutomotorServicio automotorServicio;
     private final TitularServicio titularServicio;
     private final MunicipioServicio municipioServicio;
+    public Button agregarBoton;
+    public Button modificarBoton;
+    public Button EliminarBoton;
+    public Button limpiarBoton;
 
     @FXML
     private TableView<Automotor> automotorTabla = new TableView<>();
