@@ -5,10 +5,15 @@ import grupo2.SistemaAutomotor.modelo.Boleta;
 import grupo2.SistemaAutomotor.servicio.boleta.BoletaServicio;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -48,6 +53,9 @@ public class BoletaControlador implements Initializable {
         this.boletaServicio = boletaServicio;
     }
 
+    @Setter
+    private Scene mainScene;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         boletasTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -85,4 +93,10 @@ public class BoletaControlador implements Initializable {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+    public void abrirMainScene(ActionEvent actionEvent) {
+        Stage mainStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        mainStage.setScene(mainScene);
+    }
+
 }

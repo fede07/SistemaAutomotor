@@ -2,6 +2,7 @@ package grupo2.SistemaAutomotor.presentacion;
 
 import grupo2.SistemaAutomotor.SistemaAutomotorApplication;
 import grupo2.SistemaAutomotor.controlador.AutomotorControlador;
+import grupo2.SistemaAutomotor.controlador.BoletaControlador;
 import grupo2.SistemaAutomotor.controlador.MainControlador;
 import grupo2.SistemaAutomotor.controlador.TitularControlador;
 import javafx.application.Application;
@@ -46,6 +47,9 @@ public class SistemaAutomotorFX extends Application {
 
         TitularControlador titularControlador = titularLoader.getController();
         titularControlador.setMainScene(mainScene);
+
+        BoletaControlador boletaControlador = boletaLoader.getController();
+        boletaControlador.setMainScene(mainScene);
 
         //Vinculo Main con las escenas
         MainControlador mainControlador = mainLoader.getController();
