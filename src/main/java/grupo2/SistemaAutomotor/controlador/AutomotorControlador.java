@@ -1,9 +1,11 @@
 package grupo2.SistemaAutomotor.controlador;
 
 import grupo2.SistemaAutomotor.modelo.Automotor;
+import grupo2.SistemaAutomotor.modelo.Boleta;
 import grupo2.SistemaAutomotor.modelo.Municipio;
 import grupo2.SistemaAutomotor.modelo.Titular;
 import grupo2.SistemaAutomotor.servicio.automotor.AutomotorServicio;
+import grupo2.SistemaAutomotor.servicio.boleta.BoletaServicio;
 import grupo2.SistemaAutomotor.servicio.municipio.MunicipioServicio;
 import grupo2.SistemaAutomotor.servicio.titular.TitularServicio;
 import javafx.collections.FXCollections;
@@ -20,6 +22,7 @@ import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -29,6 +32,7 @@ public class AutomotorControlador implements Initializable {
     private final AutomotorServicio automotorServicio;
     private final TitularServicio titularServicio;
     private final MunicipioServicio municipioServicio;
+    private final BoletaServicio boletaServicio;
     @Setter
     private Scene mainScene;
     public Button agregarBoton;
@@ -79,10 +83,11 @@ public class AutomotorControlador implements Initializable {
 
     private String dominioAutomotorInterno;
 
-    public AutomotorControlador(AutomotorServicio automotorServicio, TitularServicio titularServicio, MunicipioServicio municipioServicio) {
+    public AutomotorControlador(AutomotorServicio automotorServicio, TitularServicio titularServicio, MunicipioServicio municipioServicio, BoletaServicio boletaServicio) {
         this.automotorServicio = automotorServicio;
         this.titularServicio = titularServicio;
         this.municipioServicio = municipioServicio;
+        this.boletaServicio = boletaServicio;
     }
 
     @Override
@@ -122,6 +127,12 @@ public class AutomotorControlador implements Initializable {
             dominioAutomotorTexto.requestFocus();
             return;
         }
+
+        if(automotorServicio.buscarAutomotor(dominioAutomotorTexto.getText()) != null) {
+            mostrarMensaje("Error Validacion", "El Automotor " + dominioAutomotorTexto.getText() + " ya existe");
+            return;
+        }
+
         var automotor = new Automotor();
         if (recolectarDatosFormulario(automotor)){
             //mostrarDatos(automotor); //DEBUG
@@ -131,6 +142,11 @@ public class AutomotorControlador implements Initializable {
             listarAutomotores();
             //TODO generarBoletas();
         }
+    }
+
+    private void generarBoletas(){
+        List<Boleta> boletas = new ArrayList<>();
+
     }
 
     public void cargarAutomotorFormulario() {

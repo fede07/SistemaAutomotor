@@ -81,30 +81,36 @@ INSERT INTO boleta (cuota, estado, fecha_pago, fecha_vencimiento, importe, domin
 (9, 'Pendiente', '2021-09-01', '2021-09-30', 1000.00, 'YZA567'),
 (10, 'Pendiente', '2021-10-01', '2021-10-31', 1000.00, 'BCD890');
 
--- generar 10 boletas para el automotor con dominio 'ABC123', una cuota por mes, los primeros 3 meses pagados, con vencimiento a fin de mes y un importe de $3000.00
+-- generar 12 boletas para el automotor con dominio 'ABC123' con fecha del 2024, una cuota por mes, los primeros 3 meses pagados, con vencimiento a fin de mes y un importe de $3000.00.
+-- Los meses inpagos deben tener el estado 'Pendiente' y los pagos 'Pagado'. Ademas la fecha de pago de los inpagos debe ser NULL.
 
 INSERT INTO boleta (cuota, estado, fecha_pago, fecha_vencimiento, importe, dominio) VALUES 
-(1, 'Pagado', '2021-01-01', '2021-01-31', 1000.00, 'ABC123'),
-(2, 'Pagado', '2021-02-01', '2021-02-28', 1000.00, 'ABC123'),
-(3, 'Pagado', '2021-03-01', '2021-03-31', 1000.00, 'ABC123'),
-(4, 'Pendiente', '2021-04-01', '2021-04-30', 1000.00, 'ABC123'),
-(5, 'Pendiente', '2021-05-01', '2021-05-31', 1000.00, 'ABC123'),
-(6, 'Pendiente', '2021-06-01', '2021-06-30', 1000.00, 'ABC123'),
-(7, 'Pendiente', '2021-07-01', '2021-07-31', 1000.00, 'ABC123'),
-(8, 'Pendiente', '2021-08-01', '2021-08-31', 1000.00, 'ABC123'),
-(9, 'Pendiente', '2021-09-01', '2021-09-30', 1000.00, 'ABC123'),
-(10, 'Pendiente', '2021-10-01', '2021-10-31', 1000.00, 'ABC123');
+(1, 'Pagado', '2024-01-01', '2024-01-31', 1000.00, 'ABC123'),
+(2, 'Pagado', '2024-02-01', '2024-02-29', 1000.00, 'ABC123'),
+(3, 'Pagado', '2024-03-01', '2024-03-31', 1000.00, 'ABC123'),
+(4, 'Pendiente', NULL, '2024-04-30', 1000.00, 'ABC123'),
+(5, 'Pendiente', NULL, '2024-05-31', 1000.00, 'ABC123'),
+(6, 'Pendiente', NULL, '2024-06-30', 1000.00, 'ABC123'),
+(7, 'Pendiente', NULL, '2024-07-31', 1000.00, 'ABC123'),
+(8, 'Pendiente', NULL, '2024-08-31', 1000.00, 'ABC123'),
+(9, 'Pendiente', NULL, '2024-09-30', 1000.00, 'ABC123'),
+(10, 'Pendiente', NULL, '2024-10-31', 1000.00, 'ABC123'),
+(11, 'Pendiente', NULL, '2024-11-30', 1000.00, 'ABC123'),
+(12, 'Pendiente', NULL, '2024-12-31', 1000.00, 'ABC123');
+-- generar 12 boletas para el automotor con dominio 'DEF456' con fecha del 2024, una cuota por mes, los primeros 3 meses pagados, con vencimiento a fin de mes y un importe de $3200.00.
+-- Los meses inpagos deben tener el estado 'Pendiente' y los pagos 'Pagado'. Ademas la fecha de pago de los inpagos debe ser NULL.
 
--- generar 10 boletas para el automotor con dominio 'DEF456', una cuota por mes, los primeros 3 meses pagados, con vencimiento a fin de mes y un importe de $3200.00
 INSERT INTO boleta (cuota, estado, fecha_pago, fecha_vencimiento, importe, dominio) VALUES 
-(1, 'Pagado', '2021-01-01', '2021-01-31', 1000.00, 'DEF456'),
-(2, 'Pagado', '2021-02-01', '2021-02-28', 1000.00, 'DEF456'),
-(3, 'Pagado', '2021-03-01', '2021-03-31', 1000.00, 'DEF456'),
-(4, 'Pendiente', '2021-04-01', '2021-04-30', 1000.00, 'DEF456'),
-(5, 'Pendiente', '2021-05-01', '2021-05-31', 1000.00, 'DEF456'),
-(6, 'Pendiente', '2021-06-01', '2021-06-30', 1000.00, 'DEF456'),
-(7, 'Pendiente', '2021-07-01', '2021-07-31', 1000.00, 'DEF456'),
-(8, 'Pendiente', '2021-08-01', '2021-08-31', 1000.00, 'DEF456'),
-(9, 'Pendiente', '2021-09-01', '2021-09-30', 1000.00, 'DEF456'),
-(10, 'Pendiente', '2021-10-01', '2021-10-31', 1000.00, 'DEF456');
+(1, 'Pagado', '2024-01-01', '2024-01-31', 3000.00, 'DEF456'),
+(2, 'Pagado', '2024-02-01', '2024-02-29', 3000.00, 'DEF456'),
+(3, 'Pagado', '2024-03-01', '2024-03-31', 3000.00, 'DEF456'),
+(4, 'Pendiente', '2024-04-01', '2024-04-30', 3000.00, 'DEF456'),
+(5, 'Pendiente', '2024-05-01', '2024-05-31', 3000.00, 'DEF456'),
+(6, 'Pendiente', '2024-06-01', '2024-06-30', 3000.00, 'DEF456'),
+(7, 'Pendiente', '2024-07-01', '2024-07-31', 3000.00, 'DEF456'),
+(8, 'Pendiente', '2024-08-01', '2024-08-31', 3000.00, 'DEF456'),
+(9, 'Pendiente', '2024-09-01', '2024-09-30', 3000.00, 'DEF456'),
+(10, 'Pendiente', '2024-10-01', '2024-10-31', 3000.00, 'DEF456'),
+(11, 'Pendiente', '2024-11-01', '2024-11-30', 3000.00, 'DEF456'),
+(12, 'Pendiente', '2024-12-01', '2024-12-31', 3000.00, 'DEF456');
 
