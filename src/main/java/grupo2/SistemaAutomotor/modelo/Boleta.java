@@ -41,7 +41,10 @@ public class Boleta {
     public String getFven(){
         Calendar cal = new GregorianCalendar();
         cal.setTime(fechaVencimiento);
-        return cal.get(Calendar.DAY_OF_MONTH) + "/" + cal.get(Calendar.MONTH) + "/" + cal.get(Calendar.YEAR);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        int month = cal.get(Calendar.MONTH) + 1;
+        int year = cal.get(Calendar.YEAR);
+        return day + "/" + month + "/" + year;
     }
 
 }
