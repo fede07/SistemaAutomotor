@@ -36,6 +36,10 @@ public class SistemaAutomotorFX extends Application {
         titularLoader.setControllerFactory(contexto::getBean);
         Scene titularScene = new Scene(titularLoader.load());
 
+        FXMLLoader boletaLoader = new FXMLLoader(SistemaAutomotorApplication.class.getResource("/templates/boletaScene.fxml"));
+        boletaLoader.setControllerFactory(contexto::getBean);
+        Scene boletaScene = new Scene(boletaLoader.load());
+
         //Vinculo las escenas con Main
         AutomotorControlador automotorControlador = automotorLoader.getController();
         automotorControlador.setMainScene(mainScene);
@@ -47,6 +51,7 @@ public class SistemaAutomotorFX extends Application {
         MainControlador mainControlador = mainLoader.getController();
         mainControlador.setAutomotorScene(automotorScene);
         mainControlador.setTitularScene(titularScene);
+        mainControlador.setBoletaScene(boletaScene);
 
         //Inicio la escena principal
         stage.setScene(mainScene);

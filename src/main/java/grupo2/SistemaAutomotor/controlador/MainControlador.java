@@ -17,6 +17,7 @@ public class MainControlador implements Initializable {
 
     private Scene automotorScene;
     private Scene titularScene;
+    private Scene boletaScene;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -31,6 +32,11 @@ public class MainControlador implements Initializable {
     public void abrirTitularScene(ActionEvent actionEvent) {
         Stage titularStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         titularStage.setScene(titularScene);
+    }
+
+    public void abrirBoletaScene(ActionEvent actionEvent) {
+        Stage boletaStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        boletaStage.setScene(boletaScene);
     }
 
 }

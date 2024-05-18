@@ -1,16 +1,10 @@
 package grupo2.SistemaAutomotor.modelo;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ForeignKey;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
@@ -27,9 +21,9 @@ public class Boleta {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer idBoleta;
-    @ManyToOne
-    @JoinColumn (name = "Automotor", referencedColumnName = "dominio", foreignKey = @ForeignKey(name = "dominio"))
-    private Automotor dominioAut;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "dominio")
+    private Automotor dominio;
     private String estado;
     private BigDecimal importe;
     private Date fechaVencimiento;

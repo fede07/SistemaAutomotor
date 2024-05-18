@@ -1,5 +1,6 @@
 package grupo2.SistemaAutomotor.controlador;
 
+import grupo2.SistemaAutomotor.modelo.Automotor;
 import grupo2.SistemaAutomotor.modelo.Boleta;
 import grupo2.SistemaAutomotor.servicio.boleta.BoletaServicio;
 import javafx.collections.FXCollections;
@@ -13,17 +14,18 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 @Component
 public class BoletaControlador implements Initializable {
 
-    private final BoletaServicio boletaServicio = new BoletaServicio();
+    private final BoletaServicio boletaServicio;
 
     public Button buscarButton;
 
     @FXML
-    private TableView<Boleta> boletaTable = new TableView<>();
+    private TableView<Boleta> boletasTable = new TableView<>();
 
     @FXML
     private TableColumn<Boleta, Date> anioBoletaColumna;
@@ -42,11 +44,14 @@ public class BoletaControlador implements Initializable {
     @FXML
     private TextField dominioTextField;
 
+    public BoletaControlador(BoletaServicio boletaServicio) {
+        this.boletaServicio = boletaServicio;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        boletaTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        boletasTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         configurarColumnas();
-        listarBoletas();
     }
 
     private void configurarColumnas() {
@@ -56,13 +61,28 @@ public class BoletaControlador implements Initializable {
         importeBoletaColumna.setCellValueFactory(new PropertyValueFactory<>("importe"));
     }
 
-    private void listarBoletas() {
+    public void buscarBoletas() {
+        String dominio = dominioTextField.getText();
+        if (dominio.isEmpty()) {
+            mostrarMensaje("Error", "El dominio no puede estar vacio");
+            return;
+        }
         boletaList.clear();
-        boletaList.addAll(boletaServicio.listarBoletas());
-        boletaTable.setItems(boletaList);
+        Automotor automotor = new Automotor();
+        automotor.setDominio(dominio);
+        List<Boleta> boletas = boletaServicio.buscarBoletasPorDominio(automotor);
+        if (boletas.isEmpty()) {
+            mostrarMensaje("Info", "No se encontraron facturas con el dominio " + dominio);
+        }
+        boletaList.addAll(boletas);
+        boletasTable.setItems(boletaList);
     }
 
-    private void buscarBoleta(String dominioBoleta) {
-        boletaList.clear();
+    private void mostrarMensaje(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

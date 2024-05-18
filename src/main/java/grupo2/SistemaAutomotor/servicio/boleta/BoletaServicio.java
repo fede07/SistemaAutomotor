@@ -4,7 +4,6 @@ import grupo2.SistemaAutomotor.modelo.Automotor;
 import grupo2.SistemaAutomotor.modelo.Boleta;
 import grupo2.SistemaAutomotor.repositorio.BoletaRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,6 +36,6 @@ public class BoletaServicio implements IBoletaServicio {
 
     @Override
     public List<Boleta> buscarBoletasPorDominio(Automotor automotor) {
-        return boletaRepositorio.findBoletasByDominioAut(automotor);
+        return boletaRepositorio.findBoletasByDominio(automotor);
     }
 }
