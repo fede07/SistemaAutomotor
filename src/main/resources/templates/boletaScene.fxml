@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="498.0" prefWidth="777.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo2.SistemaAutomotor.controlador.BoletaControlador">
+   <children>
+      <TableView fx:id="boletasTable" layoutX="39.0" layoutY="212.0" prefHeight="259.0" prefWidth="700.0">
+        <columns>
+          <TableColumn fx:id="anioBoletaColumna" prefWidth="170.0" text="Año" />
+          <TableColumn fx:id="cuotaBoletaColumna" prefWidth="170.0" text="Cuota" />
+            <TableColumn fx:id="fvenBoletaColumna" prefWidth="199.0" text="Fecha Vencimiento" />
+            <TableColumn fx:id="importeBoletaColumna" prefWidth="160.0" text="Importe" />
+        </columns>
+      </TableView>
+      <AnchorPane layoutX="261.0" layoutY="126.0" prefHeight="46.0" prefWidth="245.0">
+         <children>
+            <Label layoutX="14.0" layoutY="14.0" text="Dominio" />
+            <TextField fx:id="dominioTextField" layoutX="65.0" layoutY="10.0" prefHeight="25.0" prefWidth="133.0" />
+            <Button fx:id="buscarButton" layoutX="205.0" layoutY="10.0" mnemonicParsing="false" onAction="#buscarCuotas" text="Buscar" />
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="85.0" prefWidth="777.0" style="-fx-background-color: #81b4d3;">
+         <children>
+            <Label layoutX="617.0" layoutY="31.0" text="Automotores" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="23.0" prefHeight="88.0" prefWidth="227.0" text="Sistema Automotor" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -22,7 +22,7 @@ import lombok.ToString;
 public class Patente {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private int IdPatente;
+    private int idPatente;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Automotor", foreignKey = @ForeignKey(name = "dominio"))
     private Automotor dominio;
