@@ -4,25 +4,26 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="711.0" prefWidth="884.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo2.SistemaAutomotor.controlador.VisualizarFacPagControlador">
-   <children>
-      <Label layoutX="265.0" layoutY="40.0" prefHeight="35.0" prefWidth="357.0" text="Visualizar Facturas Pagadas">
-         <font>
-            <Font name="Berlin Sans FB" size="30.0" />
-         </font></Label>
-      <TableView fx:id="visualizarTable" layoutX="35.0" layoutY="250.0" prefHeight="351.0" prefWidth="817.0">
-        <columns>
-          <TableColumn fx:id="cuotaColumna" prefWidth="196.0" text="Cuota" />
-          <TableColumn fx:id="importeColumna" prefWidth="393.0" text="Importe" />
-            <TableColumn fx:id="fechadevenColumna" prefWidth="227.0" text="Fecha de Vencimiento" />
-        </columns>
-      </TableView>
-      <Button layoutX="35.0" layoutY="642.0" mnemonicParsing="false" text="Visualizar Detalle" />
-      <Button layoutX="744.0" layoutY="642.0" mnemonicParsing="false" text="Exportar Facturas" />
-      <Button layoutX="418.0" layoutY="200.0" mnemonicParsing="false" text="Buscar" />
-      <TextField layoutX="370.0" layoutY="101.0" />
-      <Label layoutX="302.0" layoutY="105.0" text="Dominio" />
-      <Label layoutX="296.0" layoutY="156.0" text="A partir de:" />
-      <TextField layoutX="370.0" layoutY="152.0" />
-   </children>
+<AnchorPane prefHeight="711.0" prefWidth="884.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="grupo2.SistemaAutomotor.controlador.VisualizarFacPagControlador">
+    <Label layoutX="265.0" layoutY="40.0" prefHeight="35.0" prefWidth="357.0" text="Visualizar Facturas Pagadas">
+        <font>
+          <Font name="Berlin Sans FB" size="30.0"/>
+        </font>
+    </Label>
+    <TableView fx:id="visualizarTable" layoutX="35.0" layoutY="250.0" prefHeight="351.0" prefWidth="817.0">
+      <columns>
+          <TableColumn fx:id="cuotaColumna" prefWidth="196.0" text="Cuota"/>
+          <TableColumn fx:id="importeColumna" prefWidth="393.0" text="Importe"/>
+          <TableColumn fx:id="fechadevenColumna" prefWidth="227.0" text="Fecha de Vencimiento"/>
+      </columns>
+    </TableView>
+    <Button layoutX="35.0" layoutY="642.0" mnemonicParsing="false" text="Visualizar Detalle"/>
+    <Button layoutX="744.0" layoutY="642.0" mnemonicParsing="false" text="Exportar Facturas"/>
+    <Button layoutX="418.0" layoutY="200.0" mnemonicParsing="false" text="Buscar"/>
+    <TextField layoutX="370.0" layoutY="101.0"/>
+    <Label layoutX="302.0" layoutY="105.0" text="Dominio"/>
+    <Label layoutX="296.0" layoutY="156.0" text="A partir de:"/>
+    <TextField layoutX="370.0" layoutY="152.0"/>
 </AnchorPane>
