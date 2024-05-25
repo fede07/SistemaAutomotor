@@ -1,7 +1,10 @@
 package grupo2.SistemaAutomotor.controlador;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.stage.Stage;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +20,11 @@ public class VisualizarFacPagControlador implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+    }
+
+    public void abrirMainScene(ActionEvent actionEvent){
+        Stage mainStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        mainStage.setScene(mainScene);
     }
 
 }
