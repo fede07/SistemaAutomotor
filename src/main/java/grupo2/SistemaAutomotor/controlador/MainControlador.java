@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
@@ -15,9 +16,15 @@ import java.util.ResourceBundle;
 @Component
 public class MainControlador implements Initializable {
 
+    public Button facturasPagadasButton;
+    public Button facturasImpagasButton;
+    public Button gestionarBDDButton;
+    public Button deudaButton;
+    public Button recaudacionButton;
+    public Button GestionarBDDButton;
+
+    private Scene facPagScene;
     private Scene automotorScene;
-    private Scene titularScene;
-    private Scene boletaScene;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -29,14 +36,9 @@ public class MainControlador implements Initializable {
         automotorStage.setScene(automotorScene);
     }
 
-    public void abrirTitularScene(ActionEvent actionEvent) {
-        Stage titularStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        titularStage.setScene(titularScene);
-    }
-
-    public void abrirBoletaScene(ActionEvent actionEvent) {
-        Stage boletaStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        boletaStage.setScene(boletaScene);
+    public void abrirFacPagScene(ActionEvent actionEvent){
+        Stage facpagStage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        facpagStage.setScene(facPagScene);
     }
 
 }

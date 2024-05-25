@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo2.SistemaAutomotor.controlador.VisualizarFacPagControlador">
+    <BorderPane prefWidth="1035.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <left>
+            <fx:include source="mainScene.fxml" />
+        </left>
+
+        <center>
+            <AnchorPane prefHeight="750.0" prefWidth="813.0">
+                <Label layoutX="223.0" layoutY="44.0" prefHeight="35.0" prefWidth="357.0" text="Visualizar Facturas Pagadas">
+                    <font>
+                        <Font name="Berlin Sans FB" size="30.0" />
+                    </font>
+                </Label>
+                <TableView fx:id="visualizarTable" layoutX="39.0" layoutY="246.0" prefHeight="350.0" prefWidth="725.0">
+                    <columns>
+                        <TableColumn fx:id="cuotaColumna" prefWidth="243.0" text="Cuota" />
+                        <TableColumn fx:id="importeColumna" prefWidth="196.0" text="Importe" />
+                        <TableColumn fx:id="fechadevenColumna" prefWidth="377.0" text="Fecha de Vencimiento" />
+                    </columns>
+                </TableView>
+                <Button layoutX="35.0" layoutY="642.0" mnemonicParsing="false" text="Visualizar Detalle" />
+                <Button layoutX="647.0" layoutY="642.0" mnemonicParsing="false" text="Exportar Facturas" />
+                <Button layoutX="375.0" layoutY="203.0" mnemonicParsing="false" text="Buscar" />
+                <TextField layoutX="338.0" layoutY="102.0" />
+                <Label layoutX="267.0" layoutY="106.0" text="Dominio" />
+                <Label layoutX="264.0" layoutY="143.0" text="A partir de:" />
+                <TextField layoutX="338.0" layoutY="139.0" />
+            </AnchorPane>
+        </center>
+    </BorderPane>
+</AnchorPane>

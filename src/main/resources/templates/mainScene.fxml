@@ -1,41 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="530.0" prefWidth="176.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo2.SistemaAutomotor.controlador.MainControlador">
-   <BorderPane prefHeight="660.0" prefWidth="991.0">
-      <top>
-         <AnchorPane prefHeight="113.0" prefWidth="991.0" style="-fx-background-color: #81b4d3;"
-                     BorderPane.alignment="CENTER">
-            <Label layoutX="41.0" layoutY="18.0" prefHeight="36.0" prefWidth="95.0" text="Sistema"
-                   textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="24.0"/>
-               </font>
-            </Label>
-            <Label layoutX="21.0" layoutY="42.0" prefHeight="53.0" prefWidth="134.0" text="Automotor"
-                   textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="24.0"/>
-               </font>
-            </Label>
-         </AnchorPane>
-      </top>
-      <right>
-         <AnchorPane prefHeight="530.0" prefWidth="644.0" BorderPane.alignment="CENTER">
-            <fx:include source="automotorScene.fxml" />
-         </AnchorPane>
-      </right>
-      <left>
-         <VBox prefHeight="417.0" prefWidth="176.0" BorderPane.alignment="CENTER">
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="176.0" text="Facturas Pagadas"/>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="177.0" text="Facturas Impagas"/>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="176.0" text="Gestion Automotores"/>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="176.0" text="Automotores con Deuda"/>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="176.0" text="Recaudacion por municipio"/>
-         </VBox>
-      </left>
-   </BorderPane>
-</AnchorPane>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="200.0" styleClass="main_menu_container" stylesheets="@../styles/mainMenu.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo2.SistemaAutomotor.controlador.MainControlador">
+   <AnchorPane prefHeight="730.0" prefWidth="266.0" styleClass="left_container">
+      <VBox layoutX="10.0" layoutY="8.0" prefHeight="118.0" prefWidth="200.0" styleClass="title_container" AnchorPane.bottomAnchor="612.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Sistema Automotor" textAlignment="CENTER" wrappingWidth="150">
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
+         </Text>
+      </VBox>
+      <VBox layoutX="40.0" layoutY="118.0" prefHeight="528.0" prefWidth="200.0" styleClass="menu_container" AnchorPane.bottomAnchor="84.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="118.0">
+         <Button fx:id="facturasPagadasButton" mnemonicParsing="false" onAction="#abrirFacPagScene" styleClass="alt_menu_btn" text="Facturas Pagadas" textAlignment="CENTER" />
+         <Button fx:id="facturasImpagasButton" mnemonicParsing="false" styleClass="alt_menu_btn" text="Facturas Impagas" textAlignment="CENTER" />
+         <Line endX="120.0" />
+         <Button fx:id="GestionarBDDButton" mnemonicParsing="false" onAction="#abrirAutomotorScene" text="Gestionar Base de Datos" />
+         <Button fx:id="deudaButton" mnemonicParsing="false" text="Automotores con Deuda" />
+         <Button fx:id="recaudacionButton" mnemonicParsing="false" text="Recaudacion" />
+      </VBox>
+      <VBox layoutY="655.0" prefHeight="75.0" prefWidth="200.0" styleClass="info_container" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="655.0">
+         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Universidad Nacional de La Matanza" textAlignment="CENTER" wrappingWidth="151.357421875">
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
+         </Text>
+      </VBox>
+   </AnchorPane>
+</VBox>

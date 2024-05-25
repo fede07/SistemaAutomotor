@@ -1,10 +1,7 @@
 package grupo2.SistemaAutomotor.presentacion;
 
 import grupo2.SistemaAutomotor.SistemaAutomotorApplication;
-import grupo2.SistemaAutomotor.controlador.AutomotorControlador;
-import grupo2.SistemaAutomotor.controlador.BoletaControlador;
-import grupo2.SistemaAutomotor.controlador.MainControlador;
-import grupo2.SistemaAutomotor.controlador.TitularControlador;
+import grupo2.SistemaAutomotor.controlador.*;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -23,8 +20,7 @@ public class SistemaAutomotorFX extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-
-        //Creo las escenas
+        //Modelo.getInstance().getViewFactory().mostrarVerFactPag();
         FXMLLoader mainLoader = new FXMLLoader(SistemaAutomotorApplication.class.getResource("/templates/mainScene.fxml"));
         mainLoader.setControllerFactory(contexto::getBean);
         Scene mainScene = new Scene(mainLoader.load());
@@ -41,24 +37,23 @@ public class SistemaAutomotorFX extends Application {
         boletaLoader.setControllerFactory(contexto::getBean);
         Scene boletaScene = new Scene(boletaLoader.load());
 
+        FXMLLoader facPagLoader  = new FXMLLoader(SistemaAutomotorApplication.class.getResource("/templates/verFactPagScene.fxml"));
+        facPagLoader.setControllerFactory(contexto::getBean);
+        Scene facPagScene = new Scene(facPagLoader.load());
+
         //Vinculo las escenas con Main
         AutomotorControlador automotorControlador = automotorLoader.getController();
         automotorControlador.setMainScene(mainScene);
 
-        TitularControlador titularControlador = titularLoader.getController();
-        titularControlador.setMainScene(mainScene);
-
-        BoletaControlador boletaControlador = boletaLoader.getController();
-        boletaControlador.setMainScene(mainScene);
+        VisualizarFacPagControlador factPagControlador = facPagLoader.getController();
+        factPagControlador.setMainScene(mainScene);
 
         //Vinculo Main con las escenas
         MainControlador mainControlador = mainLoader.getController();
         mainControlador.setAutomotorScene(automotorScene);
-        mainControlador.setTitularScene(titularScene);
-        mainControlador.setBoletaScene(boletaScene);
-
+        mainControlador.setFacPagScene(facPagScene);
         //Inicio la escena principal
-        stage.setScene(mainScene);
+        stage.setScene(facPagScene);
         stage.show();
     }
 
