@@ -1,10 +1,7 @@
 package grupo2.SistemaAutomotor.presentacion;
 
 import grupo2.SistemaAutomotor.SistemaAutomotorApplication;
-import grupo2.SistemaAutomotor.controlador.AutomotorControlador;
-import grupo2.SistemaAutomotor.controlador.BoletaControlador;
-import grupo2.SistemaAutomotor.controlador.MainControlador;
-import grupo2.SistemaAutomotor.controlador.TitularControlador;
+import grupo2.SistemaAutomotor.controlador.*;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -41,6 +38,10 @@ public class SistemaAutomotorFX extends Application {
         boletaLoader.setControllerFactory(contexto::getBean);
         Scene boletaScene = new Scene(boletaLoader.load());
 
+        FXMLLoader visualizarFacPagLoader  = new FXMLLoader(SistemaAutomotorApplication.class.getResource("/templates/visualizarFacPagScene.fxml"));;
+        visualizarFacPagLoader.setControllerFactory(contexto::getBean);
+        Scene facpagScene = new Scene(visualizarFacPagLoader.load());
+
         //Vinculo las escenas con Main
         AutomotorControlador automotorControlador = automotorLoader.getController();
         automotorControlador.setMainScene(mainScene);
@@ -51,11 +52,15 @@ public class SistemaAutomotorFX extends Application {
         BoletaControlador boletaControlador = boletaLoader.getController();
         boletaControlador.setMainScene(mainScene);
 
+        VisualizarFacPagControlador factPagControlador = visualizarFacPagLoader.getController();
+        factPagControlador.setMainScene(mainScene);
+
         //Vinculo Main con las escenas
         MainControlador mainControlador = mainLoader.getController();
         mainControlador.setAutomotorScene(automotorScene);
         mainControlador.setTitularScene(titularScene);
         mainControlador.setBoletaScene(boletaScene);
+        mainControlador.setFacpagScene(facpagScene);
 
         //Inicio la escena principal
         stage.setScene(mainScene);

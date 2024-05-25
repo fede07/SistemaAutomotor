@@ -15,6 +15,7 @@ import java.util.ResourceBundle;
 @Component
 public class MainControlador implements Initializable {
 
+    private Scene facpagScene;
     private Scene automotorScene;
     private Scene titularScene;
     private Scene boletaScene;
@@ -39,4 +40,8 @@ public class MainControlador implements Initializable {
         boletaStage.setScene(boletaScene);
     }
 
+    public void abrirFacpagScene(ActionEvent actionEvent){
+        Stage facpagStage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        facpagStage.setScene(facpagScene);
+    }
 }
