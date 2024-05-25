@@ -4,13 +4,38 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="530.0" prefWidth="815.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo2.SistemaAutomotor.controlador.MainControlador">
-   <Label layoutX="291.0" layoutY="14.0" text="Sistema Automotor" textAlignment="CENTER">
-      <font>
-         <Font name="System Bold" size="25.0" />
-      </font></Label>
-   <Button layoutX="374.0" layoutY="252.0" mnemonicParsing="false" onAction="#abrirAutomotorScene" text="Automotor" />
-   <Button layoutX="374.0" layoutY="283.0" mnemonicParsing="false" onAction="#abrirTitularScene" prefHeight="25.0" prefWidth="75.0" text="Titular" />
-   <Label layoutX="392.0" layoutY="50.0" text="Inicio" />
-   <Button layoutX="374.0" layoutY="221.0" mnemonicParsing="false" onAction="#abrirBoletaScene" prefWidth="75.0" text="Facturar" />
+<AnchorPane prefHeight="530.0" prefWidth="176.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo2.SistemaAutomotor.controlador.MainControlador">
+   <BorderPane prefHeight="660.0" prefWidth="991.0">
+      <top>
+         <AnchorPane prefHeight="113.0" prefWidth="991.0" style="-fx-background-color: #81b4d3;"
+                     BorderPane.alignment="CENTER">
+            <Label layoutX="41.0" layoutY="18.0" prefHeight="36.0" prefWidth="95.0" text="Sistema"
+                   textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0"/>
+               </font>
+            </Label>
+            <Label layoutX="21.0" layoutY="42.0" prefHeight="53.0" prefWidth="134.0" text="Automotor"
+                   textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0"/>
+               </font>
+            </Label>
+         </AnchorPane>
+      </top>
+      <right>
+         <AnchorPane prefHeight="530.0" prefWidth="644.0" BorderPane.alignment="CENTER">
+            <fx:include source="automotorScene.fxml" />
+         </AnchorPane>
+      </right>
+      <left>
+         <VBox prefHeight="417.0" prefWidth="176.0" BorderPane.alignment="CENTER">
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="176.0" text="Facturas Pagadas"/>
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="177.0" text="Facturas Impagas"/>
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="176.0" text="Gestion Automotores"/>
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="176.0" text="Automotores con Deuda"/>
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="176.0" text="Recaudacion por municipio"/>
+         </VBox>
+      </left>
+   </BorderPane>
 </AnchorPane>
