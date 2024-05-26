@@ -29,11 +29,6 @@ public class SistemaAutomotorFX extends Application {
         automotorLoader.setControllerFactory(contexto::getBean);
         Scene automotorScene = new Scene(automotorLoader.load());
 
-
-        FXMLLoader boletaLoader = new FXMLLoader(SistemaAutomotorApplication.class.getResource("/templates/boletaScene.fxml"));
-        boletaLoader.setControllerFactory(contexto::getBean);
-        Scene boletaScene = new Scene(boletaLoader.load());
-
         FXMLLoader facPagLoader  = new FXMLLoader(SistemaAutomotorApplication.class.getResource("/templates/verFactPagScene.fxml"));
         facPagLoader.setControllerFactory(contexto::getBean);
         Scene facPagScene = new Scene(facPagLoader.load());
@@ -41,9 +36,6 @@ public class SistemaAutomotorFX extends Application {
         //Vinculo las escenas con Main
         AutomotorControlador automotorControlador = automotorLoader.getController();
         automotorControlador.setMainScene(mainScene);
-
-        VisualizarFacPagControlador factPagControlador = facPagLoader.getController();
-        factPagControlador.setMainScene(mainScene);
 
 
         //Vinculo Main con las escenas

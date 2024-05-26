@@ -24,7 +24,7 @@ public class Boleta {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "dominio")
     private Automotor dominio;
-    private String estado;
+    private Boolean estado;
     private BigDecimal importe;
     private Date fechaVencimiento;
     private Date fechaPago;
