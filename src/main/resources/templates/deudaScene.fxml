@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <fx:include source="mainScene.fxml" />
+   </left>
+   <center>
+      <VBox prefHeight="800.0" prefWidth="615.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane prefHeight="147.0" prefWidth="932.0">
+               <children>
+                  <Text layoutX="270.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Automotores con Deuda" textAlignment="CENTER" AnchorPane.bottomAnchor="57.9765625" AnchorPane.leftAnchor="270.0" AnchorPane.rightAnchor="269.55078125" AnchorPane.topAnchor="57.1015625">
+                     <font>
+                        <Font size="24.0" />
+                     </font></Text>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="587.0" prefWidth="927.0">
+               <children>
+                  <TableView layoutX="29.0" prefHeight="587.0" prefWidth="743.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="Dominio" />
+                      <TableColumn prefWidth="75.0" text="DNI Titular" />
+                        <TableColumn prefWidth="75.0" text="Modelo" />
+                        <TableColumn prefWidth="75.0" text="Marca" />
+                        <TableColumn prefWidth="75.0" text="Deuda" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

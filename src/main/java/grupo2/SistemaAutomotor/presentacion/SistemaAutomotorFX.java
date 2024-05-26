@@ -29,9 +29,6 @@ public class SistemaAutomotorFX extends Application {
         automotorLoader.setControllerFactory(contexto::getBean);
         Scene automotorScene = new Scene(automotorLoader.load());
 
-        FXMLLoader titularLoader = new FXMLLoader(SistemaAutomotorApplication.class.getResource("/templates/titularScene.fxml"));
-        titularLoader.setControllerFactory(contexto::getBean);
-        Scene titularScene = new Scene(titularLoader.load());
 
         FXMLLoader boletaLoader = new FXMLLoader(SistemaAutomotorApplication.class.getResource("/templates/boletaScene.fxml"));
         boletaLoader.setControllerFactory(contexto::getBean);
