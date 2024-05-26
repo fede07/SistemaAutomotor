@@ -1,4 +1,4 @@
-SELECT * FROM titular
+SELECT * FROM titular;
 
 CREATE TABLE titular (
     dni INT PRIMARY KEY,
@@ -36,11 +36,11 @@ CREATE TABLE automotor (
     anio_fabricacion INT,
     titular INT,
     municipio INT,
-    FOREIGN KEY (titular_dni) REFERENCES titular(dni),
-    FOREIGN KEY (municipio_id) REFERENCES municipio(id)
+    FOREIGN KEY (titular) REFERENCES titular(dni),
+    FOREIGN KEY (municipio) REFERENCES municipio(id)
 );
 
-SELECT * FROM automotor
+SELECT * FROM automotor;
 -- Insertar 10 datos de automotores
 
 INSERT INTO automotor (dominio, marca, modelo, anio_fabricacion, titular, municipio) VALUES ('ABC123', 'Ford', 'Fiesta', 2020, 36806932, 9);
@@ -55,12 +55,12 @@ INSERT INTO automotor (dominio, marca, modelo, anio_fabricacion, titular, munici
 ('YZA567', 'Citroen', 'C3', 2012, 89012345, 8),
 ('BCD890', 'Honda', 'Fit', 2011, 90123456, 9);
 
-SELECT * FROM boleta    
+SELECT * FROM boleta;
 
 CREATE TABLE boleta (
     id_boleta INT PRIMARY KEY,
     cuota INT,
-    estado VARCHAR(50),
+    estado BIT(1),
     fecha_pago DATE,
     fecha_vencimiento DATE,
     importe DECIMAL(10,2),
@@ -71,32 +71,32 @@ CREATE TABLE boleta (
 -- Insertar 10 datos de boletas
 INSERT INTO boleta (cuota, estado, fecha_pago, fecha_vencimiento, importe, dominio) VALUES (1, 'Pendiente', '2021-01-01', '2021-01-31', 1000.00, 'ABC123');
 INSERT INTO boleta (cuota, estado, fecha_pago, fecha_vencimiento, importe, dominio) VALUES 
-(2, 'Pendiente', '2021-02-01', '2021-02-28', 1000.00, 'DEF456'),
-(3, 'Pendiente', '2021-03-01', '2021-03-31', 1000.00, 'GHI789'),
-(4, 'Pendiente', '2021-04-01', '2021-04-30', 1000.00, 'JKL012'),
-(5, 'Pendiente', '2021-05-01', '2021-05-31', 1000.00, 'MNO345'),
-(6, 'Pendiente', '2021-06-01', '2021-06-30', 1000.00, 'PQR678'),
-(7, 'Pendiente', '2021-07-01', '2021-07-31', 1000.00, 'STU901'),
-(8, 'Pendiente', '2021-08-01', '2021-08-31', 1000.00, 'VWX234'),
-(9, 'Pendiente', '2021-09-01', '2021-09-30', 1000.00, 'YZA567'),
-(10, 'Pendiente', '2021-10-01', '2021-10-31', 1000.00, 'BCD890');
+(2, 1, '2024-02-01', '2024-02-28', 1000.00, 'DEF456'),
+(3, 1, '2024-03-01', '2024-03-31', 1000.00, 'GHI789'),
+(4, 0, '2024-04-01', '2024-04-30', 1000.00, 'JKL012'),
+(5, 0, '2024-05-01', '2024-05-31', 1000.00, 'MNO345'),
+(6, 0, '2024-06-01', '2024-06-30', 1000.00, 'PQR678'),
+(7, 0, '2024-07-01', '2024-07-31', 1000.00, 'STU901'),
+(8, 0, '2024-08-01', '2024-08-31', 1000.00, 'VWX234'),
+(9, 0, '2024-09-01', '2024-09-30', 1000.00, 'YZA567'),
+(10, 0, '2024-10-01', '2024-10-31', 1000.00, 'BCD890');
 
 -- generar 12 boletas para el automotor con dominio 'ABC123' con fecha del 2024, una cuota por mes, los primeros 3 meses pagados, con vencimiento a fin de mes y un importe de $3000.00.
 -- Los meses inpagos deben tener el estado 'Pendiente' y los pagos 'Pagado'. Ademas la fecha de pago de los inpagos debe ser NULL.
 
-INSERT INTO boleta (cuota, estado, fecha_pago, fecha_vencimiento, importe, dominio) VALUES 
-(1, 'Pagado', '2024-01-01', '2024-01-31', 1000.00, 'ABC123'),
-(2, 'Pagado', '2024-02-01', '2024-02-29', 1000.00, 'ABC123'),
-(3, 'Pagado', '2024-03-01', '2024-03-31', 1000.00, 'ABC123'),
-(4, 'Pendiente', NULL, '2024-04-30', 1000.00, 'ABC123'),
-(5, 'Pendiente', NULL, '2024-05-31', 1000.00, 'ABC123'),
-(6, 'Pendiente', NULL, '2024-06-30', 1000.00, 'ABC123'),
-(7, 'Pendiente', NULL, '2024-07-31', 1000.00, 'ABC123'),
-(8, 'Pendiente', NULL, '2024-08-31', 1000.00, 'ABC123'),
-(9, 'Pendiente', NULL, '2024-09-30', 1000.00, 'ABC123'),
-(10, 'Pendiente', NULL, '2024-10-31', 1000.00, 'ABC123'),
-(11, 'Pendiente', NULL, '2024-11-30', 1000.00, 'ABC123'),
-(12, 'Pendiente', NULL, '2024-12-31', 1000.00, 'ABC123');
+INSERT INTO boleta (cuota, estado, fecha_pago, fecha_vencimiento, importe, dominio)
+VALUES (1, 1, '2024-01-01', '2024-01-31', 1000.00, 'ABC123'),
+       (2, 1, '2024-02-01', '2024-02-29', 1000.00, 'ABC123'),
+       (3, 1, '2024-03-01', '2024-03-31', 1000.00, 'ABC123'),
+       (4, 0, NULL, '2024-04-30', 1000.00, 'ABC123'),
+       (5, 0, NULL, '2024-05-31', 1000.00, 'ABC123'),
+       (6, 0, NULL, '2024-06-30', 1000.00, 'ABC123'),
+       (7, 0, NULL, '2024-07-31', 1000.00, 'ABC123'),
+       (8, 0, NULL, '2024-08-31', 1000.00, 'ABC123'),
+       (9, 0, NULL, '2024-09-30', 1000.00, 'ABC123'),
+       (10, 0, NULL, '2024-10-31', 1000.00, 'ABC123'),
+       (11, 0, NULL, '2024-11-30', 1000.00, 'ABC123'),
+       (12, 0, NULL, '2024-12-31', 1000.00, 'ABC123');
 -- generar 12 boletas para el automotor con dominio 'DEF456' con fecha del 2024, una cuota por mes, los primeros 3 meses pagados, con vencimiento a fin de mes y un importe de $3200.00.
 -- Los meses inpagos deben tener el estado 'Pendiente' y los pagos 'Pagado'. Ademas la fecha de pago de los inpagos debe ser NULL.
 
