@@ -6,8 +6,8 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="200.0" styleClass="main_menu_container" stylesheets="@../styles/mainMenu.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo2.SistemaAutomotor.controlador.MainControlador">
-   <AnchorPane prefHeight="730.0" prefWidth="266.0" styleClass="left_container">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="200.0" styleClass="main_menu_container" stylesheets="@../styles/mainMenu.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo2.SistemaAutomotor.controlador.MainControlador">
+   <AnchorPane styleClass="left_container">
       <VBox layoutX="10.0" layoutY="8.0" prefHeight="118.0" prefWidth="200.0" styleClass="title_container" AnchorPane.bottomAnchor="612.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Sistema Automotor" textAlignment="CENTER" wrappingWidth="150">
             <VBox.margin>
