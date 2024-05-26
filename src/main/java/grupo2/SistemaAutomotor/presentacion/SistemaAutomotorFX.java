@@ -48,12 +48,16 @@ public class SistemaAutomotorFX extends Application {
         VisualizarFacPagControlador factPagControlador = facPagLoader.getController();
         factPagControlador.setMainScene(mainScene);
 
+
         //Vinculo Main con las escenas
         MainControlador mainControlador = mainLoader.getController();
         mainControlador.setAutomotorScene(automotorScene);
         mainControlador.setFacPagScene(facPagScene);
         //Inicio la escena principal
         stage.setScene(facPagScene);
+        stage.setTitle("Sistema Automotor");
+        stage.setMinHeight(800);
+        stage.setMinWidth(1000);
         stage.show();
     }
 
