@@ -25,6 +25,8 @@ public class MainControlador implements Initializable {
 
     private Scene facPagScene;
     private Scene automotorScene;
+    private Scene deudasScene;
+    private Scene recaudacionScene;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -43,6 +45,17 @@ public class MainControlador implements Initializable {
     public void abrirFacPagScene(ActionEvent actionEvent){
         Stage facpagStage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         facpagStage.setScene(facPagScene);
+    }
+
+    public void abrirGestionarBDDScene(ActionEvent actionEvent){}
+
+    public void abrirDeudaScene(ActionEvent actionEvent){
+        Stage deudaStage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        deudaStage.setScene(deudasScene);
+    }
+    public void abrirRecaudacionScene(ActionEvent actionEvent){
+        Stage recaudacionStage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        recaudacionStage.setScene(recaudacionScene);
     }
 
 }

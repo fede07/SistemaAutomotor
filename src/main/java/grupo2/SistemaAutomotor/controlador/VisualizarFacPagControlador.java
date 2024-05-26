@@ -23,6 +23,7 @@ public class VisualizarFacPagControlador implements Initializable {
     public Button buscarButton;
     private final BoletaServicio boletaServicio;
 
+
     @FXML
     private TableView<Boleta> boletaTabla = new TableView<>();
 
@@ -34,6 +35,9 @@ public class VisualizarFacPagControlador implements Initializable {
 
     @FXML
     private TableColumn<Boleta, Date> fechadevenColumna;
+
+    @FXML
+    private TableColumn<Boleta, Boolean> estadoColumna;
 
     private final ObservableList<Boleta> boletaList = FXCollections.observableArrayList();
 
@@ -52,6 +56,8 @@ public class VisualizarFacPagControlador implements Initializable {
         cuotaColumna.setCellValueFactory(new PropertyValueFactory<>("cuota"));
         importeColumna.setCellValueFactory(new PropertyValueFactory<>("importe"));
         fechadevenColumna.setCellValueFactory(new PropertyValueFactory<>("fven"));
+        estadoColumna.setCellValueFactory(new PropertyValueFactory<>("estado"));
+
     }
 
     public void listarCuotas(){
@@ -69,10 +75,11 @@ public class VisualizarFacPagControlador implements Initializable {
         boletaList.clear();
         Automotor automotor = new Automotor();
         automotor.setDominio(dominio);
-        List<Boleta> boletas = boletaServicio.buscarBoletasPorDominio(automotor);
+        List<Boleta> boletas = boletaServicio.buscarBoletasPorDominioYEestado(automotor, true);
         if (boletas.isEmpty()) {
             mostrarMensaje("Info", "No se encontraron facturas con el dominio " + dominio);
         }
+
         boletaList.addAll(boletas);
         boletaTabla.setItems(boletaList);
     }

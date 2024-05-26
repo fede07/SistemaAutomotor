@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface BoletaRepositorio extends JpaRepository<Boleta, Integer> {
     List<Boleta> findBoletasByDominio(Automotor dominioAut);
+    List<Boleta> findBoletasByDominioAndEstado(Automotor dominioAut, Boolean estado);
 }

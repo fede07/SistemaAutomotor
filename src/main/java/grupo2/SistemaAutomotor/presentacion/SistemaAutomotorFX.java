@@ -33,6 +33,14 @@ public class SistemaAutomotorFX extends Application {
         facPagLoader.setControllerFactory(contexto::getBean);
         Scene facPagScene = new Scene(facPagLoader.load());
 
+        FXMLLoader deudaLoader = new FXMLLoader(SistemaAutomotorApplication.class.getResource("/templates/deudaScene.fxml"));
+        deudaLoader.setControllerFactory(contexto::getBean);
+        Scene deudaScene = new Scene(deudaLoader.load());
+
+        FXMLLoader recaudacionLoader = new FXMLLoader(SistemaAutomotorApplication.class.getResource("/templates/recaudacionScene.fxml"));
+        recaudacionLoader.setControllerFactory(contexto::getBean);
+        Scene recaudacionScene = new Scene(recaudacionLoader.load());
+
         //Vinculo las escenas con Main
         AutomotorControlador automotorControlador = automotorLoader.getController();
         automotorControlador.setMainScene(mainScene);
@@ -42,6 +50,8 @@ public class SistemaAutomotorFX extends Application {
         MainControlador mainControlador = mainLoader.getController();
         mainControlador.setAutomotorScene(automotorScene);
         mainControlador.setFacPagScene(facPagScene);
+        mainControlador.setDeudasScene(deudaScene);
+        mainControlador.setRecaudacionScene(recaudacionScene);
         //Inicio la escena principal
         stage.setScene(facPagScene);
         stage.setTitle("Sistema Automotor");
