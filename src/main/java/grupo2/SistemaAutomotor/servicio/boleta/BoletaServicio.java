@@ -38,4 +38,8 @@ public class BoletaServicio implements IBoletaServicio {
     public List<Boleta> buscarBoletasPorDominio(Automotor automotor) {
         return boletaRepositorio.findBoletasByDominio(automotor);
     }
+
+    public List<Boleta> buscarBoletasPorDominioYEestado(Automotor automotor, Boolean estado) {
+        return boletaRepositorio.findBoletasByDominioAndEstado(automotor, estado);
+    }
 }
