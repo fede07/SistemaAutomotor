@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800" prefWidth="1000" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+       <fx:include source="mainScene.fxml" />
+   </left>
+   <center>
+       <AnchorPane prefHeight="400.0" prefWidth="442.0" BorderPane.alignment="CENTER">
+           <TableView layoutX="15.0" layoutY="148.0" prefHeight="638.0" prefWidth="766.0" styleClass="title_container">
+               <columns>
+                   <TableColumn prefWidth="387.0" text="Municipio"/>
+                   <TableColumn prefWidth="378.0" text="Recaudacion"/>
+               </columns>
+           </TableView>
+           <AnchorPane layoutY="13.0" prefHeight="115.0" prefWidth="800.0" styleClass="title_container">
+               <Text layoutX="182.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                     text="Recaudacion por Municipio" wrappingWidth="435.873046875">
+                   <font>
+                       <Font size="35.0"/>
+                   </font>
+               </Text>
+           </AnchorPane>
+       </AnchorPane>
+   </center>
+</BorderPane>
