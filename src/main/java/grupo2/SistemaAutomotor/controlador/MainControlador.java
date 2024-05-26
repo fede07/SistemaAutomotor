@@ -33,6 +33,10 @@ public class MainControlador implements Initializable {
 
     public void abrirAutomotorScene(ActionEvent actionEvent) {
         Stage automotorStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        double height = automotorStage.getHeight();
+        double width = automotorStage.getWidth();
+        automotorStage.setHeight(height);
+        automotorStage.setWidth(width);
         automotorStage.setScene(automotorScene);
     }
 
