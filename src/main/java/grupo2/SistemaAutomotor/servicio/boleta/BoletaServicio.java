@@ -7,6 +7,7 @@ import grupo2.SistemaAutomotor.repositorio.BoletaRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class BoletaServicio implements IBoletaServicio {
     }
 
     @Override
-    public float sumarBoletasPorMunicipio(Municipio municipio) {
+    public BigDecimal sumarBoletasPorMunicipio(Municipio municipio) {
         return boletaRepositorio.sumAllByMunicipio(municipio);
     }
 

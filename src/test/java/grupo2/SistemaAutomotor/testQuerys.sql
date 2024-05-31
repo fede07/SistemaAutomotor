@@ -114,3 +114,12 @@ INSERT INTO boleta (cuota, estado, fecha_pago, fecha_vencimiento, importe, domin
 (11, 'Pendiente', '2024-11-01', '2024-11-30', 3000.00, 'DEF456'),
 (12, 'Pendiente', '2024-12-01', '2024-12-31', 3000.00, 'DEF456');
 
+-- Listar la recaudacion por municipio
+
+SELECT m.nombre, SUM(b.importe) as recaudacion
+FROM boleta b
+JOIN automotor a ON b.dominio = a.dominio
+JOIN municipio m ON a.municipio = m.id
+GROUP BY m.nombre;
+
+
