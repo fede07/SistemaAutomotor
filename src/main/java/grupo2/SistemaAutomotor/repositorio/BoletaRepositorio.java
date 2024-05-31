@@ -14,7 +14,7 @@ public interface BoletaRepositorio extends JpaRepository<Boleta, Integer> {
     List<Boleta> findBoletasByDominioAndEstado(Automotor dominioAut, Boolean estado);
     // "select m.nombre, sum(b.importe) as recaudacion FROM Boleta b join Automotor  a on b.dominio = a.dominio join Municipio m on a.idMunicipio = m group by m.nombre"
     // Recaudacion por municipio
-    @Query("SELECT SUM(b.importe) FROM Boleta b WHERE b.dominio.idMunicipio = ?1")
+    @Query("SELECT SUM(b.importe) FROM Boleta b WHERE b.dominio.idMunicipio = ?1 and b.estado = true")
     BigDecimal sumAllByMunicipio(Municipio municipio);
 
     @Query("SELECT b.dominio.idMunicipio.id from Boleta b GROUP BY b.dominio.idMunicipio.id")
