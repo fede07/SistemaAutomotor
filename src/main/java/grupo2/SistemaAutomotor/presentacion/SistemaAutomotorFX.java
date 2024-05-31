@@ -74,10 +74,6 @@ public class SistemaAutomotorFX extends Application {
         Platform.exit();
     }
 
-    public static void LlenarCombo(ComboBox<String> llenarcombo, ObservableList<String> infocombo){
-        llenarcombo.setItems(infocombo);
-    }
-
 }
 
 

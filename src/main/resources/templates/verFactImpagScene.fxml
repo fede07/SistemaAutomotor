@@ -20,9 +20,9 @@
                     </Label>
                     <TextField fx:id="dominioTextField" layoutX="345.0" layoutY="58.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" AnchorPane.leftAnchor="345.0" AnchorPane.rightAnchor="280.0" />
                     <Label layoutX="275.0" layoutY="62.0" prefHeight="17.0" prefWidth="52.0" text="Dominio" AnchorPane.leftAnchor="275.0" AnchorPane.rightAnchor="473.0" />
-                    <Label layoutX="264.0" layoutY="99.0" prefHeight="17.0" prefWidth="63.0" text="A partir de:" AnchorPane.leftAnchor="264.0" AnchorPane.rightAnchor="473.0" />
+                    <Label layoutX="253.0" layoutY="99.0" prefHeight="17.0" prefWidth="74.0" text="Desde Cuota:" AnchorPane.leftAnchor="253.0" AnchorPane.rightAnchor="473.0" />
                     <Button fx:id="buscarButton" layoutX="373.0" layoutY="143.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#listarCuotas" prefHeight="25.0" prefWidth="59.0" text="Buscar" AnchorPane.leftAnchor="373.0" AnchorPane.rightAnchor="368.0" />
-               <ComboBox fx:id="fechaapartirComboBox" layoutX="345.0" layoutY="95.0" onShowing="#listarMeses" prefHeight="25.0" prefWidth="172.0" />
+               <ComboBox fx:id="fechaapartirComboBox" layoutX="345.0" layoutY="95.0" prefHeight="25.0" prefWidth="172.0" />
                 </AnchorPane>
             </StackPane>
             <TableView fx:id="boletaTabla" layoutX="39.0" layoutY="246.0" prefHeight="350.0" prefWidth="725.0" AnchorPane.bottomAnchor="154.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="246.0">

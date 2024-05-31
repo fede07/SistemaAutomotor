@@ -17,8 +17,6 @@ import java.util.List;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import static grupo2.SistemaAutomotor.presentacion.SistemaAutomotorFX.LlenarCombo;
-
 @Component
 public class VisualizarFacPagControlador implements Initializable {
 
@@ -92,13 +90,5 @@ public class VisualizarFacPagControlador implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
-    }
-
-
-    ObservableList<String> mesesList = FXCollections.observableArrayList("ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO",
-            "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE");
-
-    public void listarMeses(Event event) {
-        LlenarCombo(fechaapartirComboBox, mesesList);
     }
 }
