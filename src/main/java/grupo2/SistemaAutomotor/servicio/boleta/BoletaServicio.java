@@ -2,10 +2,12 @@ package grupo2.SistemaAutomotor.servicio.boleta;
 
 import grupo2.SistemaAutomotor.modelo.Automotor;
 import grupo2.SistemaAutomotor.modelo.Boleta;
+import grupo2.SistemaAutomotor.modelo.Municipio;
 import grupo2.SistemaAutomotor.repositorio.BoletaRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -39,7 +41,22 @@ public class BoletaServicio implements IBoletaServicio {
         return boletaRepositorio.findBoletasByDominio(automotor);
     }
 
+    @Override
+    public float sumarBoletasPorMunicipio(Municipio municipio) {
+        return boletaRepositorio.sumAllByMunicipio(municipio);
+    }
+
     public List<Boleta> buscarBoletasPorDominioYEestado(Automotor automotor, Boolean estado) {
         return boletaRepositorio.findBoletasByDominioAndEstado(automotor, estado);
     }
+
+    public List<Boleta> buscarBoletasPorMunicipio(Municipio municipio){
+        return boletaRepositorio.findAllByMunicipio(municipio);
+    }
+
+    @Override
+    public List<Boleta> buscarBoletasPorDomonioYFechaDesde(Automotor automotor, boolean estado, int fecha) {
+        return boletaRepositorio.findBoletasByDominioAndEstadoAndCuotaAfter(automotor, estado, fecha);
+    }
+
 }

@@ -18,9 +18,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.ComboBox;
 
-import static grupo2.SistemaAutomotor.presentacion.SistemaAutomotorFX.LlenarCombo;
-
-
 @Component
 public class VisualizarFacImpagControlador implements Initializable {
 
@@ -40,7 +37,12 @@ public class VisualizarFacImpagControlador implements Initializable {
     @FXML
     private TableColumn<Boleta, Date> fechadevenColumna;
 
+    @FXML
+    private ComboBox fechaapartirComboBox;
+
     private final ObservableList<Boleta> boletaList = FXCollections.observableArrayList();
+
+    private final ObservableList<Integer> mesesList = FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12);
 
     public VisualizarFacImpagControlador(BoletaServicio boletaServicio) {
         this.boletaServicio = boletaServicio;
@@ -51,6 +53,7 @@ public class VisualizarFacImpagControlador implements Initializable {
         boletaTabla.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         configurarColumnas();
         buscarButton.setOnAction(e -> buscarBoletas());
+        fechaapartirComboBox.setItems(mesesList);
     }
 
     private void configurarColumnas(){
@@ -74,7 +77,8 @@ public class VisualizarFacImpagControlador implements Initializable {
         boletaList.clear();
         Automotor automotor = new Automotor();
         automotor.setDominio(dominio);
-        List<Boleta> boletas = boletaServicio.buscarBoletasPorDominioYEestado(automotor, false);
+        int fecha = (int) fechaapartirComboBox.getValue() - 1;
+        List<Boleta> boletas = boletaServicio.buscarBoletasPorDomonioYFechaDesde(automotor, false, fecha);
         if (boletas.isEmpty()) {
             mostrarMensaje("Info", "No se encontraron facturas con el dominio " + dominio);
         }
@@ -90,13 +94,4 @@ public class VisualizarFacImpagControlador implements Initializable {
         alert.showAndWait();
     }
 
-    public ComboBox fechaapartirComboBox;
-
-
-    ObservableList<String> mesesList = FXCollections.observableArrayList("ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO",
-            "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE");
-
-    public void listarMeses(Event event) {
-        LlenarCombo(fechaapartirComboBox, mesesList);
-    }
 }

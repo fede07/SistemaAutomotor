@@ -36,30 +36,38 @@ public class MainControlador implements Initializable {
 
     public void abrirAutomotorScene(ActionEvent actionEvent) {
         Stage automotorStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        double height = automotorStage.getHeight();
-        double width = automotorStage.getWidth();
-        automotorStage.setHeight(height);
-        automotorStage.setWidth(width);
+        stageSetSize(automotorStage);
         automotorStage.setScene(automotorScene);
     }
 
     public void abrirFacPagScene(ActionEvent actionEvent){
         Stage facpagStage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        stageSetSize(facpagStage);
         facpagStage.setScene(facPagScene);
     }
 
     public void abrirDeudaScene(ActionEvent actionEvent){
         Stage deudaStage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        stageSetSize(deudaStage);
         deudaStage.setScene(deudasScene);
     }
     public void abrirRecaudacionScene(ActionEvent actionEvent){
         Stage recaudacionStage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        stageSetSize(recaudacionStage);
         recaudacionStage.setScene(recaudacionScene);
     }
 
     public void abrirFacturasImpagasScene(ActionEvent actionEvent){
         Stage facpagStage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        stageSetSize(facpagStage);
         facpagStage.setScene(facturasImpagasScene);
+    }
+
+    private static void stageSetSize(Stage recaudacionStage) {
+        double height = recaudacionStage.getHeight();
+        double width = recaudacionStage.getWidth();
+        recaudacionStage.setHeight(height);
+        recaudacionStage.setWidth(width);
     }
 
 }
