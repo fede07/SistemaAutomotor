@@ -5,6 +5,7 @@ import grupo2.SistemaAutomotor.modelo.Boleta;
 import grupo2.SistemaAutomotor.servicio.boleta.BoletaServicio;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,10 @@ import java.util.ResourceBundle;
 import java.util.List;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.ComboBox;
+
+import static grupo2.SistemaAutomotor.presentacion.SistemaAutomotorFX.LlenarCombo;
+
 
 @Component
 public class VisualizarFacImpagControlador implements Initializable {
@@ -85,5 +90,13 @@ public class VisualizarFacImpagControlador implements Initializable {
         alert.showAndWait();
     }
 
+    public ComboBox fechaapartirComboBox;
 
+
+    ObservableList<String> mesesList = FXCollections.observableArrayList("ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO",
+            "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE");
+
+    public void listarMeses(Event event) {
+        LlenarCombo(fechaapartirComboBox, mesesList);
+    }
 }
