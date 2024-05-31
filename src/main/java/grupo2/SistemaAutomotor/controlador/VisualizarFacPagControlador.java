@@ -5,7 +5,6 @@ import grupo2.SistemaAutomotor.modelo.Boleta;
 import grupo2.SistemaAutomotor.servicio.boleta.BoletaServicio;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import org.springframework.stereotype.Component;
@@ -22,8 +21,10 @@ public class VisualizarFacPagControlador implements Initializable {
 
     public TextField dominioTextField;
     public Button buscarButton;
-    public ComboBox fechaapartirComboBox;
     private final BoletaServicio boletaServicio;
+
+    @FXML
+    private ComboBox<Integer> fechaapartirComboBox;
 
 
     @FXML
@@ -41,6 +42,7 @@ public class VisualizarFacPagControlador implements Initializable {
     @FXML
 
     private final ObservableList<Boleta> boletaList = FXCollections.observableArrayList();
+    private final ObservableList<Integer> mesesList = FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12);
 
     public VisualizarFacPagControlador(BoletaServicio boletaServicio) {
         this.boletaServicio = boletaServicio;
@@ -50,7 +52,12 @@ public class VisualizarFacPagControlador implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         boletaTabla.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         configurarColumnas();
-        buscarButton.setOnAction(e -> buscarBoletas());
+        configurarComboBox();
+    }
+
+    private void configurarComboBox() {
+        fechaapartirComboBox.setItems(mesesList);
+        fechaapartirComboBox.setValue(1);
     }
 
     private void configurarColumnas(){
@@ -58,12 +65,6 @@ public class VisualizarFacPagControlador implements Initializable {
         importeColumna.setCellValueFactory(new PropertyValueFactory<>("importe"));
         fechadepagColumna.setCellValueFactory(new PropertyValueFactory<>("fpag"));
 
-    }
-
-    public void listarCuotas(){
-        boletaList.clear();
-        boletaList.addAll(boletaServicio.listarBoletas());
-        boletaTabla.setItems(boletaList);
     }
 
     public void buscarBoletas() {
@@ -75,11 +76,11 @@ public class VisualizarFacPagControlador implements Initializable {
         boletaList.clear();
         Automotor automotor = new Automotor();
         automotor.setDominio(dominio);
-        List<Boleta> boletas = boletaServicio.buscarBoletasPorDominioYEestado(automotor, true);
+        int fecha = fechaapartirComboBox.getValue() - 1;
+        List<Boleta> boletas = boletaServicio.buscarBoletasPorDomonioYFechaDesde(automotor,true, fecha);
         if (boletas.isEmpty()) {
-            mostrarMensaje("Info", "No se encontraron facturas con el dominio " + dominio);
+            mostrarMensaje("Info", "No se encontraron facturas para el dominio " + dominio);
         }
-
         boletaList.addAll(boletas);
         boletaTabla.setItems(boletaList);
     }
