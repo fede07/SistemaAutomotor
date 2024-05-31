@@ -16,6 +16,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -56,10 +57,13 @@ public class RecadacionMunicipioControlador implements Initializable {
             Recaudacion recaudacion = new Recaudacion();
             recaudacion.setNombreMunicipio(municipio.getNombre());
             float total = 0;
-//            List<Boleta> boletas = boletaServicio.buscarBoletasPorMunicipio(municipio);
-//            for(Boleta boleta : boletas) {
-//                total = total + boleta.getImporte().floatValue();
-//            }
+            BigDecimal subtotal = boletaServicio.sumarBoletasPorMunicipio(municipio);
+            if(subtotal != null) {
+                total = subtotal.floatValue();
+            }else
+            {
+                total = 0;
+            }
             recaudacion.setTotal(total);
             recaudacionList.add(recaudacion);
         }

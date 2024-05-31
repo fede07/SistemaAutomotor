@@ -6,14 +6,16 @@ import grupo2.SistemaAutomotor.modelo.Municipio;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import java.util.Date;
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface BoletaRepositorio extends JpaRepository<Boleta, Integer> {
     List<Boleta> findBoletasByDominio(Automotor dominioAut);
     List<Boleta> findBoletasByDominioAndEstado(Automotor dominioAut, Boolean estado);
-    @Query("SELECT b.dominio.idMunicipio.id, sum(b.importe) FROM Boleta b GROUP BY b.dominio.idMunicipio.id")
-    float sumAllByMunicipio(Municipio municipio);
+    // "select m.nombre, sum(b.importe) as recaudacion FROM Boleta b join Automotor  a on b.dominio = a.dominio join Municipio m on a.idMunicipio = m group by m.nombre"
+    // Recaudacion por municipio
+    @Query("SELECT SUM(b.importe) FROM Boleta b WHERE b.dominio.idMunicipio = ?1")
+    BigDecimal sumAllByMunicipio(Municipio municipio);
 
     @Query("SELECT b.dominio.idMunicipio.id from Boleta b GROUP BY b.dominio.idMunicipio.id")
     List<Boleta> findAllByMunicipio(Municipio municipio);
