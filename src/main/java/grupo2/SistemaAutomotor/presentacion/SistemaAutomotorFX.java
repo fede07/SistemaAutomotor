@@ -4,8 +4,10 @@ import grupo2.SistemaAutomotor.SistemaAutomotorApplication;
 import grupo2.SistemaAutomotor.controlador.*;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -71,4 +73,11 @@ public class SistemaAutomotorFX extends Application {
         contexto.close();
         Platform.exit();
     }
+
+    public static void LlenarCombo(ComboBox<String> llenarcombo, ObservableList<String> infocombo){
+        llenarcombo.setItems(infocombo);
+    }
+
 }
+
+
