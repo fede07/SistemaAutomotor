@@ -47,4 +47,14 @@ public class Boleta {
         return day + "/" + month + "/" + year;
     }
 
+    @SuppressWarnings("unused")
+    public String getFpag(){
+        Calendar cal = new GregorianCalendar();
+        cal.setTime(fechaPago);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        int month = cal.get(Calendar.MONTH) + 1;
+        int year = cal.get(Calendar.YEAR);
+        return day + "/" + month + "/" + year;
+    }
+
 }

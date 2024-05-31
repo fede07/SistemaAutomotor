@@ -1,10 +1,7 @@
 package grupo2.SistemaAutomotor.controlador;
 
-import grupo2.SistemaAutomotor.modelo.Boleta;
 import grupo2.SistemaAutomotor.modelo.Municipio;
 import grupo2.SistemaAutomotor.modelo.Recaudacion;
-import grupo2.SistemaAutomotor.repositorio.AutomotorRepositorio;
-import grupo2.SistemaAutomotor.servicio.automotor.AutomotorServicio;
 import grupo2.SistemaAutomotor.servicio.boleta.BoletaServicio;
 import grupo2.SistemaAutomotor.servicio.municipio.MunicipioServicio;
 import javafx.collections.FXCollections;
@@ -24,7 +21,6 @@ import java.util.ResourceBundle;
 @Component
 public class RecadacionMunicipioControlador implements Initializable {
 
-    private final AutomotorServicio automotorServicio;
     private final BoletaServicio boletaServicio;
     private final MunicipioServicio municipioServicio;
     @FXML
@@ -34,12 +30,11 @@ public class RecadacionMunicipioControlador implements Initializable {
     @FXML
     private TableColumn<Recaudacion, Float> recaudacionColumna;
 
-    private AutomotorServicio automotorRepositorio;
 
     private final ObservableList<Recaudacion> recaudacionList = FXCollections.observableArrayList();
 
-    public RecadacionMunicipioControlador(AutomotorServicio automotorServicio, BoletaServicio boletaServicio, MunicipioServicio municipioServicio) {
-        this.automotorServicio = automotorServicio;
+
+    public RecadacionMunicipioControlador(BoletaServicio boletaServicio, MunicipioServicio municipioServicio) {
         this.boletaServicio = boletaServicio;
         this.municipioServicio = municipioServicio;
     }
@@ -56,7 +51,7 @@ public class RecadacionMunicipioControlador implements Initializable {
         for(Municipio municipio : municipioList) {
             Recaudacion recaudacion = new Recaudacion();
             recaudacion.setNombreMunicipio(municipio.getNombre());
-            float total = 0;
+            float total;
             BigDecimal subtotal = boletaServicio.sumarBoletasPorMunicipio(municipio);
             if(subtotal != null) {
                 total = subtotal.floatValue();
