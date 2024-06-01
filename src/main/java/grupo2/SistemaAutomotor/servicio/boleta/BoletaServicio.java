@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -47,6 +46,7 @@ public class BoletaServicio implements IBoletaServicio {
         return boletaRepositorio.sumAllByMunicipio(municipio);
     }
 
+    @SuppressWarnings("unused")
     public List<Boleta> buscarBoletasPorDominioYEestado(Automotor automotor, Boolean estado) {
         return boletaRepositorio.findBoletasByDominioAndEstado(automotor, estado);
     }
@@ -58,6 +58,11 @@ public class BoletaServicio implements IBoletaServicio {
     @Override
     public List<Boleta> buscarBoletasPorDomonioYFechaDesde(Automotor automotor, boolean estado, int fecha) {
         return boletaRepositorio.findBoletasByDominioAndEstadoAndCuotaAfter(automotor, estado, fecha);
+    }
+
+    @Override
+    public BigDecimal sumarBoletasImpagasPorDominio(String dominio) {
+        return boletaRepositorio.SumAllByDominio(dominio);
     }
 
 }

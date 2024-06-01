@@ -26,7 +26,6 @@ public class VisualizarFacPagControlador implements Initializable {
     @FXML
     private ComboBox<Integer> fechaapartirComboBox;
 
-
     @FXML
     private TableView<Boleta> boletaTabla = new TableView<>();
 

@@ -7,6 +7,7 @@ import grupo2.SistemaAutomotor.modelo.Municipio;
 import java.math.BigDecimal;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public interface IBoletaServicio {
     List<Boleta> listarBoletas();
     Boleta buscarBoleta(Integer id);
@@ -16,5 +17,6 @@ public interface IBoletaServicio {
     BigDecimal sumarBoletasPorMunicipio(Municipio municipio);
     List<Boleta> buscarBoletasPorMunicipio(Municipio municipio);
     List<Boleta> buscarBoletasPorDomonioYFechaDesde(Automotor automotor, boolean estado, int fecha);
+    BigDecimal sumarBoletasImpagasPorDominio(String dominio);
 
 }
