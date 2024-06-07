@@ -1,7 +1,7 @@
 package grupo2.SistemaAutomotor.controlador;
 
 import grupo2.SistemaAutomotor.modelo.Municipio;
-import grupo2.SistemaAutomotor.modelo.Recaudacion;
+import grupo2.SistemaAutomotor.clase.Recaudacion;
 import grupo2.SistemaAutomotor.servicio.boleta.BoletaServicio;
 import grupo2.SistemaAutomotor.servicio.municipio.MunicipioServicio;
 import javafx.collections.FXCollections;

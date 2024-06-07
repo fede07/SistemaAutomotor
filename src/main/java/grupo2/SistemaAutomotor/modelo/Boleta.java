@@ -57,4 +57,15 @@ public class Boleta {
         return day + "/" + month + "/" + year;
     }
 
+    public String getDominio(){
+        return dominio.getDominio();
+    }
+
+    public String getEstadoToString(){
+        if(estado){
+            return "Pagado";
+        }
+        else return "No pagado";
+    }
+
 }
