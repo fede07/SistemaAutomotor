@@ -1,5 +1,6 @@
 package grupo2.SistemaAutomotor.controlador;
 
+import grupo2.SistemaAutomotor.clase.Escritor;
 import grupo2.SistemaAutomotor.modelo.Automotor;
 import grupo2.SistemaAutomotor.modelo.Boleta;
 import grupo2.SistemaAutomotor.servicio.boleta.BoletaServicio;
@@ -22,6 +23,7 @@ public class VisualizarFacPagControlador implements Initializable {
     public TextField dominioTextField;
     public Button buscarButton;
     private final BoletaServicio boletaServicio;
+    private final Escritor escritor;
 
     @FXML
     private ComboBox<Integer> fechaapartirComboBox;
@@ -43,8 +45,9 @@ public class VisualizarFacPagControlador implements Initializable {
     private final ObservableList<Boleta> boletaList = FXCollections.observableArrayList();
     private final ObservableList<Integer> mesesList = FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12);
 
-    public VisualizarFacPagControlador(BoletaServicio boletaServicio) {
+    public VisualizarFacPagControlador(BoletaServicio boletaServicio, Escritor escritor) {
         this.boletaServicio = boletaServicio;
+        this.escritor = escritor;
     }
 
     @Override
@@ -67,10 +70,17 @@ public class VisualizarFacPagControlador implements Initializable {
     }
 
     public void buscarBoletas() {
+        List<Boleta> boletas = getBoletas();
+        if (boletas == null) return;
+        boletaList.addAll(boletas);
+        boletaTabla.setItems(boletaList);
+    }
+
+    private List<Boleta> getBoletas() {
         String dominio = dominioTextField.getText();
         if (dominio.isEmpty()) {
             mostrarMensaje("Error", "El dominio no puede estar vacio");
-            return;
+            return null;
         }
         boletaList.clear();
         Automotor automotor = new Automotor();
@@ -80,8 +90,7 @@ public class VisualizarFacPagControlador implements Initializable {
         if (boletas.isEmpty()) {
             mostrarMensaje("Info", "No se encontraron facturas para el dominio " + dominio);
         }
-        boletaList.addAll(boletas);
-        boletaTabla.setItems(boletaList);
+        return boletas;
     }
 
     private void mostrarMensaje(String title, String message) {
@@ -91,4 +100,14 @@ public class VisualizarFacPagControlador implements Initializable {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+    public void exportarFacturasPagadas(){
+        if (boletaList.isEmpty()) {
+            mostrarMensaje("Error", "No hay facturas para exportar");
+            return;
+        }
+        escritor.exportar(getBoletas());
+
+    }
+
 }

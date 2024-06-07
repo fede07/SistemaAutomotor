@@ -36,7 +36,7 @@
             </columnResizePolicy>
              </TableView>
              <Button layoutX="39.0" layoutY="686.0" mnemonicParsing="false" text="Visualizar Detalle" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="39.0" />
-             <Button layoutX="656.0" layoutY="686.0" mnemonicParsing="false" text="Exportar Facturas" AnchorPane.bottomAnchor="39.0" AnchorPane.rightAnchor="52.0" />
+             <Button layoutX="656.0" layoutY="686.0" mnemonicParsing="false" onAction="#exportarFacturasPagadas" text="Exportar Facturas" AnchorPane.bottomAnchor="39.0" AnchorPane.rightAnchor="52.0" />
          </AnchorPane>
      </center>
  </BorderPane>

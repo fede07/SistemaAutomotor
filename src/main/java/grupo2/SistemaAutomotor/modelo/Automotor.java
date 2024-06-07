@@ -12,7 +12,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class Automotor {
-    @Id @Column(length = 6)
+    @Id @Column(length = 8)
     private String dominio;
     @ManyToOne
     @JoinColumn(name = "Titular", foreignKey = @ForeignKey(name = "dni"))

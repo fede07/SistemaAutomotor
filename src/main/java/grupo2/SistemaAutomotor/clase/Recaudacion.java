@@ -1,4 +1,4 @@
-package grupo2.SistemaAutomotor.modelo;
+package grupo2.SistemaAutomotor.clase;
 
 import lombok.Data;
 
