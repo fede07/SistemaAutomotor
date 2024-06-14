@@ -9,4 +9,5 @@ public interface IAutomotorServicio {
     void guardarAutomotor(Automotor automotor);
     void eliminarAutomotor(String dominio);
     List<Automotor> listarAutomoresConDeuda();
+    int cantidadAutomotores();
 }
