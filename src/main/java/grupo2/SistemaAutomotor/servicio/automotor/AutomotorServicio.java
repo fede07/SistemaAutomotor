@@ -38,4 +38,9 @@ public class AutomotorServicio implements IAutomotorServicio {
         return automotorRepositorio.findAllByDeuda();
     }
 
+    @Override
+    public int cantidadAutomotores() {
+        return ((int) automotorRepositorio.count());
+    }
+
 }
