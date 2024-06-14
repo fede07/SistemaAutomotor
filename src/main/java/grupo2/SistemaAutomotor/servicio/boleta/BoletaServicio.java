@@ -56,8 +56,18 @@ public class BoletaServicio implements IBoletaServicio {
     }
 
     @Override
-    public List<Boleta> buscarBoletasPorDomonioYFechaDesde(Automotor automotor, boolean estado, int fecha) {
-        return boletaRepositorio.findBoletasByDominioAndEstadoAndCuotaAfter(automotor, estado, fecha);
+    public List<Boleta> buscarBoletasPorDomonioYFechaDesde(Automotor automotor, boolean estado, int cuota) {
+        return boletaRepositorio.findBoletasByDominioAndEstadoAndCuotaAfter(automotor, estado, cuota);
+    }
+
+    @Override
+    public List<Boleta> buscarBoletasPorDomonioYFechaHasta(Automotor automotor, boolean estado, int cuota) {
+        return boletaRepositorio.findBoletasByDominioAndEstadoAndCuotaAfter(automotor, estado, cuota);
+    }
+
+    @Override
+    public List<Boleta> buscarBoletaPorDominioEntre(Automotor automotor, boolean estado, int fechaDesde, int fechaHasta) {
+        return boletaRepositorio.findBoletasByDominioAndEstadoAndCuotaBetween(automotor, estado, fechaDesde,fechaHasta);
     }
 
     @Override
