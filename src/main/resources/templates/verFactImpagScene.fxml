@@ -21,11 +21,12 @@
                     <TextField fx:id="dominioTextField" layoutX="345.0" layoutY="58.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="175.0" AnchorPane.leftAnchor="345.0" AnchorPane.rightAnchor="280.0" />
                     <Label layoutX="275.0" layoutY="62.0" prefHeight="17.0" prefWidth="52.0" text="Dominio" AnchorPane.leftAnchor="275.0" AnchorPane.rightAnchor="473.0" />
                     <Label layoutX="255.0" layoutY="99.0" prefHeight="17.0" prefWidth="72.0" text="Desde Cuota:" AnchorPane.leftAnchor="255.0" AnchorPane.rightAnchor="473.0" />
-                    <Button fx:id="buscarButton" layoutX="373.0" layoutY="143.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#buscarBoletas" prefHeight="25.0" prefWidth="59.0" text="Buscar" AnchorPane.leftAnchor="373.0" AnchorPane.rightAnchor="368.0" />
                <ComboBox fx:id="fechaapartirComboBox" layoutX="345.0" layoutY="95.0" prefHeight="25.0" prefWidth="172.0" />
+               <Label layoutX="255.0" layoutY="138.0" text="Hasta Cuota:" />
+               <ComboBox fx:id="fechaHastaComboBox" layoutX="345.0" layoutY="134.0" prefHeight="25.0" prefWidth="172.0" />
                 </AnchorPane>
             </StackPane>
-            <TableView fx:id="boletaTabla" layoutX="39.0" layoutY="246.0" prefHeight="350.0" prefWidth="725.0" AnchorPane.bottomAnchor="154.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="246.0">
+            <TableView fx:id="boletaTabla" layoutX="46.0" layoutY="286.0" prefHeight="350.0" prefWidth="725.0" AnchorPane.bottomAnchor="114.0" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="286.0">
                 <columns>
                     <TableColumn fx:id="cuotaColumna" prefWidth="243.0" text="Cuota" />
                     <TableColumn fx:id="importeColumna" prefWidth="196.0" text="Importe" />
@@ -36,6 +37,7 @@
                 </columnResizePolicy>
             </TableView>
             <Button layoutX="656.0" layoutY="686.0" mnemonicParsing="false" text="Realizar Pago" AnchorPane.bottomAnchor="39.0" AnchorPane.rightAnchor="52.0" />
+              <Button fx:id="buscarButton" layoutX="371.0" layoutY="232.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#buscarBoletas" prefHeight="25.0" prefWidth="59.0" text="Buscar" AnchorPane.leftAnchor="371.0" AnchorPane.rightAnchor="370.0" />
         </AnchorPane>
     </center>
 </BorderPane>

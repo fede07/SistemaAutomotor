@@ -17,6 +17,9 @@ public interface IBoletaServicio {
     BigDecimal sumarBoletasPorMunicipio(Municipio municipio);
     List<Boleta> buscarBoletasPorMunicipio(Municipio municipio);
     List<Boleta> buscarBoletasPorDomonioYFechaDesde(Automotor automotor, boolean estado, int fecha);
+
+    List<Boleta> buscarBoletasPorDomonioYFechaHasta(Automotor automotor, boolean estado, int fecha);
+    List<Boleta> buscarBoletaPorDominioEntre(Automotor automotor, boolean estado, int fechaDesde, int fechaHasta);
     BigDecimal sumarBoletasImpagasPorDominio(String dominio);
 
 }
