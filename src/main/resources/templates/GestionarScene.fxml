@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo2.SistemaAutomotor.controlador.GestionarControlador">
+    <left>
+        <fx:include source="mainScene.fxml" />
+    </left>
+    <center>
+        <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <top>
+                <AnchorPane prefHeight="171.0" prefWidth="800.0" style="-fx-background-color: lightblue;" BorderPane.alignment="CENTER" />
+            </top>
+            <center>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            </center>
+            <left>
+                <TabPane snapToPixel="false" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+                    <opaqueInsets>
+                        <Insets/>
+                    </opaqueInsets>
+                    <Tab text="Agregar">
+                        <fx:include source="AgregarScene.fxml"/>
+
+                    </Tab>
+                    <Tab text="Modificar">
+                        <fx:include source="ModificarScene.fxml"/>
+                    </Tab>
+                    <Tab text="Eliminar">
+                        <fx:include source="EliminarScene.fxml"/>
+                    </Tab>
+                </TabPane>
+            </left>
+        </BorderPane>
+    </center>
+</BorderPane>

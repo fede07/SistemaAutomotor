@@ -4,10 +4,8 @@ import grupo2.SistemaAutomotor.SistemaAutomotorApplication;
 import grupo2.SistemaAutomotor.controlador.*;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -27,7 +25,7 @@ public class SistemaAutomotorFX extends Application {
         mainLoader.setControllerFactory(contexto::getBean);
         Scene mainScene = new Scene(mainLoader.load());
 
-        FXMLLoader automotorLoader = new FXMLLoader(SistemaAutomotorApplication.class.getResource("/templates/automotorScene.fxml"));
+        FXMLLoader automotorLoader = new FXMLLoader(SistemaAutomotorApplication.class.getResource("/templates/GestionarScene.fxml"));
         automotorLoader.setControllerFactory(contexto::getBean);
         Scene automotorScene = new Scene(automotorLoader.load());
 
@@ -48,8 +46,8 @@ public class SistemaAutomotorFX extends Application {
         Scene facImpagScene = new Scene(facImpagloader.load());
 
         //Vinculo las escenas con Main
-        AutomotorControlador automotorControlador = automotorLoader.getController();
-        automotorControlador.setMainScene(mainScene);
+//        AutomotorControlador automotorControlador = automotorLoader.getController();
+//        automotorControlador.setMainScene(mainScene);
 
 
         //Vinculo Main con las escenas

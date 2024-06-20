@@ -11,8 +11,8 @@ import java.util.List;
 @Component
 public class Escritor {
 
-    private static final String CSV_HEADER = "ID;Cuota;Estado;Vencimiento;Fecha de Pago;Importe;Dominio\n";
-    private static final String CSV_SEPARATOR = ";";
+    private static final String CSV_HEADER = "ID,Cuota,Estado,Vencimiento,Fecha de Pago,Importe,Dominio\n";
+    private static final String CSV_SEPARATOR = ",";
     private static final String PATH= "Exports/facturas.csv";
 
     public void exportar (List<Boleta> boletas) {
