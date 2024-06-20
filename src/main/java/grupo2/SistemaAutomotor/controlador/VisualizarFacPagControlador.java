@@ -29,6 +29,9 @@ public class VisualizarFacPagControlador implements Initializable {
     private ComboBox<Integer> fechaapartirComboBox;
 
     @FXML
+    private ComboBox<Integer> fechaHastaComboBox;
+
+    @FXML
     private TableView<Boleta> boletaTabla = new TableView<>();
 
     @FXML
@@ -60,6 +63,8 @@ public class VisualizarFacPagControlador implements Initializable {
     private void configurarComboBox() {
         fechaapartirComboBox.setItems(mesesList);
         fechaapartirComboBox.setValue(1);
+        fechaHastaComboBox.setItems(mesesList);
+        fechaHastaComboBox.setValue(1);
     }
 
     private void configurarColumnas(){
@@ -85,8 +90,9 @@ public class VisualizarFacPagControlador implements Initializable {
         boletaList.clear();
         Automotor automotor = new Automotor();
         automotor.setDominio(dominio);
-        int fecha = fechaapartirComboBox.getValue() - 1;
-        List<Boleta> boletas = boletaServicio.buscarBoletasPorDomonioYFechaDesde(automotor,true, fecha);
+        int cuotaDesde = fechaapartirComboBox.getValue();
+        int cuotaHasta = fechaHastaComboBox.getValue();
+        List<Boleta> boletas = boletaServicio.buscarBoletaPorDominioEntre(automotor,true, cuotaDesde, cuotaHasta);
         if (boletas.isEmpty()) {
             mostrarMensaje("Info", "No se encontraron facturas para el dominio " + dominio);
         }
