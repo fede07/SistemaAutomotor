@@ -75,4 +75,8 @@ public class BoletaServicio implements IBoletaServicio {
         return boletaRepositorio.SumAllByDominio(dominio);
     }
 
+    public void eliminarBoletas(Automotor dominio){
+        boletaRepositorio.deleteBoletaByDominio(dominio);
+    }
+
 }

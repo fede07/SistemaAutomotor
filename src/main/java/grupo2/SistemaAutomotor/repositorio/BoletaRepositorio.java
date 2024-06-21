@@ -25,4 +25,5 @@ public interface BoletaRepositorio extends JpaRepository<Boleta, Integer> {
 
     List<Boleta> findBoletasByDominioAndEstadoAndCuotaAfter(Automotor dominioAut, Boolean estado, int cuotaAfter);
     List<Boleta> findBoletasByDominioAndEstadoAndCuotaBetween(Automotor dominioAut, Boolean estado,int cuotaBefore, int cuotaAfter);
+    Boolean deleteBoletaByDominio(Automotor dominio);
 }
