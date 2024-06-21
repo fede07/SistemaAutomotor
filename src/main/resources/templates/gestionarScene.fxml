@@ -22,14 +22,14 @@
                         <Insets/>
                     </opaqueInsets>
                     <Tab text="Agregar">
-                        <fx:include source="AgregarScene.fxml"/>
+                        <fx:include source="agregarScene.fxml"/>
 
                     </Tab>
                     <Tab text="Modificar">
-                        <fx:include source="ModificarScene.fxml"/>
+                        <fx:include source="modificarScene.fxml"/>
                     </Tab>
                     <Tab text="Eliminar">
-                        <fx:include source="EliminarScene.fxml"/>
+                        <fx:include source="eliminarScene.fxml"/>
                     </Tab>
                 </TabPane>
             </left>
