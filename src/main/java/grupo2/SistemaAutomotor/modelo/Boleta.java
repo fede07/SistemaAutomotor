@@ -21,7 +21,7 @@ public class Boleta {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer idBoleta;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "dominio")
     private Automotor dominio;
     private Boolean estado;

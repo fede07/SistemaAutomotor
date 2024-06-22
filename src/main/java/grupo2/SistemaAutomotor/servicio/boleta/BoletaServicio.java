@@ -6,11 +6,13 @@ import grupo2.SistemaAutomotor.modelo.Municipio;
 import grupo2.SistemaAutomotor.repositorio.BoletaRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 @Service
+@Transactional
 public class BoletaServicio implements IBoletaServicio {
 
     @Autowired
@@ -76,7 +78,7 @@ public class BoletaServicio implements IBoletaServicio {
     }
 
     public void eliminarBoletas(Automotor dominio){
-        boletaRepositorio.deleteBoletaByDominio(dominio);
+        boletaRepositorio.deleteAllBydominio(dominio);
     }
 
 }
