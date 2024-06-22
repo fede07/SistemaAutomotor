@@ -1,9 +1,11 @@
 package grupo2.SistemaAutomotor.controlador;
 
 import grupo2.SistemaAutomotor.modelo.Automotor;
+import grupo2.SistemaAutomotor.modelo.Boleta;
 import grupo2.SistemaAutomotor.modelo.Municipio;
 import grupo2.SistemaAutomotor.modelo.Titular;
 import grupo2.SistemaAutomotor.servicio.automotor.AutomotorServicio;
+import grupo2.SistemaAutomotor.servicio.boleta.BoletaServicio;
 import grupo2.SistemaAutomotor.servicio.municipio.MunicipioServicio;
 import grupo2.SistemaAutomotor.servicio.titular.TitularServicio;
 import javafx.collections.FXCollections;
@@ -14,9 +16,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 @Component
 public class AgregarControlador implements Initializable {
@@ -24,6 +26,12 @@ public class AgregarControlador implements Initializable {
     private final AutomotorServicio automotorServicio;
     private final TitularServicio titularServicio;
     private final MunicipioServicio municipioServicio;
+    private final BoletaServicio boletaServicio;
+
+    @FXML
+    private Label nombreLabel;
+    @FXML
+    private Label apellidoLabel;
     @FXML
     private TableView<Automotor> automotorTableView;
     @FXML
@@ -60,10 +68,11 @@ public class AgregarControlador implements Initializable {
     private Button agregarButton;
     private final ObservableList<Automotor> automotorList = FXCollections.observableArrayList();
 
-    public AgregarControlador(AutomotorServicio automotorServicio, TitularServicio titularServicio, MunicipioServicio municipioServicio) {
+    public AgregarControlador(AutomotorServicio automotorServicio, TitularServicio titularServicio, MunicipioServicio municipioServicio, BoletaServicio boletaServicio) {
         this.automotorServicio = automotorServicio;
         this.titularServicio = titularServicio;
         this.municipioServicio = municipioServicio;
+        this.boletaServicio = boletaServicio;
     }
 
     @Override
@@ -71,6 +80,22 @@ public class AgregarControlador implements Initializable {
         automotorTableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         configurarColumnas();
         listarMunicipios();
+
+        nuevoTitularCheckBox.setOnAction(e -> {
+            if (nuevoTitularCheckBox.isSelected()) {
+                nombreTextField.setDisable(false);
+                nombreLabel.setDisable(false);
+                apellidoTextField.setDisable(false);
+                apellidoLabel.setDisable(false);
+            }
+            else {
+                nombreTextField.setDisable(true);
+                nombreLabel.setDisable(true);
+                apellidoTextField.setDisable(true);
+                apellidoLabel.setDisable(true);
+            }
+        });
+        agregarButton.setOnAction(e -> agregar());
     }
 
     private void configurarColumnas() {
@@ -96,26 +121,67 @@ public class AgregarControlador implements Initializable {
         municipioComboBox.setEditable(false);
     }
 
+    public void agregar() {
+        if(nuevoTitularCheckBox.isSelected()) {
+            agregarTitular();
+        }
+        agregarAutomotor();
+    }
+
+    private void agregarTitular() {
+        Titular titular = new Titular();
+        titular.setDni(Integer.parseInt(dniTextField.getText()));
+        titular.setNombre(nombreTextField.getText());
+        titular.setApellido(apellidoTextField.getText());
+        titularServicio.guardarTitular(titular);
+    }
+
     public void agregarAutomotor() {
         if(dominioTextField.getText().isEmpty()) {
             mostrarMensaje("Error Validacion", "El campo Dominio no puede estar vacio");
             dominioTextField.requestFocus();
             return;
         }
-
-        if(automotorServicio.buscarAutomotor(dominioTextField.getText()) != null) {
-            mostrarMensaje("Error Validacion", "El Automotor " + dominioTextField.getText() + " ya existe");
+        String dominio = dominioTextField.getText();
+        if(automotorServicio.buscarAutomotor(dominio) != null) {
+            mostrarMensaje("Error Validacion", "El Automotor " + dominio + " ya existe");
             return;
         }
 
         var automotor = new Automotor();
         if (recolectarDatosFormulario(automotor)){
-            //mostrarDatos(automotor); //DEBUG
+            System.out.println(automotor);
             automotorServicio.guardarAutomotor(automotor);
+            generarBoletas(automotor.getDominio());
             mostrarMensaje("Información", "Automotor guardado correctamente");
             listarAutomotor();
             limpiarFormulario();
-            //TODO generarBoletas();
+        }
+    }
+
+    private void generarBoletas(String dominio){
+        Automotor automotor = new Automotor();
+        automotor.setDominio(dominio);
+        Calendar calendar = Calendar.getInstance();
+        List<Boleta> boletas = new ArrayList<>();
+        int mes = calendar.get(Calendar.MONTH) + 1;
+        System.out.println(mes);
+        float importe = 6000;
+        BigDecimal importeBD = BigDecimal.valueOf(importe);
+        int anio = calendar.get(Calendar.YEAR);
+        for(int i = mes; i <= 12; i++) {
+            Boleta boleta = new Boleta();
+            boleta.setDominio(automotor);
+            boleta.setCuota(i);
+            boleta.setEstado(false);
+            boleta.setImporte(importeBD);
+            GregorianCalendar fechaV = new GregorianCalendar(anio, i-1, 30);
+            boleta.setFechaVencimiento(fechaV.getTime());
+            System.out.println(boleta);
+            boletas.add(boleta);
+        }
+        for(Boleta boleta : boletas){
+            boletaServicio.guardarBoleta(boleta);
         }
     }
 
@@ -139,21 +205,16 @@ public class AgregarControlador implements Initializable {
         }
 
         automotor.setDniTitular(titular);
-
         automotor.setMarca(marcaTextField.getText());
         automotor.setModelo(modeloTextField.getText());
         automotor.setAnioFabricacion(Integer.parseInt(anioTextField.getText()));
-
         Municipio municipio = municipioServicio.buscarMunicipio(municipioComboBox.getSelectionModel().getSelectedIndex()+1);
 
-
-        //TODO Crear desplegable de municipios, el siguiente if seria redundante. Quitar mensajes de error del metodo
         if(municipio == null) {
             mostrarMensaje("Error Validacion", "Municipio no encontrado");
             return false;
         }
         automotor.setIdMunicipio(municipio);
-
         return true;
     }
 
@@ -164,10 +225,6 @@ public class AgregarControlador implements Initializable {
         marcaTextField.clear();
         anioTextField.clear();
         municipioComboBox.getSelectionModel().clearSelection();
-    }
-
-    void toggleCampos(){
-
     }
 
 }

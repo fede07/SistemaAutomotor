@@ -6,6 +6,9 @@
 <VBox prefHeight="602.0" prefWidth="873.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo2.SistemaAutomotor.controlador.AgregarControlador">
     <AnchorPane prefHeight="613.0" prefWidth="879.0">
         <TableView fx:id="automotorTableView" layoutX="40.0" layoutY="288.0" prefHeight="50.0" prefWidth="793.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
+            <placeholder>
+                <Label text="Agregue un Automotor"/>
+            </placeholder>
             <columns>
                 <TableColumn fx:id="dominioColumna" prefWidth="75.0" text="Dominio" />
                 <TableColumn fx:id="dniColumna" prefWidth="75.0" text="DNI Titular" />
@@ -32,9 +35,9 @@
             <Label layoutX="482.0" layoutY="93.0" text="Municipio" />
             <ComboBox fx:id="municipioComboBox" layoutX="538.0" layoutY="89.0" prefWidth="150.0" />
             <CheckBox fx:id="nuevoTitularCheckBox" layoutX="102.0" layoutY="136.0" mnemonicParsing="false" text="Titular Nuevo" />
-            <Label disable="true" layoutX="275.0" layoutY="136.0" text="Nombre" />
+            <Label fx:id="nombreLabel" disable="true" layoutX="275.0" layoutY="136.0" text="Nombre" />
             <TextField fx:id="nombreTextField" disable="true" layoutX="324.0" layoutY="132.0" />
-            <Label disable="true" layoutX="491.0" layoutY="136.0" text="Apellido" />
+            <Label fx:id="apellidoLabel" disable="true" layoutX="491.0" layoutY="136.0" text="Apellido" />
             <TextField fx:id="apellidoTextField" disable="true" layoutX="540.0" layoutY="132.0" />
             <Button fx:id="agregarButton" layoutX="367.0" layoutY="195.0" mnemonicParsing="false" onAction="#agregarAutomotor" text="Agregar" />
         </AnchorPane>
