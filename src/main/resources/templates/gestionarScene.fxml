@@ -19,17 +19,17 @@
             <left>
                 <TabPane snapToPixel="false" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
                     <opaqueInsets>
-                        <Insets/>
+                        <Insets />
                     </opaqueInsets>
                     <Tab text="Agregar">
-                        <fx:include source="agregarScene.fxml"/>
+                        <fx:include source="agregarScene.fxml" />
 
                     </Tab>
                     <Tab text="Modificar">
-                        <fx:include source="modificarScene.fxml"/>
+                        <fx:include source="modificarScene.fxml" />
                     </Tab>
                     <Tab text="Eliminar">
-                        <fx:include source="eliminarScene.fxml"/>
+                        <fx:include source="eliminarScene.fxml" />
                     </Tab>
                 </TabPane>
             </left>

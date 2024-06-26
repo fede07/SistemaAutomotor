@@ -9,20 +9,23 @@
        <fx:include source="mainScene.fxml" />
    </left>
    <center>
-       <AnchorPane prefHeight="400.0" prefWidth="442.0" BorderPane.alignment="CENTER">
-           <TableView fx:id="recaudacionTable" layoutX="15.0" layoutY="148.0" prefHeight="638.0" prefWidth="766.0" styleClass="title_container">
-               <columns>
-                   <TableColumn fx:id="municipioColumna" prefWidth="387.0" text="Municipio" />
-                   <TableColumn fx:id="recaudacionColumna" prefWidth="378.0" text="Recaudacion" />
-               </columns>
-           </TableView>
-           <AnchorPane layoutY="13.0" prefHeight="115.0" prefWidth="800.0" styleClass="title_container">
-               <Text layoutX="182.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recaudacion por Municipio" wrappingWidth="435.873046875">
+       <AnchorPane prefHeight="683.0" prefWidth="807.0">
+           <VBox alignment="CENTER" layoutY="7.0" prefHeight="175.0" prefWidth="787.0" spacing="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="7.0">
+               <HBox alignment="CENTER" prefHeight="49.0" prefWidth="780.0" spacing="10.0">
+               <Text layoutX="176.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recaudacion por Municipio" wrappingWidth="435.873046875">
                    <font>
                        <Font size="35.0" />
                    </font>
                </Text>
-           </AnchorPane>
+               </HBox>
+           </VBox>
+            <TableView fx:id="recaudacionTable" layoutX="47.0" layoutY="152.0" prefHeight="482.0" prefWidth="730.0" AnchorPane.bottomAnchor="166.0" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="152.0">
+                <columns>
+                    <TableColumn fx:id="municipioColumna" prefWidth="387.0" text="Municipio" />
+                    <TableColumn fx:id="recaudacionColumna" prefWidth="378.0" text="Recaudacion" />
+                </columns>
+            </TableView>
+
        </AnchorPane>
    </center>
 </BorderPane>
