@@ -1,0 +1,14 @@
+.title_container{
+    -fx-background-color: #81b4d3;
+    -fx-background-radius: 10 10 0 0;
+    -fx-alignment: center;
+    -fx-padding: 10;
+}
+
+.title_container Text{
+    -fx-text-fill: #eae7e7;
+    -fx-font-size: 2em;
+    -fx-alignment: center;
+    -fx-font: "Arial" ;
+}
+
