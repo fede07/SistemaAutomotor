@@ -14,7 +14,7 @@
 
 .title_container{
     -fx-background-color: #81b4d3;
-    -fx-background-radius: 10 10 0 0;
+    -fx-background-radius: 10 0 0 0;
     -fx-alignment: center;
     -fx-padding: 10;
 }
@@ -56,7 +56,7 @@
 }
 
 .info_container {
-    -fx-background-color: #81d381;
+    -fx-background-color: #1fb286;
     -fx-background-radius: 0 0 10 10;
     -fx-alignment: center;
     -fx-spacing: 10;
