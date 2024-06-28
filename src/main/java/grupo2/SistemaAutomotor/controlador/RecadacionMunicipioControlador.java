@@ -59,7 +59,7 @@ public class RecadacionMunicipioControlador implements Initializable {
             {
                 total = 0;
             }
-            recaudacion.setTotal(total);
+            recaudacion.setTotal(BigDecimal.valueOf(total));
             recaudacionList.add(recaudacion);
         }
         recaudacionTable.setItems(recaudacionList);

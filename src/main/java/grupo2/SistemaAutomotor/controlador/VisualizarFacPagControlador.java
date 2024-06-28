@@ -64,7 +64,7 @@ public class VisualizarFacPagControlador implements Initializable {
         fechaapartirComboBox.setItems(mesesList);
         fechaapartirComboBox.setValue(1);
         fechaHastaComboBox.setItems(mesesList);
-        fechaHastaComboBox.setValue(1);
+        fechaHastaComboBox.setValue(12);
     }
 
     private void configurarColumnas(){

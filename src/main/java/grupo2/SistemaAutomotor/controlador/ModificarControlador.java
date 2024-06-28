@@ -23,7 +23,12 @@ public class ModificarControlador implements Initializable {
     private final AutomotorServicio automotorServicio;
     private final TitularServicio titularServicio;
     private final MunicipioServicio municipioServicio;
-
+    @FXML
+    private TextField dniNuevoTextField;
+    @FXML
+    private Label nombreLabel;
+    @FXML
+    private Label apellidoLabel;
     @FXML
     private TableView<Automotor> automotorTableView;
     @FXML
@@ -41,13 +46,7 @@ public class ModificarControlador implements Initializable {
     @FXML
     private TextField dominioTextField;
     @FXML
-    private TextField marcaTextField;
-    @FXML
-    private TextField anioTextField;
-    @FXML
     private TextField dniTextField;
-    @FXML
-    private TextField modeloTextField;
     @FXML
     private TextField nombreTextField;
     @FXML
@@ -84,26 +83,67 @@ public class ModificarControlador implements Initializable {
         listarMunicipios();
         modificarButton.setOnAction(e->modificarAutomotor());
         buscarButton.setOnAction(e->buscarAutomotor());
+        nuevoTitularCheckBox.setOnAction(e->{
+            if(nuevoTitularCheckBox.isSelected()){
+                nombreTextField.setDisable(false);
+                apellidoTextField.setDisable(false);
+                nombreLabel.setDisable(false);
+                apellidoLabel.setDisable(false);
+            }else
+            {
+                nombreTextField.setDisable(true);
+                apellidoTextField.setDisable(true);
+                nombreLabel.setDisable(true);
+                apellidoLabel.setDisable(true);
+            }
+        });
+
     }
 
     public void modificarAutomotor() {
-        if(dominioTextField == null){
+        if(dominioTextField.getText().isEmpty()){
             mostrarMensaje("Informacion", "Debe Seleccionar un automotor");
-            return;
-        }
-        if(dominioTextField.getText().isEmpty()) {
-            mostrarMensaje("Error Validacion", "El campo Dominio no puede estar vacio");
             dominioTextField.requestFocus();
             return;
         }
+        if(dniTextField.getText().isEmpty()) {
+            mostrarMensaje("Error Validacion", "Debe ingresar un dni");
+            dniTextField.requestFocus();
+            return;
+        }
+
+        if(nuevoTitularCheckBox.isSelected()){
+            if (!agregarTitular()){
+                return;
+            }
+        }
+
         var automotor = new Automotor();
         if(recolectarDatosFormulario(automotor)){
-            //mostrarDatos(automotor);
+            System.out.println(automotor);
             automotorServicio.guardarAutomotor(automotor);
             mostrarMensaje("Informacion", "Automotor modificado correctamente");
-            limpiarFormulario();
             listarAutomotor();
+            limpiarFormulario();
         }
+    }
+
+    private boolean agregarTitular() {
+        if(nombreTextField.getText().isEmpty()){
+            mostrarMensaje("Informacion", "Debe ingresar un nombre");
+            return false;
+        }
+        if(apellidoTextField.getText().isEmpty()) {
+            mostrarMensaje("Informacion", "Debe ingresar un apellido");
+            return false;
+        }
+        Titular titular = new Titular();
+        titular.setNombre(nombreTextField.getText());
+        titular.setApellido(apellidoTextField.getText());
+        titular.setDni(Integer.parseInt(dniNuevoTextField.getText()));
+
+        titularServicio.guardarTitular(titular);
+        return true;
     }
 
     public void buscarAutomotor() {
@@ -118,14 +158,42 @@ public class ModificarControlador implements Initializable {
             mostrarMensaje("Info", "No se encontraron facturas con el dominio " + dominio);
             return;
         }
+
+        Municipio municipio = municipioServicio.buscarMunicipio(automotor.getIdMunicipio());
+
         dniTextField.setText(String.valueOf(automotor.getDniTitular()));
+        municipioComboBox.setValue(municipio);
     }
 
     private boolean recolectarDatosFormulario(Automotor automotor) {
 
-        automotor.setDominio(dominioTextField.getText());
+        System.out.println(dominioTextField.getText());
+        Automotor automotorBuscado = automotorServicio.buscarAutomotor(dominioTextField.getText());
 
-        Titular titular = titularServicio.buscarTitular(Integer.valueOf(dniTextField.getText()));
+        if (automotorBuscado == null) {
+            mostrarMensaje("Error", "El dominio no puede estar vacio");
+            return false;
+        }
+
+        automotor.setDominio(automotorBuscado.getDominio());
+        automotor.setDniTitular(titularServicio.buscarTitular(automotorBuscado.getDniTitular()));
+        automotor.setModelo(automotorBuscado.getModelo());
+        automotor.setMarca(automotorBuscado.getMarca());
+        automotor.setAnioFabricacion(automotorBuscado.getAnioFabricacion());
+        automotor.setIdMunicipio(municipioServicio.buscarMunicipio(automotorBuscado.getIdMunicipio()));
+
+        String dni = dniNuevoTextField.getText();
+        if (dni.isEmpty()) {
+            dni = dniTextField.getText();
+        }
+
+        if(dni.isEmpty()) {
+            mostrarMensaje("Error", "Debe ingresar un dni");
+            dniTextField.requestFocus();
+            return false;
+        }
+
+        Titular titular = titularServicio.buscarTitular(Integer.valueOf(dni));
 
         if(titular == null) {
             mostrarMensaje("Error Validacion", "Titular no encontrado");
@@ -134,24 +202,17 @@ public class ModificarControlador implements Initializable {
 
         automotor.setDniTitular(titular);
 
-        automotor.setMarca(marcaTextField.getText());
-        automotor.setModelo(modeloTextField.getText());
-        automotor.setAnioFabricacion(Integer.parseInt(anioTextField.getText()));
-
         Municipio municipio = municipioServicio.buscarMunicipio(municipioComboBox.getSelectionModel().getSelectedIndex()+1);
 
-
-        //TODO Crear desplegable de municipios, el siguiente if seria redundante. Quitar mensajes de error del metodo
         if(municipio == null) {
             mostrarMensaje("Error Validacion", "Municipio no encontrado");
             return false;
         }
+
         automotor.setIdMunicipio(municipio);
 
         return true;
     }
-
-
 
     private void listarMunicipios() {
         List<Municipio> municipioList = municipioServicio.listarMunicipios();
@@ -178,10 +239,10 @@ public class ModificarControlador implements Initializable {
     public void limpiarFormulario() {
         dominioTextField.clear();
         dniTextField.clear();
-        modeloTextField.clear();
-        marcaTextField.clear();
-        anioTextField.clear();
+        dniNuevoTextField.clear();
         municipioComboBox.getSelectionModel().clearSelection();
+        apellidoTextField.clear();
+        nombreTextField.clear();
     }
 
 }

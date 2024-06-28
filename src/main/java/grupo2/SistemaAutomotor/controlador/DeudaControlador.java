@@ -77,6 +77,14 @@ public class DeudaControlador implements Initializable {
             mostrarMensaje("Info", "No se encontro el Automotor con dominio " + dominio);
             return;
         }
+
+        List<Boleta> boletas = boletaServicio.buscarBoletasPorDominio(automotor);
+
+        if(boletas.isEmpty()) {
+            mostrarMensaje("Info", "No se encontraron boletas");
+            return;
+        }
+
         BigDecimal deuda = boletaServicio.sumarBoletasImpagasPorDominio(automotor.getDominio());
         AutomotorDeuda automotorDeuda = new AutomotorDeuda();
         automotorDeuda.setAutomotor(automotor);
@@ -112,10 +120,10 @@ public class DeudaControlador implements Initializable {
             automotoresDeudas.add(automotorDeuda);
             deudaTotal += automotorDeuda.getDeuda();
         }
-        totalAdeudado.setText("$"+ deudaTotal);
+        totalAdeudado.setText("$"+ String.format("%.2f", deudaTotal));
         float porcentaje = ((float) automotoresDeudas.size() /automotorServicio.cantidadAutomotores())*100;
         System.out.println(porcentaje);
-        porVehiDeuda.setText(porcentaje +"%");
+        porVehiDeuda.setText(String.format("%.2f", porcentaje) +"%");
         cantVehiDeuda.setText(Integer.toString(automotoresDeudas.size()));
     }
 

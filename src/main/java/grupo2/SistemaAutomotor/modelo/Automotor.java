@@ -1,15 +1,13 @@
 package grupo2.SistemaAutomotor.modelo;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 @ToString
 public class Automotor {
     @Id @Column(length = 8)
