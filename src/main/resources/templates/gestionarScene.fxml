@@ -11,20 +11,17 @@
     <center>
         <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <top>
-                <AnchorPane prefHeight="171.0" prefWidth="800.0" style="-fx-background-color: lightblue;" BorderPane.alignment="CENTER" />
+                <AnchorPane maxWidth="200.0" minHeight="0.0" prefHeight="0.0" prefWidth="800.0" style="-fx-background-color: lightblue;" BorderPane.alignment="CENTER" />
             </top>
             <center>
-                <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-            </center>
-            <left>
-                <TabPane snapToPixel="false" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+                <TabPane snapToPixel="false" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="500.0" tabMaxWidth="500.0" tabMinWidth="245.0">
                     <opaqueInsets>
                         <Insets />
                     </opaqueInsets>
                     <Tab text="Agregar">
                         <fx:include source="agregarScene.fxml" />
 
-                    </Tab>
+                          </Tab>
                     <Tab text="Modificar">
                         <fx:include source="modificarScene.fxml" />
                     </Tab>
@@ -32,7 +29,7 @@
                         <fx:include source="eliminarScene.fxml" />
                     </Tab>
                 </TabPane>
-            </left>
+            </center>
         </BorderPane>
     </center>
 </BorderPane>
