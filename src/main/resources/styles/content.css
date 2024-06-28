@@ -5,9 +5,63 @@
     -fx-padding: 10;
 }
 
-.title_container Text{
-    -fx-text-fill: #FFFFFF;
-    -fx-font-size: 2em;
+.title_container Text {
+    -fx-font-family: "Droid Sans";
+    -fx-fill: #eae7e7;
+    -fx-font-size: 2.5em;
     -fx-alignment: center;
 }
 
+.menu_container{
+    -fx-padding: 10 10 10 20;
+    -fx-spacing: 20;
+    -fx-alignment: center;
+    -fx-background-color: #EEEEEE;
+
+}
+
+.menu_container Button {
+    -fx-pref-width: 150;
+    -fx-pref-height: 50;
+    -fx-background-color: white;
+    -fx-font-size: 1.2em;
+    -fx-alignment: center;
+}
+
+.menu_container Button:hover {
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(two-pass-box,#DDDDDD,5,0,0,6);
+}
+
+.menu_container Button:pressed {
+    -fx-background-color: #81b4d3;
+}
+
+.menu_container TextField {
+    -fx-pref-width: 150;
+    -fx-pref-height: 50;
+    -fx-alignment: center;
+    -fx-background-color: white;
+}
+
+.menu_container Label {
+    -fx-font-size: 1.2em;
+}
+
+.menu_container TableView {
+    -fx-background-radius: 0 0 10 10;
+}
+
+.table-column {
+    -fx-alignment: center;
+    -fx-background-color: white;
+    -fx-pref-height: 50;
+}
+
+.combo-box {
+    -fx-pref-width: 150;
+    -fx-pref-height: 50;
+    -fx-background-color: white;
+    -fx-font-size: 1.2em;
+    -fx-alignment: center;
+}
