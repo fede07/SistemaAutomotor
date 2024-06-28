@@ -8,28 +8,23 @@
 
 <VBox alignment="TOP_CENTER" maxHeight="1080.0" prefHeight="1080.0" prefWidth="200.0" styleClass="main_menu_container" stylesheets="@../styles/mainMenu.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo2.SistemaAutomotor.controlador.MainControlador">
    <VBox prefHeight="1080.0" prefWidth="200.0">
-      <VBox alignment="TOP_CENTER" maxHeight="259.0" minHeight="150.0" prefHeight="150.0" prefWidth="200.0"
-            styleClass="title_container">
-         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Sistema Automotor" textAlignment="CENTER"
-               wrappingWidth="150">
+      <VBox alignment="TOP_CENTER" maxHeight="259.0" minHeight="150.0" prefHeight="150.0" prefWidth="200.0" styleClass="title_container">
+         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Sistema Automotor" textAlignment="CENTER" wrappingWidth="150">
             <VBox.margin>
-               <Insets/>
+               <Insets />
             </VBox.margin>
          </Text>
          <opaqueInsets>
-            <Insets/>
+            <Insets />
          </opaqueInsets>
       </VBox>
       <VBox prefHeight="750.0" prefWidth="200.0" styleClass="menu_container">
-         <Button fx:id="facturasPagadasButton" mnemonicParsing="false" onAction="#abrirFacPagScene"
-                 styleClass="alt_menu_btn" text="Facturas Pagadas" textAlignment="CENTER"/>
-         <Button fx:id="facturasImpagasButton" mnemonicParsing="false" onAction="#abrirFacturasImpagasScene"
-                 styleClass="alt_menu_btn" text="Facturas Impagas" textAlignment="CENTER"/>
-         <Line endX="120.0"/>
-         <Button fx:id="GestionarBDDButton" mnemonicParsing="false" onAction="#abrirAutomotorScene" text="Gestionar"/>
-         <Button fx:id="deudaButton" mnemonicParsing="false" onAction="#abrirDeudaScene" text="Automotores con Deuda"/>
-         <Button fx:id="recaudacionButton" mnemonicParsing="false" onAction="#abrirRecaudacionScene"
-                 text="Recaudacion"/>
+         <Button fx:id="facturasPagadasButton" mnemonicParsing="false" onAction="#abrirFacPagScene" styleClass="alt_menu_btn" text="Facturas Pagadas" textAlignment="CENTER" />
+         <Button fx:id="facturasImpagasButton" mnemonicParsing="false" onAction="#abrirFacturasImpagasScene" styleClass="alt_menu_btn" text="Facturas Impagas" textAlignment="CENTER" />
+         <Line endX="120.0" />
+         <Button fx:id="GestionarBDDButton" mnemonicParsing="false" onAction="#abrirAutomotorScene" text="Gestionar" />
+         <Button fx:id="deudaButton" mnemonicParsing="false" onAction="#abrirDeudaScene" text="Automotores con Deuda" />
+         <Button fx:id="recaudacionButton" mnemonicParsing="false" onAction="#abrirRecaudacionScene" text="Recaudación" />
       </VBox>
    </VBox>
    <VBox maxHeight="75.0" minHeight="75.0" prefHeight="75.0" prefWidth="200.0" styleClass="info_container">
