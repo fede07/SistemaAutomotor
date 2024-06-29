@@ -88,11 +88,20 @@
 }
 
 .deuda_label {
-    -fx-font-size: 1.3em;
+    -fx-font-size: 1.2em;
 }
 
 .deuda_label Label {
     -fx-pref-width: 230;
+}
+
+.deuda_label_Alt {
+    -fx-background-color: white;
+    -fx-font-size: 1.2em;
+    -fx-pref-width: 230;
+    -fx-background-radius: 2 2 2 2;
+    -fx-alignment: center;
+
 }
 
 .tab-pane .tab-header-area .tab-header-background {
@@ -147,3 +156,4 @@
 .check-box:selected .box {
 
 }
+
