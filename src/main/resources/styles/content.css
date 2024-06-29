@@ -19,10 +19,10 @@
     -fx-spacing: 20;
     -fx-alignment: center;
     -fx-background-color: #EEEEEE;
-    -fx-background-image: url("logo_unlam.png");
+    /*-fx-background-image: url("logo_unlam.png");
     -fx-background-repeat: no-repeat;
     -fx-background-size: 600;
-    -fx-background-position: center;
+    -fx-background-position: center;*/
 }
 
 .menu_container Button {

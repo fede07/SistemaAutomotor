@@ -23,7 +23,6 @@
                     </opaqueInsets>
                     <Tab text="Agregar">
                         <fx:include source="agregarScene.fxml"/>
-
                     </Tab>
                     <Tab text="Modificar">
                         <fx:include source="modificarScene.fxml"/>
@@ -32,7 +31,7 @@
                         <fx:include source="eliminarScene.fxml"/>
                     </Tab>
                     <Tab text="Consultar">
-
+                        <fx:include source="consultarScene.fxml"/>
                     </Tab>
                 </TabPane>
             </VBox>
