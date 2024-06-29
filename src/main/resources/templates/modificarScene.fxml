@@ -1,39 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox prefHeight="602.0" prefWidth="873.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo2.SistemaAutomotor.controlador.ModificarControlador">
-    <AnchorPane prefHeight="613.0" prefWidth="879.0">
-        <TableView fx:id="automotorTableView" layoutX="40.0" layoutY="288.0" prefHeight="50.0" prefWidth="793.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
-            <columns>
-                <TableColumn fx:id="dominioColumna" prefWidth="75.0" text="Dominio" />
-                <TableColumn fx:id="dniColumna" prefWidth="75.0" text="DNI Titular" />
-                <TableColumn fx:id="modeloColumna" prefWidth="75.0" text="Modelo" />
-                <TableColumn fx:id="marcaColumna" prefWidth="75.0" text="Marca" />
-                <TableColumn fx:id="anioColumna" prefWidth="75.0" text="Año" />
-            <TableColumn fx:id="municipioColumna" prefWidth="75.0" text="Municipio" />
-            </columns>
-            <columnResizePolicy>
-                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-            </columnResizePolicy>
-        </TableView>
-        <AnchorPane layoutX="39.0" layoutY="54.0" prefHeight="234.0" prefWidth="808.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
-            <Label layoutX="48.0" layoutY="51.0" text="Dominio" />
-            <TextField fx:id="dominioTextField" layoutX="102.0" layoutY="47.0" />
-            <Label layoutX="36.0" layoutY="93.0" text="DNI Titular" />
-            <TextField fx:id="dniTextField" layoutX="102.0" layoutY="89.0" />
-            <Label layoutX="266.0" layoutY="93.0" text="Municipio" />
-            <ComboBox fx:id="municipioComboBox" layoutX="324.0" layoutY="89.0" prefWidth="150.0" />
-            <Label fx:id="nombreLabel" disable="true" layoutX="275.0" layoutY="136.0" text="Nombre" />
-            <TextField fx:id="nombreTextField" disable="true" layoutX="324.0" layoutY="132.0" prefHeight="25.0" prefWidth="150.0" />
-            <Label fx:id="apellidoLabel" disable="true" layoutX="491.0" layoutY="136.0" text="Apellido" />
-            <TextField fx:id="apellidoTextField" disable="true" layoutX="540.0" layoutY="132.0" />
-            <Button fx:id="modificarButton" layoutX="366.0" layoutY="195.0" mnemonicParsing="false" text="Modificar" />
-            <Label layoutY="136.0" text="DNI Titular Nuevo" />
-            <TextField fx:id="dniNuevoTextField" layoutX="102.0" layoutY="132.0" />
-            <Button fx:id="buscarButton" layoutX="267.0" layoutY="47.0" mnemonicParsing="false" text="Buscar" />
-            <CheckBox fx:id="nuevoTitularCheckBox" layoutX="102.0" layoutY="168.0" mnemonicParsing="false" text="Titular Nuevo en Sistema" />
-        </AnchorPane>
-    </AnchorPane>
+<VBox alignment="CENTER" spacing="10.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo2.SistemaAutomotor.controlador.ModificarControlador">
+    <VBox alignment="CENTER" spacing="10.0">
+        <AnchorPane/>
+        <HBox alignment="CENTER">
+            <Label text="Dominio"/>
+            <TextField fx:id="dominioTextField"/>
+        </HBox>
+        <VBox alignment="CENTER">
+            <Button fx:id="buscarButton" mnemonicParsing="false" text="Buscar"/>
+        </VBox>
+        <HBox alignment="CENTER">
+            <Label text="DNI Titular"/>
+            <TextField fx:id="dniTextField"/>
+        </HBox>
+        <HBox alignment="CENTER">
+            <Label text="Municipio"/>
+            <ComboBox fx:id="municipioComboBox" prefWidth="150.0"/>
+        </HBox>
+        <HBox alignment="CENTER">
+            <Label styleClass="label_aux" text="DNI Titular Nuevo"/>
+            <TextField fx:id="dniNuevoTextField"/>
+        </HBox>
+        <HBox alignment="CENTER">
+            <CheckBox fx:id="nuevoTitularCheckBox" mnemonicParsing="false" text="Titular Nuevo en Sistema"/>
+        </HBox>
+        <HBox alignment="CENTER">
+            <Label fx:id="nombreLabel" disable="true" text="Nombre"/>
+            <TextField fx:id="nombreTextField" disable="true" prefHeight="25.0" prefWidth="150.0"/>
+        </HBox>
+        <HBox alignment="CENTER">
+            <Label fx:id="apellidoLabel" disable="true" text="Apellido"/>
+            <TextField fx:id="apellidoTextField" disable="true"/>
+        </HBox>
+        <HBox alignment="CENTER">
+            <Button fx:id="modificarButton" mnemonicParsing="false" text="Modificar"/>
+        </HBox>
+    </VBox>
+     <TableView fx:id="automotorTableView" prefHeight="50.0" prefWidth="793.0">
+         <placeholder>
+             <Label alignment="CENTER" prefHeight="42.0" prefWidth="200.0" styleClass="label_aux" stylesheets="@../styles/content.css" text=" " textAlignment="CENTER">
+                 <padding>
+                     <Insets bottom="10.0" top="10.0" />
+                 </padding></Label>
+         </placeholder>
+         <columns>
+             <TableColumn fx:id="dominioColumna" prefWidth="75.0" text="Dominio" />
+             <TableColumn fx:id="dniColumna" prefWidth="75.0" text="DNI Titular" />
+             <TableColumn fx:id="modeloColumna" prefWidth="75.0" text="Modelo" />
+             <TableColumn fx:id="marcaColumna" prefWidth="75.0" text="Marca" />
+             <TableColumn fx:id="anioColumna" prefWidth="75.0" text="Año" />
+         <TableColumn fx:id="municipioColumna" prefWidth="75.0" text="Municipio" />
+         </columns>
+         <columnResizePolicy>
+             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      <VBox.margin>
+         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+      </VBox.margin>
+     </TableView>
 </VBox>

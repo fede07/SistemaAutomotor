@@ -1,13 +1,15 @@
 .title_container{
-    -fx-background-color: #81b4d3;
+    -fx-background-color: linear-gradient(to right, #81b4d3, #aeeff8);
     -fx-background-radius: 0 10 0 0;
     -fx-alignment: center;
     -fx-padding: 10;
 }
 
 .title_container Text {
-    -fx-font-family: "Droid Sans";
+    -fx-font-family: "Arial Black";
     -fx-fill: #eae7e7;
+    -fx-stroke: #52b5ea;
+    -fx-stroke-width: 1px;
     -fx-font-size: 2.5em;
     -fx-alignment: center;
 }
@@ -17,12 +19,11 @@
     -fx-spacing: 20;
     -fx-alignment: center;
     -fx-background-color: #EEEEEE;
-
 }
 
 .menu_container Button {
     -fx-pref-width: 150;
-    -fx-pref-height: 50;
+    -fx-pref-height: 32;
     -fx-background-color: white;
     -fx-font-size: 1.2em;
     -fx-alignment: center;
@@ -39,13 +40,24 @@
 
 .menu_container TextField {
     -fx-pref-width: 150;
-    -fx-pref-height: 50;
+    -fx-pref-height: 32;
+    -fx-min-height: 32;
+    -fx-prompt-text-fill: rgba(108, 108, 108, 0.91);
     -fx-alignment: center;
     -fx-background-color: white;
 }
 
+.menu_container TextField:empty {
+    -fx-prompt-text-fill: white;
+}
+
 .menu_container Label {
     -fx-font-size: 1.2em;
+    -fx-pref-width: 120;
+}
+
+.label_aux {
+    -fx-pref-width: 120;
 }
 
 .menu_container TableView {
@@ -55,13 +67,83 @@
 .table-column {
     -fx-alignment: center;
     -fx-background-color: white;
-    -fx-pref-height: 50;
+    -fx-pref-height: 40;
+    -fx-font-size: 1em;
+}
+
+.table-row-cell:focused .table-cell {
+    -fx-background-color: #81b4d3;
+}
+
+.table-view:focused {
+    -fx-focus-color: transparent;
 }
 
 .combo-box {
     -fx-pref-width: 150;
-    -fx-pref-height: 50;
+    -fx-pref-height: 32;
     -fx-background-color: white;
     -fx-font-size: 1.2em;
     -fx-alignment: center;
+}
+
+.deuda_label {
+    -fx-font-size: 1.3em;
+}
+
+.deuda_label Label {
+    -fx-pref-width: 230;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+}
+
+.tab-pane
+{
+    -fx-tab-min-width:175;
+    -fx-tab-min-height:50;
+}
+
+.tab{
+    -fx-background-insets: 0 1 0 1,0,0;
+}
+.tab-pane .tab
+{
+    -fx-background-color: #e6e6e6;
+
+}
+
+.tab-pane .tab:selected
+{
+    -fx-background-color: #EEEEEE;
+}
+
+.tab .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: #828282;
+    -fx-font-size: 1.2em;
+    -fx-font-weight: bold;
+}
+
+.tab:selected .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: #81b4d3;
+}
+
+.check-box {
+    -fx-font-size: 1.2em;
+    -fx-pref-width: 120;
+}
+
+.check-box .box {
+    -fx-background-color: white;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: #81b4d3;
+}
+
+.check-box:selected .box {
+
 }

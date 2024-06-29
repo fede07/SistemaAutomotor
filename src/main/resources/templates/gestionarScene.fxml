@@ -3,33 +3,36 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <BorderPane prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo2.SistemaAutomotor.controlador.GestionarControlador">
     <left>
         <fx:include source="mainScene.fxml" />
     </left>
     <center>
-        <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-            <top>
-                <AnchorPane maxWidth="200.0" minHeight="0.0" prefHeight="0.0" prefWidth="800.0" style="-fx-background-color: lightblue;" BorderPane.alignment="CENTER" />
-            </top>
-            <center>
-                <TabPane snapToPixel="false" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="500.0" tabMaxWidth="500.0" tabMinWidth="245.0">
+        <VBox alignment="TOP_CENTER" prefHeight="1080.0" stylesheets="@../styles/content.css"
+              BorderPane.alignment="CENTER">
+            <VBox alignment="TOP_CENTER" maxHeight="150.0" minHeight="150.0" styleClass="title_container">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gestionar"/>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="1080.0" styleClass="menu_container">
+                <TabPane prefHeight="1080.0" snapToPixel="false" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="500.0"
+                         tabMaxWidth="500.0" tabMinWidth="245.0">
                     <opaqueInsets>
-                        <Insets />
+                        <Insets/>
                     </opaqueInsets>
                     <Tab text="Agregar">
-                        <fx:include source="agregarScene.fxml" />
+                        <fx:include source="agregarScene.fxml"/>
 
-                          </Tab>
+                    </Tab>
                     <Tab text="Modificar">
-                        <fx:include source="modificarScene.fxml" />
+                        <fx:include source="modificarScene.fxml"/>
                     </Tab>
                     <Tab text="Eliminar">
-                        <fx:include source="eliminarScene.fxml" />
+                        <fx:include source="eliminarScene.fxml"/>
                     </Tab>
                 </TabPane>
-            </center>
-        </BorderPane>
+            </VBox>
+        </VBox>
     </center>
 </BorderPane>

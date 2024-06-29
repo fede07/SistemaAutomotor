@@ -18,12 +18,18 @@
             <Insets />
          </opaqueInsets>
       </VBox>
-      <VBox prefHeight="750.0" prefWidth="200.0" styleClass="menu_container">
-         <Button fx:id="facturasPagadasButton" mnemonicParsing="false" onAction="#abrirFacPagScene" styleClass="alt_menu_btn" text="Facturas Pagadas" textAlignment="CENTER" />
-         <Button fx:id="facturasImpagasButton" mnemonicParsing="false" onAction="#abrirFacturasImpagasScene" styleClass="alt_menu_btn" text="Facturas Impagas" textAlignment="CENTER" />
+      <VBox prefHeight="865.0" prefWidth="200.0" styleClass="menu_container">
+         <Button fx:id="facturasPagadasButton" mnemonicParsing="false" onAction="#abrirFacPagScene" text="Facturas Pagadas" textAlignment="CENTER" />
+         <Button fx:id="facturasImpagasButton" mnemonicParsing="false" onAction="#abrirFacturasImpagasScene" text="Facturas Impagas" textAlignment="CENTER" />
          <Line endX="120.0" />
          <Button fx:id="GestionarBDDButton" mnemonicParsing="false" onAction="#abrirAutomotorScene" text="Gestionar" />
-         <Button fx:id="deudaButton" mnemonicParsing="false" onAction="#abrirDeudaScene" text="Automotores con Deuda" />
+         <Button fx:id="deudaButton" mnemonicParsing="false" onAction="#abrirDeudaScene">
+            <graphic>
+               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                  <Label text="Automotores"/>
+                  <Label layoutX="58.0" layoutY="32.0" text="con Deuda"/>
+               </VBox>
+            </graphic></Button>
          <Button fx:id="recaudacionButton" mnemonicParsing="false" onAction="#abrirRecaudacionScene" text="Recaudación" />
       </VBox>
    </VBox>

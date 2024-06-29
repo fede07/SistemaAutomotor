@@ -20,7 +20,10 @@
 }
 
 .title_container Text{
-    -fx-text-fill: #eae7e7;
+    -fx-font-family: "Arial Black";
+    -fx-fill: #eae7e7;
+    -fx-stroke: #52b5ea;
+    -fx-stroke-width: 1px;
     -fx-font-size: 2em;
     -fx-alignment: center;
 }
@@ -31,33 +34,33 @@
     -fx-padding: 10 10 10 20;
     -fx-spacing: 20;
     -fx-alignment: center;
+    -fx-border-width: 0 2 0 0 ;
+    -fx-border-color: white #eae7e7 white white;
 }
 
 .menu_container Button {
     -fx-pref-width: 150;
-    -fx-pref-height: 50;
+    -fx-pref-height: 75;
     -fx-background-color: white;
-    -fx-font-size: 1em;
+    -fx-font-size: 1.2em;
     -fx-alignment: center;
-    -fx-effect: dropshadow(two-pass-box,#DDDDDD,5,0,0,6);
 }
 
 .menu_container Button:hover {
     -fx-cursor: hand;
+    -fx-effect: dropshadow(two-pass-box,#DDDDDD,5,0,0,6);
 }
 
-.alt_menu_btn{
-    -fx-pref-width: 150;
-    -fx-pref-height: 50;
-    -fx-background-color: #81b4d3;
-    -fx-text-fill: white;
-    -fx-font-size: 1em;
-    -fx-alignment: center;
-}
+/*.menu_container Button:pressed{*/
+/*    -fx-background-color: #81b4d3;*/
+/*    -fx-text-fill: white;*/
+/*    -fx-font-size: 1.2em;*/
+/*    -fx-alignment: center;*/
+/*}*/
 
 .info_container {
     -fx-background-color: #1fb286;
-    -fx-background-radius: 0 0 10 10;
+    -fx-background-radius: 0 0 0 10;
     -fx-alignment: center;
     -fx-spacing: 10;
     -fx-padding: 10, 0, 10, 0;
