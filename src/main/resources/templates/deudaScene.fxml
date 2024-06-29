@@ -45,7 +45,7 @@
                        </Label>
                    </HBox>
                    <HBox alignment="CENTER" prefHeight="54.0" prefWidth="780.0" spacing="5.0">
-                       <Label prefHeight="34.0" prefWidth="129.0" text="Total adeudado:">
+                       <Label prefHeight="34.0" prefWidth="129.0" text="Total Adeudado:">
                            <font>
                                <Font size="18.0" />
                            </font>
