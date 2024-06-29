@@ -7,8 +7,8 @@
 
 .title_container Text {
     -fx-font-family: "Arial Black";
-    -fx-fill: #1c1a1a;
-    -fx-stroke: rgba(234, 231, 231, 0.91);
+    -fx-fill: #000000;
+    -fx-stroke: #52b5ea;
     -fx-stroke-width: 1px;
     -fx-font-size: 2.5em;
     -fx-alignment: center;
@@ -19,10 +19,7 @@
     -fx-spacing: 20;
     -fx-alignment: center;
     -fx-background-color: #EEEEEE;
-    -fx-background-image: url("logo_unlam.png");
-    -fx-background-repeat: no-repeat;
-    -fx-background-size: 600;
-    -fx-background-position: center;
+    -fx-background-image: url("unlam.png");
 }
 
 .menu_container Button {
@@ -160,6 +157,4 @@
 .check-box:selected .box {
 
 }
-
-
 

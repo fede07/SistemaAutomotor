@@ -9,7 +9,7 @@
 <VBox alignment="TOP_CENTER" maxHeight="1080.0" prefHeight="1080.0" prefWidth="200.0" styleClass="main_menu_container" stylesheets="@../styles/mainMenu.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo2.SistemaAutomotor.controlador.MainControlador">
    <VBox prefHeight="1080.0" prefWidth="200.0">
       <VBox alignment="TOP_CENTER" maxHeight="259.0" minHeight="150.0" prefHeight="150.0" prefWidth="200.0" styleClass="title_container">
-         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Sistema Automotor" textAlignment="CENTER" wrappingWidth="150">
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sistema Automotor" textAlignment="CENTER" wrappingWidth="150">
             <VBox.margin>
                <Insets />
             </VBox.margin>
@@ -22,12 +22,12 @@
          <Button fx:id="facturasPagadasButton" mnemonicParsing="false" onAction="#abrirFacPagScene" text="Facturas Pagadas" textAlignment="CENTER" />
          <Button fx:id="facturasImpagasButton" mnemonicParsing="false" onAction="#abrirFacturasImpagasScene" text="Facturas Impagas" textAlignment="CENTER" />
          <Line endX="120.0" />
-         <Button fx:id="GestionarBDDButton" mnemonicParsing="false" onAction="#abrirAutomotorScene" text="Gestionar" />
+         <Button fx:id="GestionarBDDButton" mnemonicParsing="false" onAction="#abrirAutomotorScene" text="Gestion Automotor" />
          <Button fx:id="deudaButton" mnemonicParsing="false" onAction="#abrirDeudaScene">
             <graphic>
                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                  <Label text="Automotores"/>
-                  <Label layoutX="58.0" layoutY="32.0" text="con Deuda"/>
+                  <Label text="Automotores" />
+                  <Label layoutX="58.0" layoutY="32.0" text="con Deuda" />
                </VBox>
             </graphic></Button>
          <Button fx:id="recaudacionButton" mnemonicParsing="false" onAction="#abrirRecaudacionScene" text="Recaudación" />
