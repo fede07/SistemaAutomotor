@@ -31,6 +31,9 @@
                     <Tab text="Eliminar">
                         <fx:include source="eliminarScene.fxml"/>
                     </Tab>
+                    <Tab text="Consultar">
+
+                    </Tab>
                 </TabPane>
             </VBox>
         </VBox>

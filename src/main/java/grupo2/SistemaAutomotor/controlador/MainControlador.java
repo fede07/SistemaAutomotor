@@ -29,6 +29,10 @@ public class MainControlador implements Initializable {
     private Scene deudasScene;
     private Scene recaudacionScene;
 
+    @Setter
+    private RecaudacionMunicipioControlador recaudacion;
+    private DeudaControlador deudaControlador;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -50,11 +54,13 @@ public class MainControlador implements Initializable {
         Stage deudaStage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         stageSetSize(deudaStage);
         deudaStage.setScene(deudasScene);
+        deudaControlador.actualizar();
     }
     public void abrirRecaudacionScene(ActionEvent actionEvent){
         Stage recaudacionStage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         stageSetSize(recaudacionStage);
         recaudacionStage.setScene(recaudacionScene);
+        recaudacion.actualizar();
     }
 
     public void abrirFacturasImpagasScene(ActionEvent actionEvent){

@@ -18,14 +18,14 @@
             <TextField fx:id="marcaTextField" />
         </HBox>
         <HBox alignment="CENTER">
-            <Label text="Año" />
-            <TextField fx:id="anioTextField" />
-        </HBox>
-        <HBox alignment="CENTER">
             <Label text="Modelo" />
            <HBox alignment="CENTER">
                <TextField fx:id="modeloTextField" />
            </HBox>
+        </HBox>
+        <HBox alignment="CENTER">
+            <Label text="Año" />
+            <TextField fx:id="anioTextField" />
         </HBox>
         <HBox alignment="CENTER">
             <Label text="Municipio" />

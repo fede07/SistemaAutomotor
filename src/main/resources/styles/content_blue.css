@@ -1,5 +1,5 @@
 .title_container{
-    -fx-background-color: linear-gradient(to right, #1fb286, #33efb6);
+    -fx-background-color: linear-gradient(to right, #81b4d3, #aeeff8);
     -fx-background-radius: 0 10 0 0;
     -fx-alignment: center;
     -fx-padding: 10;
@@ -7,8 +7,8 @@
 
 .title_container Text {
     -fx-font-family: "Arial Black";
-    -fx-fill: #1c1a1a;
-    -fx-stroke: rgba(234, 231, 231, 0.91);
+    -fx-fill: #eae7e7;
+    -fx-stroke: #52b5ea;
     -fx-stroke-width: 1px;
     -fx-font-size: 2.5em;
     -fx-alignment: center;
@@ -19,10 +19,6 @@
     -fx-spacing: 20;
     -fx-alignment: center;
     -fx-background-color: #EEEEEE;
-    -fx-background-image: url("logo_unlam.png");
-    -fx-background-repeat: no-repeat;
-    -fx-background-size: 600;
-    -fx-background-position: center;
 }
 
 .menu_container Button {
@@ -160,6 +156,4 @@
 .check-box:selected .box {
 
 }
-
-
 
