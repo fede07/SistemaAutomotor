@@ -6,9 +6,12 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
+
+import java.util.Objects;
 
 public class SistemaAutomotorFX extends Application {
 
@@ -24,6 +27,7 @@ public class SistemaAutomotorFX extends Application {
         FXMLLoader mainLoader = new FXMLLoader(SistemaAutomotorApplication.class.getResource("/templates/mainScene.fxml"));
         mainLoader.setControllerFactory(contexto::getBean);
         Scene mainScene = new Scene(mainLoader.load());
+        mainScene.getHeight();
 
         FXMLLoader automotorLoader = new FXMLLoader(SistemaAutomotorApplication.class.getResource("/templates/gestionarScene.fxml"));
         automotorLoader.setControllerFactory(contexto::getBean);
@@ -63,6 +67,7 @@ public class SistemaAutomotorFX extends Application {
         stage.setTitle("Sistema Automotor");
         stage.setMinHeight(800);
         stage.setMinWidth(1000);
+        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/unlam.png"))));
         stage.show();
     }
 
