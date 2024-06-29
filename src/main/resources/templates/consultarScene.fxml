@@ -1,10 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="grupo2.SistemaAutomotor.controlador.ConsultarControlador"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<VBox prefHeight="398.0" prefWidth="515.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo2.SistemaAutomotor.controlador.ConsultarControlador">
+    <HBox alignment="CENTER" prefHeight="50.0" prefWidth="515.0" spacing="10.0">
+        <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+        </padding>
+        <Label text="Dominio" />
+        <TextField fx:id="dominioTextField" />
+    </HBox>
+    <HBox alignment="CENTER" prefHeight="16.0" prefWidth="515.0">
+        <Button fx:id="buscarAutomotorButton" mnemonicParsing="false" text="Buscar" />
+    </HBox>
+    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+        <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+        </padding>
+        <VBox.margin>
+            <Insets />
+        </VBox.margin>
+        <TableView prefHeight="100.0" prefWidth="655.0">
+            <placeholder>
+                <Label alignment="CENTER" prefHeight="42.0" prefWidth="200.0" styleClass="label_aux" stylesheets="@../styles/content.css" text=" " textAlignment="CENTER">
+                    <padding>
+                        <Insets bottom="10.0" top="10.0" />
+                    </padding></Label>
+            </placeholder>
+            <columns>
+                <TableColumn fx:id="dominioColumna" prefWidth="75.0" text="Dominio" />
+                <TableColumn fx:id="titularColumna" prefWidth="75.0" text="DNI Titular" />
+                <TableColumn fx:id="marcaColumna" prefWidth="75.0" text="Marca" />
+                <TableColumn fx:id="modeloColumna" prefWidth="75.0" text="Modelo" />
+                <TableColumn fx:id="anioColumna" prefWidth="75.0" text="Año" />
+                <TableColumn fx:id="municipioColumna" prefWidth="75.0" text="Municipio" />
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+        </TableView>
+    </HBox>
+    <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+        <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+        </padding>
+        <Label text="DNI" />
+        <TextField fx:id="dniTextField" />
+    </HBox>
+    <HBox alignment="CENTER" prefHeight="0.0">
+        <Button fx:id="buscarDniButton" mnemonicParsing="false" text="Buscar" />
+    </HBox>
+    <HBox alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="100.0" prefWidth="200.0">
+        <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+        </padding>
+        <TableView prefHeight="100.0" prefWidth="655.0">
+            <placeholder>
+                <Label alignment="CENTER" prefHeight="42.0" prefWidth="200.0" styleClass="label_aux" stylesheets="@../styles/content.css" text=" " textAlignment="CENTER">
+                    <padding>
+                        <Insets bottom="10.0" top="10.0" />
+                    </padding></Label>
+            </placeholder>
+            <columns>
+                <TableColumn fx:id="dniTitularColumna" prefWidth="75.0" text="DNI" />
+                <TableColumn fx:id="nombreTitularColumna" prefWidth="75.0" text="Nombre" />
+                <TableColumn fx:id="apellidoTitularColumna" prefWidth="75.0" text="Apellido" />
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+        </TableView>
+    </HBox>
+</VBox>

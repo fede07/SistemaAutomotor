@@ -4,7 +4,7 @@
     -fx-alignment: center;
 }
 
-.left_container{a
+.left_container{
     -fx-background-color: #FFFFFF;
     -fx-background-radius: 10;
     -fx-effect: dropshadow(two-pass-box,#AAAAAA,5,0,0,4);
