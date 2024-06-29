@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 @Component
-public class RecadacionMunicipioControlador implements Initializable {
+public class RecaudacionMunicipioControlador implements Initializable {
 
     private final BoletaServicio boletaServicio;
     private final MunicipioServicio municipioServicio;
@@ -34,9 +34,13 @@ public class RecadacionMunicipioControlador implements Initializable {
     private final ObservableList<Recaudacion> recaudacionList = FXCollections.observableArrayList();
 
 
-    public RecadacionMunicipioControlador(BoletaServicio boletaServicio, MunicipioServicio municipioServicio) {
+    public RecaudacionMunicipioControlador(BoletaServicio boletaServicio, MunicipioServicio municipioServicio) {
         this.boletaServicio = boletaServicio;
         this.municipioServicio = municipioServicio;
+    }
+
+    public void actualizar(){
+        listarRecaudacion();
     }
 
     @Override

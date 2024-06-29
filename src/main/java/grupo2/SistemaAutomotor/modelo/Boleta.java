@@ -1,10 +1,7 @@
 package grupo2.SistemaAutomotor.modelo;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
@@ -27,6 +24,7 @@ public class Boleta {
     private Boolean estado;
     private BigDecimal importe;
     private Date fechaVencimiento;
+    @Setter
     private Date fechaPago;
     private Integer cuota;
 

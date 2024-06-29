@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.net.URL;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.List;
@@ -23,6 +24,8 @@ public class VisualizarFacImpagControlador implements Initializable {
     public TextField dominioTextField;
     public Button buscarButton;
     private final BoletaServicio boletaServicio;
+    @FXML
+    private Button realizarPagoButton;
 
     @FXML
     private TableView<Boleta> boletaTabla = new TableView<>();
@@ -50,11 +53,15 @@ public class VisualizarFacImpagControlador implements Initializable {
         this.boletaServicio = boletaServicio;
     }
 
+    private Automotor automotorGuardado;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         boletaTabla.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         configurarColumnas();
         configurarComboBox();
+        automotorGuardado = new Automotor();
+        realizarPagoButton.setOnAction(e->pagarBoletas());
     }
 
     private void configurarComboBox() {
@@ -79,6 +86,7 @@ public class VisualizarFacImpagControlador implements Initializable {
         boletaList.clear();
         Automotor automotor = new Automotor();
         automotor.setDominio(dominio);
+        automotorGuardado.setDominio(dominio);
         int cuotaDesde = fechaapartirComboBox.getValue();
         int cuotaHasta = fechaHastaComboBox.getValue();
         List<Boleta> boletas = boletaServicio.buscarBoletaPorDominioEntre(automotor,false,cuotaDesde,cuotaHasta);
@@ -95,6 +103,28 @@ public class VisualizarFacImpagControlador implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public void pagarBoletas(){
+        Boleta boleta = boletaTabla.getSelectionModel().getSelectedItem();
+        if (boleta == null) {
+            mostrarMensaje("Información", "Seleccione una factura");
+            return;
+        }
+        Calendar calendar = Calendar.getInstance();
+        boleta.setEstado(true);
+        Date hoy = calendar.getTime();
+        boleta.setFechaPago(hoy);
+        boletaServicio.guardarBoleta(boleta);
+        mostrarMensaje("Informacion", "Factura Pagada");
+        actualizarBoletas();
+    }
+
+    private void actualizarBoletas(){
+        boletaList.clear();
+        dominioTextField.clear();
+        dominioTextField.setText(automotorGuardado.getDominio());
+        buscarBoletas();
     }
 
 }

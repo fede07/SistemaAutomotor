@@ -13,7 +13,7 @@
 /*Titulo*/
 
 .title_container{
-    -fx-background-color: #1fb286;
+    -fx-background-color: #81b4d3;
     -fx-background-radius: 10 0 0 0;
     -fx-alignment: center;
     -fx-padding: 10;
@@ -21,7 +21,7 @@
 
 .title_container Text{
     -fx-font-family: "Arial Black";
-    -fx-fill: #1c1a1a;
+    -fx-fill: #eae7e7;
     -fx-stroke: #52b5ea;
     -fx-stroke-width: 1px;
     -fx-font-size: 2em;
@@ -35,13 +35,13 @@
     -fx-spacing: 20;
     -fx-alignment: center;
     -fx-border-width: 0 2 0 0 ;
-    -fx-border-color: white #c0def4 white white;
+    -fx-border-color: white #eae7e7 white white;
 }
 
 .menu_container Button {
     -fx-pref-width: 150;
     -fx-pref-height: 75;
-    -fx-background-color: #c0def4;
+    -fx-background-color: white;
     -fx-font-size: 1.2em;
     -fx-alignment: center;
 }
@@ -49,10 +49,6 @@
 .menu_container Button:hover {
     -fx-cursor: hand;
     -fx-effect: dropshadow(two-pass-box,#DDDDDD,5,0,0,6);
-}
-
-.background {
-    -fx-background-color: #c0def4;
 }
 
 /*.menu_container Button:pressed{*/

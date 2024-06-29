@@ -61,6 +61,8 @@ public class SistemaAutomotorFX extends Application {
         mainControlador.setDeudasScene(deudaScene);
         mainControlador.setRecaudacionScene(recaudacionScene);
         mainControlador.setFacturasImpagasScene(facImpagScene);
+        mainControlador.setRecaudacion(recaudacionLoader.getController());
+        mainControlador.setDeudaControlador(deudaLoader.getController());
 
         //Inicio la escena principal
         stage.setScene(facPagScene);

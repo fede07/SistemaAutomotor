@@ -64,6 +64,10 @@ public class DeudaControlador implements Initializable {
         configurarColumnas();
     }
 
+    public void actualizar(){
+        setearParametros();
+    }
+
     public void buscarDeuda() {
         String dominio = InputBuscarDeuda.getText();
         if (dominio.isEmpty()) {
