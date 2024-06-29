@@ -1,5 +1,5 @@
 .title_container{
-    -fx-background-color: linear-gradient(to right, #81b4d3, #aeeff8);
+    -fx-background-color: linear-gradient(to right, #1fb286, #33efb6);
     -fx-background-radius: 0 10 0 0;
     -fx-alignment: center;
     -fx-padding: 10;
@@ -7,7 +7,7 @@
 
 .title_container Text {
     -fx-font-family: "Arial Black";
-    -fx-fill: #eae7e7;
+    -fx-fill: #000000;
     -fx-stroke: #52b5ea;
     -fx-stroke-width: 1px;
     -fx-font-size: 2.5em;
@@ -19,6 +19,7 @@
     -fx-spacing: 20;
     -fx-alignment: center;
     -fx-background-color: #EEEEEE;
+    -fx-background-image: url("unlam.png");
 }
 
 .menu_container Button {

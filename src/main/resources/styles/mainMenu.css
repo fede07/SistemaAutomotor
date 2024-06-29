@@ -13,7 +13,7 @@
 /*Titulo*/
 
 .title_container{
-    -fx-background-color: #81b4d3;
+    -fx-background-color: #1fb286;
     -fx-background-radius: 10 0 0 0;
     -fx-alignment: center;
     -fx-padding: 10;
@@ -21,7 +21,7 @@
 
 .title_container Text{
     -fx-font-family: "Arial Black";
-    -fx-fill: #eae7e7;
+    -fx-fill: #000000;
     -fx-stroke: #52b5ea;
     -fx-stroke-width: 1px;
     -fx-font-size: 2em;
@@ -35,7 +35,18 @@
     -fx-spacing: 20;
     -fx-alignment: center;
     -fx-border-width: 0 2 0 0 ;
-    -fx-border-color: white #eae7e7 white white;
+    -fx-border-color: white #c0def4 white white;
+    -fx-background-image: url("unlam.png");
+    -fx-background-size: 150px;
+    -fx-background-color: #c0def4;
+}
+
+.background_all{
+    -fx-background-color: #c0def4;
+    -fx-background-size: 750px;
+    -fx-background-image: url("logo_unlam.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
 }
 
 .menu_container Button {
