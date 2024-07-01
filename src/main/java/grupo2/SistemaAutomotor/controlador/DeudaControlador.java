@@ -139,7 +139,6 @@ public class DeudaControlador implements Initializable {
         }
         totalAdeudado.setText("$"+ String.format("%.2f", deudaTotal));
         float porcentaje = ((float) automotoresDeudas.size() /automotorServicio.cantidadAutomotores())*100;
-        System.out.println(porcentaje);
         porVehiDeuda.setText(String.format("%.2f", porcentaje) +"%");
         cantVehiDeuda.setText(Integer.toString(automotoresDeudas.size()));
     }
