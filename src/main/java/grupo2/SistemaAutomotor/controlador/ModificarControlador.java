@@ -1,5 +1,6 @@
 package grupo2.SistemaAutomotor.controlador;
 
+import grupo2.SistemaAutomotor.clase.Validador;
 import grupo2.SistemaAutomotor.modelo.Automotor;
 import grupo2.SistemaAutomotor.modelo.Municipio;
 import grupo2.SistemaAutomotor.modelo.Titular;
@@ -61,6 +62,7 @@ public class ModificarControlador implements Initializable {
     private Button buscarButton;
 
     private final ObservableList<Automotor> automotorList = FXCollections.observableArrayList();
+    private final Validador validador = new Validador();
 
     public ModificarControlador(AutomotorServicio automotorServicio, TitularServicio titularServicio, MunicipioServicio municipioServicio) {
         this.automotorServicio = automotorServicio;
@@ -130,13 +132,26 @@ public class ModificarControlador implements Initializable {
 
     private boolean agregarTitular() {
         if(nombreTextField.getText().isEmpty()){
-            mostrarMensaje("Informacion", "Debe ingresar un nombre");
+            mostrarMensaje("Información", "El campo Nombre no puede estar vacío.");
             return false;
         }
         if(apellidoTextField.getText().isEmpty()) {
-            mostrarMensaje("Informacion", "Debe ingresar un apellido");
+            mostrarMensaje("Información", "El campo Apellido no puede estar vacío.");
             return false;
         }
+
+        String dni = dniTextField.getText();
+
+        if(dni.isEmpty()) {
+            mostrarMensaje("Información", "El campo DNI no puede estar vacío");
+            return false;
+        }
+
+        if(validador.isNotNumeric(dni)) {
+            mostrarMensaje("Error Validación", "El DNI es inválido");
+            return false;
+        }
+
         Titular titular = new Titular();
         titular.setNombre(nombreTextField.getText());
         titular.setApellido(apellidoTextField.getText());
@@ -149,13 +164,18 @@ public class ModificarControlador implements Initializable {
     public void buscarAutomotor() {
         String dominio = dominioTextField.getText();
         if (dominio.isEmpty()) {
-            mostrarMensaje("Error", "El dominio no puede estar vacio");
+            mostrarMensaje("Información", "El dominio no puede estar vacio");
+            return;
+        }
+
+        if(validador.isNotDominio(dominio)){
+            mostrarMensaje("Error Validación", "El dominio es inválido");
             return;
         }
 
         Automotor automotor = automotorServicio.buscarAutomotor(dominio);
         if (automotor == null) {
-            mostrarMensaje("Info", "No se encontro afiliado con el dominio " + dominio);
+            mostrarMensaje("Información", "No se encontro afiliado con el dominio " + dominio);
             return;
         }
 
@@ -167,7 +187,6 @@ public class ModificarControlador implements Initializable {
 
     private boolean recolectarDatosFormulario(Automotor automotor) {
 
-        System.out.println(dominioTextField.getText());
         Automotor automotorBuscado = automotorServicio.buscarAutomotor(dominioTextField.getText());
 
         if (automotorBuscado == null) {
@@ -188,7 +207,7 @@ public class ModificarControlador implements Initializable {
         }
 
         if(dni.isEmpty()) {
-            mostrarMensaje("Error", "Debe ingresar un dni");
+            mostrarMensaje("Error", "Debe ingresar un DNI");
             dniTextField.requestFocus();
             return false;
         }

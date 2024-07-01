@@ -4,41 +4,41 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" spacing="10.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo2.SistemaAutomotor.controlador.ModificarControlador">
+<VBox alignment="TOP_CENTER" spacing="10.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo2.SistemaAutomotor.controlador.ModificarControlador">
     <VBox alignment="CENTER" spacing="10.0">
-        <AnchorPane/>
+        <AnchorPane />
         <HBox alignment="CENTER">
-            <Label text="Dominio"/>
-            <TextField fx:id="dominioTextField"/>
+            <Label text="Dominio" />
+            <TextField fx:id="dominioTextField" />
         </HBox>
         <VBox alignment="CENTER">
-            <Button fx:id="buscarButton" mnemonicParsing="false" text="Buscar"/>
+            <Button fx:id="buscarButton" mnemonicParsing="false" text="Buscar" />
         </VBox>
         <HBox alignment="CENTER">
-            <Label text="DNI Titular"/>
-            <TextField fx:id="dniTextField"/>
+            <Label text="DNI Titular" />
+            <TextField fx:id="dniTextField" />
         </HBox>
         <HBox alignment="CENTER">
-            <Label text="Municipio"/>
-            <ComboBox fx:id="municipioComboBox" prefWidth="150.0"/>
+            <Label text="Municipio" />
+            <ComboBox fx:id="municipioComboBox" prefWidth="150.0" />
         </HBox>
         <HBox alignment="CENTER">
-            <Label styleClass="label_aux" text="DNI Titular Nuevo"/>
-            <TextField fx:id="dniNuevoTextField"/>
+            <Label styleClass="label_aux" text="DNI Titular Nuevo" />
+            <TextField fx:id="dniNuevoTextField" />
         </HBox>
         <HBox alignment="CENTER">
-            <CheckBox fx:id="nuevoTitularCheckBox" mnemonicParsing="false" text="Titular Nuevo en Sistema"/>
+            <CheckBox fx:id="nuevoTitularCheckBox" mnemonicParsing="false" text="Titular Nuevo en Sistema" />
         </HBox>
         <HBox alignment="CENTER">
-            <Label fx:id="nombreLabel" disable="true" text="Nombre"/>
-            <TextField fx:id="nombreTextField" disable="true" prefHeight="25.0" prefWidth="150.0"/>
+            <Label fx:id="nombreLabel" disable="true" text="Nombre" />
+            <TextField fx:id="nombreTextField" disable="true" prefHeight="25.0" prefWidth="150.0" />
         </HBox>
         <HBox alignment="CENTER">
-            <Label fx:id="apellidoLabel" disable="true" text="Apellido"/>
-            <TextField fx:id="apellidoTextField" disable="true"/>
+            <Label fx:id="apellidoLabel" disable="true" text="Apellido" />
+            <TextField fx:id="apellidoTextField" disable="true" />
         </HBox>
         <HBox alignment="CENTER">
-            <Button fx:id="modificarButton" mnemonicParsing="false" text="Modificar"/>
+            <Button fx:id="modificarButton" mnemonicParsing="false" text="Modificar" />
         </HBox>
     </VBox>
      <TableView fx:id="automotorTableView" prefHeight="50.0" prefWidth="793.0">
@@ -63,4 +63,7 @@
          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
       </VBox.margin>
      </TableView>
+   <padding>
+      <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+   </padding>
 </VBox>

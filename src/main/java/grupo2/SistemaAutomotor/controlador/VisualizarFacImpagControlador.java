@@ -8,8 +8,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import org.springframework.stereotype.Component;
-import java.math.BigDecimal;
 import java.net.URL;
+import java.text.NumberFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -34,7 +34,7 @@ public class VisualizarFacImpagControlador implements Initializable {
     private TableColumn<Boleta, Integer> cuotaColumna;
 
     @FXML
-    private TableColumn<Boleta, BigDecimal> importeColumna;
+    private TableColumn<Boleta, Float> importeColumna;
 
     @FXML
     private TableColumn<Boleta, Date> fechadevenColumna;
@@ -73,8 +73,21 @@ public class VisualizarFacImpagControlador implements Initializable {
 
     private void configurarColumnas(){
         cuotaColumna.setCellValueFactory(new PropertyValueFactory<>("cuota"));
-        importeColumna.setCellValueFactory(new PropertyValueFactory<>("importe"));
+        importeColumna.setCellValueFactory(new PropertyValueFactory<>("importeFloat"));
         fechadevenColumna.setCellValueFactory(new PropertyValueFactory<>("fven"));
+        importeColumna.getStyleClass().add("table-column-right");
+        NumberFormat currency = NumberFormat.getCurrencyInstance();
+        importeColumna.setCellFactory(tc-> new TableCell<>() {
+            @Override
+            protected void updateItem(Float item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(currency.format(item));
+                }
+            }
+        });
     }
 
     public void buscarBoletas() {

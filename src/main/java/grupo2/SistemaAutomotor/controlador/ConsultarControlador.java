@@ -1,5 +1,6 @@
 package grupo2.SistemaAutomotor.controlador;
 
+import grupo2.SistemaAutomotor.clase.Validador;
 import grupo2.SistemaAutomotor.modelo.Automotor;
 import grupo2.SistemaAutomotor.modelo.Titular;
 import grupo2.SistemaAutomotor.servicio.automotor.AutomotorServicio;
@@ -52,6 +53,7 @@ public class ConsultarControlador implements Initializable {
     private final TitularServicio titularServicio;
     private final ObservableList<Automotor> automotorList = FXCollections.observableArrayList();
     private final ObservableList<Titular> titularList = FXCollections.observableArrayList();
+    private final Validador validador = new Validador();
 
     public ConsultarControlador(AutomotorServicio automotorServicio, TitularServicio titularServicio) {
         this.automotorServicio = automotorServicio;
@@ -89,6 +91,11 @@ public class ConsultarControlador implements Initializable {
             return;
         }
 
+        if(validador.isNotDominio(dominio)){
+            mostrarMensaje("Error", "El dominio no es valido");
+            return;
+        }
+
         Automotor automotor = automotorServicio.buscarAutomotor(dominio);
         if (automotor == null) {
             mostrarMensaje("Info", "No se encontraron facturas con el dominio " + dominio);
@@ -109,7 +116,7 @@ public class ConsultarControlador implements Initializable {
             mostrarMensaje("Error", "El DNI no puede estar vacío");
             return;
         }
-        if(!isNumeric(dni)){
+        if(validador.isNotNumeric(dni)){
             mostrarMensaje("Error", "El DNI no puede ser alfanumerico");
             return;
         }
@@ -133,18 +140,6 @@ public class ConsultarControlador implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
-    }
-
-    private boolean isNumeric(String str) {
-        if (str == null || str.isEmpty()) {
-            return false;
-        }
-        try {
-            Integer.parseInt(str);
-        }catch (NumberFormatException e) {
-            return false;
-        }
-        return true;
     }
 
 }

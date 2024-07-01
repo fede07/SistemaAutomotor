@@ -73,8 +73,8 @@
                 </TableView>
                 <VBox alignment="BOTTOM_CENTER" prefHeight="48.0" prefWidth="800.0" spacing="30.0">
                     <HBox alignment="BOTTOM_CENTER" spacing="30.0">
-                        <Button maxHeight="32.0" mnemonicParsing="false" text="Visualizar Detalle" />
-                        <Button maxHeight="32.0" mnemonicParsing="false" onAction="#exportarFacturasPagadas" text="Exportar Facturas" />
+                        <Button fx:id="detalleButton" maxHeight="32.0" mnemonicParsing="false" text="Visualizar Detalle" />
+                        <Button fx:id="exportarButton" maxHeight="32.0" mnemonicParsing="false" text="Exportar Facturas" />
                     </HBox>
                <VBox.margin>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />

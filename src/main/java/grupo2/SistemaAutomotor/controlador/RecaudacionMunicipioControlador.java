@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.net.URL;
+import java.text.NumberFormat;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -71,7 +73,20 @@ public class RecaudacionMunicipioControlador implements Initializable {
 
     private void configurarColumnas(){
         municipioColumna.setCellValueFactory(new PropertyValueFactory<>("nombreMunicipio"));
-        recaudacionColumna.setCellValueFactory(new PropertyValueFactory<>("total"));
+        recaudacionColumna.setCellValueFactory(new PropertyValueFactory<>("totalToFloat"));
+        recaudacionColumna.getStyleClass().add("table-column-right");
+        NumberFormat currency = NumberFormat.getCurrencyInstance();
+        recaudacionColumna.setCellFactory(tc-> new TableCell<>() {
+            @Override
+            protected void updateItem(Float item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(currency.format(item));
+                }
+            }
+        });
     }
 
 }
