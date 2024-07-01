@@ -41,7 +41,6 @@ public class Escritor {
                     .append(boleta.getImporte()).append(CSV_SEPARATOR)
                     .append(boleta.getDominio()).append("\n");
         }
-        System.out.println(csvContenido);
         return csvContenido.toString();
     }
 
