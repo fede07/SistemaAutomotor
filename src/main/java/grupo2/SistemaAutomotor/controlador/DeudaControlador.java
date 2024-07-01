@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.net.URL;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -37,7 +38,7 @@ public class DeudaControlador implements Initializable {
     @FXML
     private TableColumn<Automotor,String> marcaColumn;
     @FXML
-    private TableColumn<Boleta,Integer> deudaColumn;
+    private TableColumn<AutomotorDeuda, Float> deudaColumn;
     @FXML
     private Label totalAdeudado;
     @FXML
@@ -111,6 +112,18 @@ public class DeudaControlador implements Initializable {
         modeloColumn.setCellValueFactory(new PropertyValueFactory<>("modelo"));
         marcaColumn.setCellValueFactory(new PropertyValueFactory<>("marca"));
         deudaColumn.setCellValueFactory(new PropertyValueFactory<>("deuda"));
+        NumberFormat currency = NumberFormat.getCurrencyInstance();
+        deudaColumn.setCellFactory(tc-> new TableCell<>() {
+            @Override
+            protected void updateItem(Float item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(currency.format(item));
+                }
+            }
+        });
     }
 
     private void setearParametros() {
