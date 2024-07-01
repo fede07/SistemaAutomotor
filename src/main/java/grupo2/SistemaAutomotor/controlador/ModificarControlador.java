@@ -155,7 +155,7 @@ public class ModificarControlador implements Initializable {
 
         Automotor automotor = automotorServicio.buscarAutomotor(dominio);
         if (automotor == null) {
-            mostrarMensaje("Info", "No se encontraron facturas con el dominio " + dominio);
+            mostrarMensaje("Info", "No se encontro afiliado con el dominio " + dominio);
             return;
         }
 
