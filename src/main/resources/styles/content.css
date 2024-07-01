@@ -8,7 +8,6 @@
 .title_container Text {
     -fx-font-family: "Arial Black";
     -fx-fill: #1c1a1a;
-    -fx-stroke: rgba(234, 231, 231, 0.91);
     -fx-stroke-width: 1px;
     -fx-font-size: 2.5em;
     -fx-alignment: center;
@@ -70,6 +69,14 @@
 
 .table-column {
     -fx-alignment: center;
+    -fx-background-color: white;
+    -fx-pref-height: 40;
+    -fx-font-size: 1em;
+}
+
+.table-column-right {
+    -fx-alignment: center-right;
+    -fx-alternative-row-fill-visible: true;
     -fx-background-color: white;
     -fx-pref-height: 40;
     -fx-font-size: 1em;
@@ -160,6 +167,5 @@
 .check-box:selected .box {
 
 }
-
 
 

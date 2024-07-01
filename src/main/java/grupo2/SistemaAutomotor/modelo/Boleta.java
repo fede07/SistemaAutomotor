@@ -66,4 +66,14 @@ public class Boleta {
         else return "No pagado";
     }
 
+    @SuppressWarnings("unused")
+    public String getImporteFinal(){
+        return "$" + importe.toString();
+    }
+
+    @SuppressWarnings("unused")
+    public float getImporteFloat(){
+        return importe.floatValue();
+    }
+
 }

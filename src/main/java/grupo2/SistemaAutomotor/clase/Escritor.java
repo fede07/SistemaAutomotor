@@ -11,11 +11,11 @@ import java.util.List;
 @Component
 public class Escritor {
 
-    private static final String CSV_HEADER = "ID,Cuota,Estado,Vencimiento,Fecha de Pago,Importe,Dominio\n";
-    private static final String CSV_SEPARATOR = ",";
+    private static final String CSV_HEADER = "ID;Cuota;Estado;Vencimiento;Fecha de Pago;Importe;Dominio\n";
+    private static final String CSV_SEPARATOR = ";";
     private static final String PATH= "Exports/facturas.csv";
 
-    public void exportar (List<Boleta> boletas) {
+    public boolean exportar (List<Boleta> boletas) {
         String csvContenido = generarCSV(boletas);
         try {
             FileWriter file = new FileWriter(PATH);
@@ -23,8 +23,9 @@ public class Escritor {
             writer.print(csvContenido);
             writer.close();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            return false;
         }
+        return true;
 
     }
 

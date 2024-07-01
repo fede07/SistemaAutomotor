@@ -1,5 +1,6 @@
 package grupo2.SistemaAutomotor.controlador;
 
+import grupo2.SistemaAutomotor.clase.Validador;
 import grupo2.SistemaAutomotor.modelo.Automotor;
 import grupo2.SistemaAutomotor.modelo.Boleta;
 import grupo2.SistemaAutomotor.modelo.Municipio;
@@ -27,6 +28,7 @@ public class AgregarControlador implements Initializable {
     private final TitularServicio titularServicio;
     private final MunicipioServicio municipioServicio;
     private final BoletaServicio boletaServicio;
+    private final Validador validador = new Validador();
 
     @FXML
     private Label nombreLabel;
@@ -123,29 +125,45 @@ public class AgregarControlador implements Initializable {
 
     public void agregar() {
         if(nuevoTitularCheckBox.isSelected()) {
-            agregarTitular();
+            if(!agregarTitular()){
+                return;
+            }
         }
         agregarAutomotor();
     }
 
-    private void agregarTitular() {
+    private boolean agregarTitular() {
         Titular titular = new Titular();
-        titular.setDni(Integer.parseInt(dniTextField.getText()));
+        String dni = dniTextField.getText();
+        if(!dni.isEmpty() || validador.isNotNumeric(dni)) {
+            mostrarMensaje("Error validación", "DNI inválido.");
+            return false;
+        }
+        titular.setDni(Integer.parseInt(dni));
         titular.setNombre(nombreTextField.getText());
         titular.setApellido(apellidoTextField.getText());
         titularServicio.guardarTitular(titular);
+        return true;
     }
 
-    public void agregarAutomotor() {
-        if(dominioTextField.getText().isEmpty()) {
-            mostrarMensaje("Error Validacion", "El campo Dominio no puede estar vacio");
-            dominioTextField.requestFocus();
-            return;
-        }
+    public boolean agregarAutomotor() {
         String dominio = dominioTextField.getText();
+
+        if(dominio.isEmpty()) {
+            mostrarMensaje("Error Validación.", "El campo Dominio no puede estar vacio.");
+            dominioTextField.requestFocus();
+            return false;
+        }
+
+        if(validador.isNotDominio(dominio)){
+            mostrarMensaje("Error Validación.", "Dominio Invalido.");
+            dominioTextField.requestFocus();
+            return false;
+        }
+
         if(automotorServicio.buscarAutomotor(dominio) != null) {
-            mostrarMensaje("Error Validacion", "El Automotor " + dominio + " ya existe");
-            return;
+            mostrarMensaje("Error Validación.", "El Automotor " + dominio + " ya existe.");
+            return false;
         }
 
         var automotor = new Automotor();
@@ -157,6 +175,7 @@ public class AgregarControlador implements Initializable {
             listarAutomotor();
             limpiarFormulario();
         }
+        return true;
     }
 
     private void generarBoletas(String dominio){
@@ -164,7 +183,7 @@ public class AgregarControlador implements Initializable {
         automotor.setDominio(dominio);
         Calendar calendar = Calendar.getInstance();
         List<Boleta> boletas = new ArrayList<>();
-        int mes = calendar.get(Calendar.MONTH) + 1;
+        int mes = calendar.get(Calendar.MONTH) + 2;
         System.out.println(mes);
         float importe = 6000;
         BigDecimal importeBD = BigDecimal.valueOf(importe);

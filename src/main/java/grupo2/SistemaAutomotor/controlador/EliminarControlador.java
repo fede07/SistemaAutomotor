@@ -1,5 +1,6 @@
 package grupo2.SistemaAutomotor.controlador;
 
+import grupo2.SistemaAutomotor.clase.Validador;
 import grupo2.SistemaAutomotor.modelo.Automotor;
 import grupo2.SistemaAutomotor.modelo.Titular;
 import grupo2.SistemaAutomotor.servicio.automotor.AutomotorServicio;
@@ -26,6 +27,8 @@ public class EliminarControlador implements Initializable {
     @FXML
     private Button eliminarButton;
 
+    private final Validador validador = new Validador();
+
     public EliminarControlador(AutomotorServicio automotorServicio, TitularServicio titularServicio, BoletaServicio boletaServicio) {
         this.automotorServicio = automotorServicio;
         this.titularServicio = titularServicio;
@@ -38,14 +41,27 @@ public class EliminarControlador implements Initializable {
     }
 
     public void eliminarAutomotor() {
-        if (dominioTextField.getText().isEmpty()) {
+        String dominio = dominioTextField.getText();
+        if (dominio.isEmpty()) {
             mostrarMensaje("Informacion", "Ingrese el dominio del automotor");
             return;
         }
-        if (dniTextField.getText().isEmpty()) {
+
+        if(validador.isNotDominio(dominio)) {
+            mostrarMensaje("Error Validacion", "El dominio no es valido");
+        }
+
+        String dni = dniTextField.getText();
+        if (dni.isEmpty()) {
             mostrarMensaje("Error Validacion", "Ingrese un DNI");
             return;
         }
+
+        if(validador.isNotNumeric(dni)) {
+            mostrarMensaje("Error Validacion", "El DNI no es valido");
+            return;
+        }
+
         var automotor = new Automotor();
         if (recolectarDatosFormulario(automotor)) {
             //mostrarDatos(automotor);

@@ -13,4 +13,14 @@ public class Recaudacion {
     public void setTotal(BigDecimal total) {
         this.total = total.setScale(2, RoundingMode.HALF_UP);
     }
+
+    @SuppressWarnings("unused")
+    public String getTotalToString(){
+        return "$" + total.setScale(2, RoundingMode.HALF_UP);
+    }
+
+    @SuppressWarnings("unused")
+    public float getTotalToFloat(){
+        return total.setScale(2, RoundingMode.HALF_UP).floatValue();
+    }
 }
