@@ -1,5 +1,6 @@
 package grupo2.SistemaAutomotor.controlador;
 
+import grupo2.SistemaAutomotor.clase.Mensajero;
 import grupo2.SistemaAutomotor.clase.Validador;
 import grupo2.SistemaAutomotor.modelo.Automotor;
 import grupo2.SistemaAutomotor.modelo.Titular;
@@ -28,6 +29,7 @@ public class EliminarControlador implements Initializable {
     private Button eliminarButton;
 
     private final Validador validador = new Validador();
+    private final Mensajero mensajero = new Mensajero();
 
     public EliminarControlador(AutomotorServicio automotorServicio, TitularServicio titularServicio, BoletaServicio boletaServicio) {
         this.automotorServicio = automotorServicio;
@@ -43,22 +45,22 @@ public class EliminarControlador implements Initializable {
     public void eliminarAutomotor() {
         String dominio = dominioTextField.getText();
         if (dominio.isEmpty()) {
-            mostrarMensaje("Informacion", "Ingrese el dominio del automotor");
+            mensajero.mostrarMensaje("Información", "Ingrese el dominio del automotor.", Alert.AlertType.INFORMATION);
             return;
         }
 
         if(validador.isNotDominio(dominio)) {
-            mostrarMensaje("Error Validacion", "El dominio no es valido");
+            mensajero.mostrarMensaje("Error", "El dominio no es válido.", Alert.AlertType.ERROR);
         }
 
         String dni = dniTextField.getText();
         if (dni.isEmpty()) {
-            mostrarMensaje("Error Validacion", "Ingrese un DNI");
+            mensajero.mostrarMensaje("Error", "Ingrese un DNI.", Alert.AlertType.ERROR);
             return;
         }
 
         if(validador.isNotNumeric(dni)) {
-            mostrarMensaje("Error Validacion", "El DNI no es valido");
+            mensajero.mostrarMensaje("Error", "El DNI no es válido.", Alert.AlertType.ERROR);
             return;
         }
 
@@ -67,7 +69,7 @@ public class EliminarControlador implements Initializable {
             //mostrarDatos(automotor);
             boletaServicio.eliminarBoletas(automotor);
             automotorServicio.eliminarAutomotor(automotor.getDominio());
-            mostrarMensaje("Informacion", "Automotor " + automotor.getDominio() + " eliminado correctamente");
+            mensajero.mostrarMensaje("Información", "Automotor " + automotor.getDominio() + " eliminado correctamente.", Alert.AlertType.INFORMATION);
         }
     }
 
@@ -75,19 +77,12 @@ public class EliminarControlador implements Initializable {
         automotor.setDominio(dominioTextField.getText());
         Titular titular = titularServicio.buscarTitular(Integer.valueOf(dniTextField.getText()));
         if (titular == null) {
-            mostrarMensaje("Error Validacion", "Titular no encontrado");
+            mensajero.mostrarMensaje("Error", "Titular no encontrado.", Alert.AlertType.ERROR);
             return false;
         }
         automotor.setDniTitular(titular);
         return true;
     }
 
-    private void mostrarMensaje(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
 
 }
