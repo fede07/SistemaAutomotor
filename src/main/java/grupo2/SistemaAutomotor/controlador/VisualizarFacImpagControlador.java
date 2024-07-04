@@ -1,5 +1,6 @@
 package grupo2.SistemaAutomotor.controlador;
 
+import grupo2.SistemaAutomotor.clase.Mensajero;
 import grupo2.SistemaAutomotor.modelo.Automotor;
 import grupo2.SistemaAutomotor.modelo.Boleta;
 import grupo2.SistemaAutomotor.servicio.boleta.BoletaServicio;
@@ -46,13 +47,11 @@ public class VisualizarFacImpagControlador implements Initializable {
     private ComboBox<Integer> fechaHastaComboBox;
 
     private final ObservableList<Boleta> boletaList = FXCollections.observableArrayList();
-
     private final ObservableList<Integer> mesesList = FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12);
-
+    private final Mensajero mensajero = new Mensajero();
     public VisualizarFacImpagControlador(BoletaServicio boletaServicio) {
         this.boletaServicio = boletaServicio;
     }
-
     private Automotor automotorGuardado;
 
     @Override
@@ -93,7 +92,7 @@ public class VisualizarFacImpagControlador implements Initializable {
     public void buscarBoletas() {
         String dominio = dominioTextField.getText();
         if (dominio.isEmpty()) {
-            mostrarMensaje("Error", "El dominio no puede estar vacio");
+            mensajero.mostrarMensaje("Error", "El dominio no puede estar vacio", Alert.AlertType.WARNING);
             return;
         }
         boletaList.clear();
@@ -104,24 +103,17 @@ public class VisualizarFacImpagControlador implements Initializable {
         int cuotaHasta = fechaHastaComboBox.getValue();
         List<Boleta> boletas = boletaServicio.buscarBoletaPorDominioEntre(automotor,false,cuotaDesde,cuotaHasta);
         if (boletas.isEmpty()) {
-            mostrarMensaje("Info", "No se encontraron facturas con el dominio " + dominio);
+            mensajero.mostrarMensaje("Información", "No se encontraron facturas con el dominio " + dominio, Alert.AlertType.INFORMATION);
         }
         boletaList.addAll(boletas);
         boletaTabla.setItems(boletaList);
     }
 
-    private void mostrarMensaje(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
 
     public void pagarBoletas(){
         Boleta boleta = boletaTabla.getSelectionModel().getSelectedItem();
         if (boleta == null) {
-            mostrarMensaje("Información", "Seleccione una factura");
+            mensajero.mostrarMensaje("Información", "Seleccione una factura", Alert.AlertType.INFORMATION);
             return;
         }
         Calendar calendar = Calendar.getInstance();
@@ -129,7 +121,7 @@ public class VisualizarFacImpagControlador implements Initializable {
         Date hoy = calendar.getTime();
         boleta.setFechaPago(hoy);
         boletaServicio.guardarBoleta(boleta);
-        mostrarMensaje("Informacion", "Factura Pagada");
+        mensajero.mostrarMensaje("Informacion", "Factura Pagada", Alert.AlertType.INFORMATION);
         actualizarBoletas();
     }
 

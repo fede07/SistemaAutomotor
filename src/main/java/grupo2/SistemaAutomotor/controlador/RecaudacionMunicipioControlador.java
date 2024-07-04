@@ -36,6 +36,7 @@ public class RecaudacionMunicipioControlador implements Initializable {
     private final ObservableList<Recaudacion> recaudacionList = FXCollections.observableArrayList();
 
 
+
     public RecaudacionMunicipioControlador(BoletaServicio boletaServicio, MunicipioServicio municipioServicio) {
         this.boletaServicio = boletaServicio;
         this.municipioServicio = municipioServicio;

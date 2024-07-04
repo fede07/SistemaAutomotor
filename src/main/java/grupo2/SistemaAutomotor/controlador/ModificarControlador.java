@@ -1,5 +1,6 @@
 package grupo2.SistemaAutomotor.controlador;
 
+import grupo2.SistemaAutomotor.clase.Mensajero;
 import grupo2.SistemaAutomotor.clase.Validador;
 import grupo2.SistemaAutomotor.modelo.Automotor;
 import grupo2.SistemaAutomotor.modelo.Municipio;
@@ -64,6 +65,8 @@ public class ModificarControlador implements Initializable {
     private final ObservableList<Automotor> automotorList = FXCollections.observableArrayList();
     private final Validador validador = new Validador();
 
+    private final Mensajero mensajero = new Mensajero();
+
     public ModificarControlador(AutomotorServicio automotorServicio, TitularServicio titularServicio, MunicipioServicio municipioServicio) {
         this.automotorServicio = automotorServicio;
         this.titularServicio = titularServicio;
@@ -104,12 +107,12 @@ public class ModificarControlador implements Initializable {
 
     public void modificarAutomotor() {
         if(dominioTextField.getText().isEmpty()){
-            mostrarMensaje("Informacion", "Debe Seleccionar un automotor");
+            mensajero.mostrarMensaje("Información", "Debe Seleccionar un automotor", Alert.AlertType.INFORMATION);
             dominioTextField.requestFocus();
             return;
         }
         if(dniTextField.getText().isEmpty()) {
-            mostrarMensaje("Error Validacion", "Debe ingresar un dni");
+            mensajero.mostrarMensaje("Advertencia", "Debe ingresar un dni", Alert.AlertType.WARNING);
             dniTextField.requestFocus();
             return;
         }
@@ -124,7 +127,7 @@ public class ModificarControlador implements Initializable {
         if(recolectarDatosFormulario(automotor)){
             System.out.println(automotor);
             automotorServicio.guardarAutomotor(automotor);
-            mostrarMensaje("Informacion", "Automotor modificado correctamente");
+            mensajero.mostrarMensaje("Información", "Automotor modificado correctamente", Alert.AlertType.CONFIRMATION);
             listarAutomotor();
             limpiarFormulario();
         }
@@ -132,23 +135,23 @@ public class ModificarControlador implements Initializable {
 
     private boolean agregarTitular() {
         if(nombreTextField.getText().isEmpty()){
-            mostrarMensaje("Información", "El campo Nombre no puede estar vacío.");
+            mensajero.mostrarMensaje("Información", "El campo Nombre no puede estar vacío.", Alert.AlertType.WARNING);
             return false;
         }
         if(apellidoTextField.getText().isEmpty()) {
-            mostrarMensaje("Información", "El campo Apellido no puede estar vacío.");
+            mensajero.mostrarMensaje("Información", "El campo Apellido no puede estar vacío.", Alert.AlertType.WARNING);
             return false;
         }
 
         String dni = dniTextField.getText();
 
         if(dni.isEmpty()) {
-            mostrarMensaje("Información", "El campo DNI no puede estar vacío");
+            mensajero.mostrarMensaje("Información", "El campo DNI no puede estar vacío", Alert.AlertType.WARNING);
             return false;
         }
 
         if(validador.isNotNumeric(dni)) {
-            mostrarMensaje("Error Validación", "El DNI es inválido");
+            mensajero.mostrarMensaje("Error", "El DNI es inválido", Alert.AlertType.ERROR);
             return false;
         }
 
@@ -164,18 +167,18 @@ public class ModificarControlador implements Initializable {
     public void buscarAutomotor() {
         String dominio = dominioTextField.getText();
         if (dominio.isEmpty()) {
-            mostrarMensaje("Información", "El dominio no puede estar vacio");
+            mensajero.mostrarMensaje("Información", "El dominio no puede estar vacio", Alert.AlertType.ERROR);
             return;
         }
 
         if(validador.isNotDominio(dominio)){
-            mostrarMensaje("Error Validación", "El dominio es inválido");
+            mensajero.mostrarMensaje("Advertencia", "El dominio es inválido", Alert.AlertType.WARNING);
             return;
         }
 
         Automotor automotor = automotorServicio.buscarAutomotor(dominio);
         if (automotor == null) {
-            mostrarMensaje("Información", "No se encontro afiliado con el dominio " + dominio);
+            mensajero.mostrarMensaje("Información", "No se encontro afiliado con el dominio " + dominio, Alert.AlertType.INFORMATION);
             return;
         }
 
@@ -190,7 +193,7 @@ public class ModificarControlador implements Initializable {
         Automotor automotorBuscado = automotorServicio.buscarAutomotor(dominioTextField.getText());
 
         if (automotorBuscado == null) {
-            mostrarMensaje("Error", "El dominio no puede estar vacio");
+            mensajero.mostrarMensaje("Error", "El dominio no puede estar vacio", Alert.AlertType.ERROR);
             return false;
         }
 
@@ -207,7 +210,7 @@ public class ModificarControlador implements Initializable {
         }
 
         if(dni.isEmpty()) {
-            mostrarMensaje("Error", "Debe ingresar un DNI");
+            mensajero.mostrarMensaje("Error", "Debe ingresar un DNI", Alert.AlertType.ERROR);
             dniTextField.requestFocus();
             return false;
         }
@@ -215,7 +218,7 @@ public class ModificarControlador implements Initializable {
         Titular titular = titularServicio.buscarTitular(Integer.valueOf(dni));
 
         if(titular == null) {
-            mostrarMensaje("Error Validacion", "Titular no encontrado");
+            mensajero.mostrarMensaje("Advertencia", "Titular no encontrado", Alert.AlertType.WARNING);
             return false;
         }
 
@@ -224,7 +227,7 @@ public class ModificarControlador implements Initializable {
         Municipio municipio = municipioServicio.buscarMunicipio(municipioComboBox.getSelectionModel().getSelectedIndex()+1);
 
         if(municipio == null) {
-            mostrarMensaje("Error Validacion", "Municipio no encontrado");
+            mensajero.mostrarMensaje("Advertencia", "Municipio no encontrado", Alert.AlertType.WARNING);
             return false;
         }
 
@@ -245,14 +248,6 @@ public class ModificarControlador implements Initializable {
         automotorList.clear();
         automotorList.addAll(automotorServicio.buscarAutomotor(dominioTextField.getText()));
         automotorTableView.setItems(automotorList);
-    }
-
-    private void mostrarMensaje(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 
     public void limpiarFormulario() {
