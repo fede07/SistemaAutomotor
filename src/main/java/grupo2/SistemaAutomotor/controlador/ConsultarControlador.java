@@ -1,5 +1,6 @@
 package grupo2.SistemaAutomotor.controlador;
 
+import grupo2.SistemaAutomotor.clase.Mensajero;
 import grupo2.SistemaAutomotor.clase.Validador;
 import grupo2.SistemaAutomotor.modelo.Automotor;
 import grupo2.SistemaAutomotor.modelo.Titular;
@@ -54,6 +55,7 @@ public class ConsultarControlador implements Initializable {
     private final ObservableList<Automotor> automotorList = FXCollections.observableArrayList();
     private final ObservableList<Titular> titularList = FXCollections.observableArrayList();
     private final Validador validador = new Validador();
+    private final Mensajero mensajero = new Mensajero();
 
     public ConsultarControlador(AutomotorServicio automotorServicio, TitularServicio titularServicio) {
         this.automotorServicio = automotorServicio;
@@ -87,18 +89,18 @@ public class ConsultarControlador implements Initializable {
     public void buscarAutomotor() {
         String dominio = dominioTextField.getText();
         if (dominio.isEmpty()) {
-            mostrarMensaje("Error", "El dominio no puede estar vacio");
+            mensajero.mostrarMensaje("Error", "El dominio no puede estar vacio", Alert.AlertType.ERROR);
             return;
         }
 
         if(validador.isNotDominio(dominio)){
-            mostrarMensaje("Error", "El dominio no es valido");
+            mensajero.mostrarMensaje("Error", "El dominio no es valido", Alert.AlertType.ERROR);
             return;
         }
 
         Automotor automotor = automotorServicio.buscarAutomotor(dominio);
         if (automotor == null) {
-            mostrarMensaje("Info", "No se encontraron facturas con el dominio " + dominio);
+            mensajero.mostrarMensaje("Información", "No se encontraron facturas con el dominio " + dominio, Alert.AlertType.INFORMATION);
             return;
         }
         listarAutomotor();
@@ -113,16 +115,16 @@ public class ConsultarControlador implements Initializable {
     public void buscarTitular(){
         String dni = dniTextField.getText();
         if (dni.isEmpty()) {
-            mostrarMensaje("Error", "El DNI no puede estar vacío");
+            mensajero.mostrarMensaje("Error", "El DNI no puede estar vacío", Alert.AlertType.ERROR);
             return;
         }
         if(validador.isNotNumeric(dni)){
-            mostrarMensaje("Error", "El DNI no puede ser alfanumerico");
+            mensajero.mostrarMensaje("Error", "El DNI no puede ser alfanumerico", Alert.AlertType.ERROR);
             return;
         }
         Titular titular = titularServicio.buscarTitular(Integer.valueOf(dni));
         if (titular == null) {
-            mostrarMensaje("Info", "No se encontro el titular con DNI " + dni);
+            mensajero.mostrarMensaje("Información", "No se encontro el titular con DNI " + dni, Alert.AlertType.INFORMATION);
             return;
         }
         listarTitular();
@@ -132,14 +134,6 @@ public class ConsultarControlador implements Initializable {
         titularList.clear();
         titularList.add(titularServicio.buscarTitular(Integer.valueOf(dniTextField.getText())));
         titularTableView.setItems(titularList);
-    }
-
-    private void mostrarMensaje(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 
 }

@@ -1,5 +1,6 @@
 package grupo2.SistemaAutomotor.controlador;
 
+import grupo2.SistemaAutomotor.clase.Mensajero;
 import grupo2.SistemaAutomotor.clase.Validador;
 import grupo2.SistemaAutomotor.modelo.Automotor;
 import grupo2.SistemaAutomotor.modelo.Boleta;
@@ -69,6 +70,7 @@ public class AgregarControlador implements Initializable {
     @FXML
     private Button agregarButton;
     private final ObservableList<Automotor> automotorList = FXCollections.observableArrayList();
+    private final Mensajero mensajero = new Mensajero();
 
     public AgregarControlador(AutomotorServicio automotorServicio, TitularServicio titularServicio, MunicipioServicio municipioServicio, BoletaServicio boletaServicio) {
         this.automotorServicio = automotorServicio;
@@ -136,7 +138,7 @@ public class AgregarControlador implements Initializable {
         Titular titular = new Titular();
         String dni = dniTextField.getText();
         if(!dni.isEmpty() || validador.isNotNumeric(dni)) {
-            mostrarMensaje("Error validación", "DNI inválido.");
+            mensajero.mostrarMensaje("Error", "DNI inválido.", Alert.AlertType.ERROR);
             return false;
         }
         titular.setDni(Integer.parseInt(dni));
@@ -150,19 +152,19 @@ public class AgregarControlador implements Initializable {
         String dominio = dominioTextField.getText();
 
         if(dominio.isEmpty()) {
-            mostrarMensaje("Error Validación.", "El campo Dominio no puede estar vacio.");
+            mensajero.mostrarMensaje("Error", "El campo Dominio no puede estar vacio.", Alert.AlertType.ERROR);
             dominioTextField.requestFocus();
             return false;
         }
 
         if(validador.isNotDominio(dominio)){
-            mostrarMensaje("Error Validación.", "Dominio Invalido.");
+            mensajero.mostrarMensaje("Error", "Dominio Invalido.", Alert.AlertType.ERROR);
             dominioTextField.requestFocus();
             return false;
         }
 
         if(automotorServicio.buscarAutomotor(dominio) != null) {
-            mostrarMensaje("Error Validación.", "El Automotor " + dominio + " ya existe.");
+            mensajero.mostrarMensaje("Advertencia", "El Automotor " + dominio + " ya existe.",Alert.AlertType.WARNING);
             return false;
         }
 
@@ -171,7 +173,7 @@ public class AgregarControlador implements Initializable {
             System.out.println(automotor);
             automotorServicio.guardarAutomotor(automotor);
             generarBoletas(automotor.getDominio());
-            mostrarMensaje("Información", "Automotor guardado correctamente");
+            mensajero.mostrarMensaje("Información", "Automotor guardado correctamente.", Alert.AlertType.INFORMATION);
             listarAutomotor();
             limpiarFormulario();
         }
@@ -204,14 +206,6 @@ public class AgregarControlador implements Initializable {
         }
     }
 
-    private void mostrarMensaje(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-
     private boolean recolectarDatosFormulario(Automotor automotor) {
 
         automotor.setDominio(dominioTextField.getText());
@@ -219,7 +213,7 @@ public class AgregarControlador implements Initializable {
         Titular titular = titularServicio.buscarTitular(Integer.valueOf(dniTextField.getText()));
 
         if(titular == null) {
-            mostrarMensaje("Error Validacion", "Titular no encontrado");
+            mensajero.mostrarMensaje("Error", "Titular no encontrado.", Alert.AlertType.ERROR);
             return false;
         }
 
@@ -230,7 +224,7 @@ public class AgregarControlador implements Initializable {
         Municipio municipio = municipioServicio.buscarMunicipio(municipioComboBox.getSelectionModel().getSelectedIndex()+1);
 
         if(municipio == null) {
-            mostrarMensaje("Error Validacion", "Municipio no encontrado");
+            mensajero.mostrarMensaje("Error", "Municipio no encontrado.", Alert.AlertType.ERROR);
             return false;
         }
         automotor.setIdMunicipio(municipio);

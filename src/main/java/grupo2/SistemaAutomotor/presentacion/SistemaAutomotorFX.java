@@ -50,11 +50,7 @@ public class SistemaAutomotorFX extends Application {
         Scene facImpagScene = new Scene(facImpagloader.load());
 
         //Vinculo las escenas con Main
-//        AutomotorControlador automotorControlador = automotorLoader.getController();
-//        automotorControlador.setMainScene(mainScene);
 
-
-        //Vinculo Main con las escenas
         MainControlador mainControlador = mainLoader.getController();
         mainControlador.setAutomotorScene(automotorScene);
         mainControlador.setFacPagScene(facPagScene);

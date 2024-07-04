@@ -1,5 +1,6 @@
 package grupo2.SistemaAutomotor.controlador;
 
+import grupo2.SistemaAutomotor.clase.Mensajero;
 import grupo2.SistemaAutomotor.modelo.Automotor;
 import grupo2.SistemaAutomotor.modelo.AutomotorDeuda;
 import grupo2.SistemaAutomotor.modelo.Boleta;
@@ -51,6 +52,7 @@ public class DeudaControlador implements Initializable {
     public TextField InputBuscarDeuda;
 
     private final ObservableList<AutomotorDeuda> deudaList = FXCollections.observableArrayList();
+    private final Mensajero mensajero = new Mensajero();
 
     public DeudaControlador(AutomotorServicio automotorServicio, BoletaServicio boletaServicio) {
         this.automotorServicio = automotorServicio;
@@ -72,21 +74,21 @@ public class DeudaControlador implements Initializable {
     public void buscarDeuda() {
         String dominio = InputBuscarDeuda.getText();
         if (dominio.isEmpty()) {
-            mostrarMensaje("Error", "El dominio no puede estar vacio");
+            mensajero.mostrarMensaje("Error", "El dominio no puede estar vacio", Alert.AlertType.ERROR);
             return;
         }
         deudaList.clear();
         Automotor automotor;
         automotor = (automotorServicio.buscarAutomotor(dominio));
         if (automotor == null) {
-            mostrarMensaje("Info", "No se encontro el Automotor con dominio " + dominio);
+            mensajero.mostrarMensaje("Información", "No se encontro el Automotor con dominio " + dominio, Alert.AlertType.INFORMATION);
             return;
         }
 
         List<Boleta> boletas = boletaServicio.buscarBoletasPorDominio(automotor);
 
         if(boletas.isEmpty()) {
-            mostrarMensaje("Info", "No se encontraron boletas");
+            mensajero.mostrarMensaje("Información", "No se encontraron boletas", Alert.AlertType.INFORMATION);
             return;
         }
 
@@ -96,14 +98,6 @@ public class DeudaControlador implements Initializable {
         automotorDeuda.setDeuda(deuda.floatValue());
         deudaList.add(automotorDeuda);
         deudaTable.setItems(deudaList);
-    }
-
-    private void mostrarMensaje(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 
     private void configurarColumnas() {
