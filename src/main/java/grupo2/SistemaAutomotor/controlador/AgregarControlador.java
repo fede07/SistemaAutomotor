@@ -137,7 +137,7 @@ public class AgregarControlador implements Initializable {
     private boolean agregarTitular() {
         Titular titular = new Titular();
         String dni = dniTextField.getText();
-        if(!dni.isEmpty() || validador.isNotNumeric(dni)) {
+        if(dni.isEmpty() || validador.isNotNumeric(dni)) {
             mensajero.mostrarMensaje("Error", "DNI inválido.", Alert.AlertType.ERROR);
             return false;
         }

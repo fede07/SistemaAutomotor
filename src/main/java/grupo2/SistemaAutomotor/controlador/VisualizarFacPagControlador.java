@@ -1,6 +1,7 @@
 package grupo2.SistemaAutomotor.controlador;
 
 import grupo2.SistemaAutomotor.clase.Escritor;
+import grupo2.SistemaAutomotor.clase.Mensajero;
 import grupo2.SistemaAutomotor.modelo.Automotor;
 import grupo2.SistemaAutomotor.modelo.Boleta;
 import grupo2.SistemaAutomotor.modelo.Titular;
@@ -48,16 +49,18 @@ public class VisualizarFacPagControlador implements Initializable {
 
     @FXML
     private Button detalleButton;
+
     @FXML
     private TextField dominioTextField;
+
     @FXML
     private Button buscarButton;
+
     @FXML
     private Button exportarButton;
-
     private final ObservableList<Boleta> boletaList = FXCollections.observableArrayList();
     private final ObservableList<Integer> mesesList = FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12);
-
+    private final Mensajero mensajero = new Mensajero();
     private List<Boleta> boletasCache;
 
     public VisualizarFacPagControlador(BoletaServicio boletaServicio, Escritor escritor, AutomotorServicio automotorServicio, TitularServicio titularServicio) {
@@ -113,7 +116,7 @@ public class VisualizarFacPagControlador implements Initializable {
     private List<Boleta> getBoletas() {
         String dominio = dominioTextField.getText();
         if (dominio.isEmpty()) {
-            mostrarMensaje("Error", "El dominio no puede estar vacio");
+            mensajero.mostrarMensaje("Error", "El dominio no puede estar vacio", Alert.AlertType.WARNING);
             return null;
         }
         boletaList.clear();
@@ -123,28 +126,20 @@ public class VisualizarFacPagControlador implements Initializable {
         int cuotaHasta = fechaHastaComboBox.getValue();
         boletasCache =  boletaServicio.buscarBoletaPorDominioEntre(automotor,true, cuotaDesde, cuotaHasta);
         if (boletasCache.isEmpty()) {
-            mostrarMensaje("Info", "No se encontraron facturas para el dominio " + dominio);
+            mensajero.mostrarMensaje("Información", "No se encontraron facturas para el dominio " + dominio, Alert.AlertType.WARNING);
         }
         return boletasCache;
     }
 
-    private void mostrarMensaje(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-
     public void exportarFacturasPagadas(){
         if (boletaList.isEmpty()) {
-            mostrarMensaje("Error", "No hay facturas para exportar");
+            mensajero.mostrarMensaje("Error", "No hay facturas para exportar", Alert.AlertType.CONFIRMATION);
             return;
         }
         if(escritor.exportar(boletasCache)){
-            mostrarMensaje("Info", "Factura exportada correctamente");
+            mensajero.mostrarMensaje("Información", "Factura exportada correctamente", Alert.AlertType.CONFIRMATION);
         }else {
-            mostrarMensaje("Error", "Error de Exportacion");
+            mensajero.mostrarMensaje("Error", "Error de Exportacion", Alert.AlertType.ERROR);
         }
 
     }
@@ -153,14 +148,19 @@ public class VisualizarFacPagControlador implements Initializable {
 
         Boleta boleta = boletaTabla.getSelectionModel().getSelectedItem();
         if (boleta == null) {
-            mostrarMensaje("Información", "Seleccione una factura");
+            mensajero.mostrarMensaje("Información", "Seleccione una factura", Alert.AlertType.WARNING);
             return;
         }
 
         Automotor automotor = automotorServicio.buscarAutomotor(boleta.getDominio());
         Titular titular = titularServicio.buscarTitular(automotor.getDniTitular());
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        Alert alert = getAlert(titular, automotor, boleta);
+        alert.showAndWait();
+    }
+
+    private static Alert getAlert(Titular titular, Automotor automotor, Boleta boleta) {
+        Alert alert = new Alert(Alert.AlertType.NONE);
 
         alert.setTitle("Detalle de factura");
         alert.setHeaderText(null);
@@ -174,7 +174,7 @@ public class VisualizarFacPagControlador implements Initializable {
                 "Fecha de Vencimiento: " + boleta.getFven() + "\n" +
                 "Fecha de Pago: " + boleta.getFpag() + "\n";
         alert.setContentText(message);
-        alert.showAndWait();
+        return alert;
     }
 
 }
