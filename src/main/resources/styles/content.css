@@ -70,16 +70,20 @@
 .table-column {
     -fx-alignment: center;
     -fx-background-color: white;
-    -fx-pref-height: 40;
+    -fx-pref-height: 30;
     -fx-font-size: 1em;
+    -fx-background-insets: 1px;
 }
 
 .table-column-right {
     -fx-alignment: center-right;
     -fx-alternative-row-fill-visible: true;
     -fx-background-color: white;
-    -fx-pref-height: 40;
+    -fx-pref-height: 30;
     -fx-font-size: 1em;
+    -fx-padding: 5px;
+    /*-fx-border-insets: 5px;
+/*-fx-background-insets: 5px;*/
 }
 
 .table-row-cell:focused .table-cell {

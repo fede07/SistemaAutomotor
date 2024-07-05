@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="TOP_CENTER" spacing="10.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo2.SistemaAutomotor.controlador.ModificarControlador">
+<VBox alignment="CENTER" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo2.SistemaAutomotor.controlador.ModificarControlador">
     <VBox alignment="CENTER" spacing="10.0">
         <AnchorPane />
         <HBox alignment="CENTER">
@@ -41,12 +41,13 @@
             <Button fx:id="modificarButton" mnemonicParsing="false" text="Modificar" />
         </HBox>
     </VBox>
-     <TableView fx:id="automotorTableView" prefHeight="50.0" prefWidth="793.0">
+     <TableView fx:id="automotorTableView" maxHeight="65.0" maxWidth="800.0" minHeight="65.0" prefHeight="65.0" prefWidth="800.0">
          <placeholder>
              <Label alignment="CENTER" prefHeight="42.0" prefWidth="200.0" styleClass="label_aux" stylesheets="@../styles/content.css" text=" " textAlignment="CENTER">
                  <padding>
                      <Insets bottom="10.0" top="10.0" />
-                 </padding></Label>
+                 </padding>
+         </Label>
          </placeholder>
          <columns>
              <TableColumn fx:id="dominioColumna" prefWidth="75.0" text="Dominio" />

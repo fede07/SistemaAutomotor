@@ -67,7 +67,7 @@
                    <TextField fx:id="InputBuscarDeuda" layoutX="362.0" layoutY="146.0" />
                    <Button fx:id="bottonBuscarDeuda" layoutX="529.0" layoutY="146.0" mnemonicParsing="false" onAction="#buscarDeuda" text="Buscar" />
                </HBox>
-               <TableView fx:id="deudaTable" minHeight="110.0" prefHeight="110.0">
+               <TableView fx:id="deudaTable" maxHeight="65.0" maxWidth="800.0" minHeight="65.0" prefHeight="65.0" prefWidth="800.0">
                    <placeholder>
                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="200.0" styleClass="label_aux" stylesheets="@../styles/content.css" text=" " textAlignment="CENTER">
                            <padding>
