@@ -126,8 +126,10 @@
 
 .tab-pane
 {
+    -fx-pref-width: 400;
     -fx-tab-min-width:175;
     -fx-tab-min-height:40;
+    -fx-tab-max-width: 800;
 }
 
 .tab{
