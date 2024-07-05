@@ -122,7 +122,7 @@
 .tab-pane
 {
     -fx-tab-min-width:175;
-    -fx-tab-min-height:50;
+    -fx-tab-min-height:40;
 }
 
 .tab{
