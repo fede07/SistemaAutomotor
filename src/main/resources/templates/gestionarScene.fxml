@@ -12,25 +12,24 @@
     <center>
         <VBox alignment="TOP_CENTER" prefHeight="800.0" prefWidth="800.0" stylesheets="@../styles/content.css" BorderPane.alignment="TOP_CENTER">
             <VBox alignment="TOP_CENTER" maxHeight="125.0" minHeight="125.0" styleClass="title_container">
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gestionar" />
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gestionar Automotor" />
             </VBox>
             <VBox alignment="CENTER" prefHeight="800.0" prefWidth="800.0" VBox.vgrow="ALWAYS">
-                <TabPane prefWidth="800.0" snapToPixel="false" styleClass="menu_container"
-                         tabClosingPolicy="UNAVAILABLE" tabMaxHeight="500.0" tabMaxWidth="1000.0" tabMinWidth="245.0">
+                <TabPane prefWidth="800.0" snapToPixel="false" styleClass="menu_container" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="500.0" tabMaxWidth="1000.0" tabMinWidth="245.0">
                     <opaqueInsets>
-                        <Insets/>
+                        <Insets />
                     </opaqueInsets>
                     <Tab text="Agregar">
-                        <fx:include source="agregarScene.fxml"/>
+                        <fx:include source="agregarScene.fxml" />
                     </Tab>
                     <Tab text="Modificar">
-                        <fx:include source="modificarScene.fxml"/>
+                        <fx:include source="modificarScene.fxml" />
                     </Tab>
                     <Tab text="Eliminar">
-                        <fx:include source="eliminarScene.fxml"/>
+                        <fx:include source="eliminarScene.fxml" />
                     </Tab>
                     <Tab text="Consultar">
-                        <fx:include source="consultarScene.fxml"/>
+                        <fx:include source="consultarScene.fxml" />
                     </Tab>
                 </TabPane>
             </VBox>

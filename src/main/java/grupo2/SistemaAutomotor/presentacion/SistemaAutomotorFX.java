@@ -63,7 +63,7 @@ public class SistemaAutomotorFX extends Application {
         //Inicio la escena principal
         stage.setScene(facPagScene);
         stage.setTitle("Sistema Automotor");
-        stage.setMinHeight(700);
+        stage.setMinHeight(600);
         stage.setMinWidth(800);
         stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/unlam.png"))));
         stage.show();
