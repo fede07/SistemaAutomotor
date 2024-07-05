@@ -5,12 +5,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo2.SistemaAutomotor.controlador.DeudaControlador">
+<BorderPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo2.SistemaAutomotor.controlador.DeudaControlador">
    <left>
       <fx:include source="mainScene.fxml" />
    </left>
    <center>
-       <VBox alignment="CENTER" stylesheets="@../styles/content.css">
+       <VBox alignment="CENTER" stylesheets="@../styles/content.css" BorderPane.alignment="CENTER">
            <VBox alignment="TOP_CENTER" maxHeight="150.0" minHeight="150.0" prefHeight="150.0" prefWidth="800.0" styleClass="title_container">
                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Automotores con Deuda" textAlignment="CENTER" wrappingWidth="260.44921875">
                    <font>
@@ -88,8 +88,16 @@
                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                    </VBox.margin>
                </TableView>
-            <AnchorPane prefHeight="360.0" prefWidth="770.0" />
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
+            <padding>
+               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
            </VBox>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
        </VBox>
    </center>
 </BorderPane>
