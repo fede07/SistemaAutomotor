@@ -13,11 +13,13 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import org.springframework.stereotype.Component;
+
 import java.net.URL;
 import java.text.NumberFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.List;
+
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -59,7 +61,7 @@ public class VisualizarFacPagControlador implements Initializable {
     @FXML
     private Button exportarButton;
     private final ObservableList<Boleta> boletaList = FXCollections.observableArrayList();
-    private final ObservableList<Integer> mesesList = FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12);
+    private final ObservableList<Integer> mesesList = FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
     private final Mensajero mensajero = new Mensajero();
     private List<Boleta> boletasCache;
 
@@ -77,7 +79,7 @@ public class VisualizarFacPagControlador implements Initializable {
         configurarComboBox();
         detalleButton.setOnAction(e -> mostrarDetalle());
         buscarButton.setOnAction(e -> buscarBoletas());
-        exportarButton.setOnAction(e->exportarFacturasPagadas());
+        exportarButton.setOnAction(e -> exportarFacturasPagadas());
     }
 
     private void configurarComboBox() {
@@ -87,13 +89,13 @@ public class VisualizarFacPagControlador implements Initializable {
         fechaHastaComboBox.setValue(12);
     }
 
-    private void configurarColumnas(){
+    private void configurarColumnas() {
         cuotaColumna.setCellValueFactory(new PropertyValueFactory<>("cuota"));
         importeColumna.setCellValueFactory(new PropertyValueFactory<>("importeFloat"));
         fechadepagColumna.setCellValueFactory(new PropertyValueFactory<>("fpag"));
         importeColumna.getStyleClass().add("table-column-right");
         NumberFormat currency = NumberFormat.getCurrencyInstance();
-        importeColumna.setCellFactory(tc-> new TableCell<>() {
+        importeColumna.setCellFactory(tc -> new TableCell<>() {
             @Override
             protected void updateItem(Float item, boolean empty) {
                 super.updateItem(item, empty);
@@ -124,21 +126,21 @@ public class VisualizarFacPagControlador implements Initializable {
         automotor.setDominio(dominio);
         int cuotaDesde = fechaapartirComboBox.getValue();
         int cuotaHasta = fechaHastaComboBox.getValue();
-        boletasCache =  boletaServicio.buscarBoletaPorDominioEntre(automotor,true, cuotaDesde, cuotaHasta);
+        boletasCache = boletaServicio.buscarBoletaPorDominioEntre(automotor, true, cuotaDesde, cuotaHasta);
         if (boletasCache.isEmpty()) {
             mensajero.mostrarMensaje("Información", "No se encontraron facturas para el dominio " + dominio, Alert.AlertType.WARNING);
         }
         return boletasCache;
     }
 
-    public void exportarFacturasPagadas(){
+    public void exportarFacturasPagadas() {
         if (boletaList.isEmpty()) {
             mensajero.mostrarMensaje("Error", "No hay facturas para exportar", Alert.AlertType.CONFIRMATION);
             return;
         }
-        if(escritor.exportar(boletasCache)){
+        if (escritor.exportar(boletasCache)) {
             mensajero.mostrarMensaje("Información", "Factura exportada correctamente", Alert.AlertType.CONFIRMATION);
-        }else {
+        } else {
             mensajero.mostrarMensaje("Error", "Error de Exportacion", Alert.AlertType.ERROR);
         }
 
@@ -160,19 +162,19 @@ public class VisualizarFacPagControlador implements Initializable {
     }
 
     private static Alert getAlert(Titular titular, Automotor automotor, Boleta boleta) {
-        Alert alert = new Alert(Alert.AlertType.NONE);
-
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Detalle de factura");
         alert.setHeaderText(null);
+        alert.setGraphic(null);
 
         String message =
                 "Cliente: " + titular.getNombre() + " " + titular.getApellido() + "\n" +
-                "Dominio: " + automotor.getDominio() + "\n\n" +
-                "Id Factura: " + boleta.getIdBoleta() + "\n" +
-                "Cuota: " + boleta.getCuota() + "\n" +
-                "Importe: $" + boleta.getImporte() + "\n" +
-                "Fecha de Vencimiento: " + boleta.getFven() + "\n" +
-                "Fecha de Pago: " + boleta.getFpag() + "\n";
+                        "Dominio: " + automotor.getDominio() + "\n\n" +
+                        "Id Factura: " + boleta.getIdBoleta() + "\n" +
+                        "Cuota: " + boleta.getCuota() + "\n" +
+                        "Importe: $" + boleta.getImporte() + "\n" +
+                        "Fecha de Vencimiento: " + boleta.getFven() + "\n" +
+                        "Fecha de Pago: " + boleta.getFpag() + "\n";
         alert.setContentText(message);
         return alert;
     }
