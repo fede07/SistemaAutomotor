@@ -6,9 +6,9 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="TOP_CENTER" maxHeight="1080.0" prefHeight="1080.0" prefWidth="200.0" styleClass="main_menu_container" stylesheets="@../styles/mainMenu.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo2.SistemaAutomotor.controlador.MainControlador">
+<VBox alignment="TOP_CENTER" maxHeight="1080.0" prefHeight="700.0" prefWidth="200.0" styleClass="main_menu_container" stylesheets="@../styles/mainMenu.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo2.SistemaAutomotor.controlador.MainControlador">
    <VBox prefHeight="1080.0" prefWidth="200.0">
-      <VBox alignment="TOP_CENTER" maxHeight="259.0" minHeight="150.0" prefHeight="150.0" prefWidth="200.0" styleClass="title_container">
+      <VBox alignment="TOP_CENTER" maxHeight="125.0" minHeight="125.0" prefHeight="125.0" prefWidth="200.0" styleClass="title_container">
          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sistema Automotor" textAlignment="CENTER" wrappingWidth="150">
             <VBox.margin>
                <Insets />
