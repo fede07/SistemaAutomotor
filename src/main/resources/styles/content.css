@@ -26,9 +26,9 @@
 }
 
 .menu_container Button {
-    -fx-pref-width: 150;
+    -fx-pref-width: 200;
     -fx-pref-height: 32;
-    -fx-background-color: white;
+    -fx-background-color: #c0def4;
     -fx-font-size: 1.2em;
     -fx-alignment: center;
 }
