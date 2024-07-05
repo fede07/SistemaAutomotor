@@ -67,20 +67,29 @@ public class EliminarControlador implements Initializable {
         var automotor = new Automotor();
         if (recolectarDatosFormulario(automotor)) {
             //mostrarDatos(automotor);
-            boletaServicio.eliminarBoletas(automotor);
-            automotorServicio.eliminarAutomotor(automotor.getDominio());
-            mensajero.mostrarMensaje("Información", "Automotor " + automotor.getDominio() + " eliminado correctamente.", Alert.AlertType.INFORMATION);
+            if(mensajero.mostrarConfirmacion("Eliminar", "¿Desea eliminar el automotor con dominio " + automotor.getDominio()+ "?")){
+                boletaServicio.eliminarBoletas(automotor);
+                automotorServicio.eliminarAutomotor(automotor.getDominio());
+                mensajero.mostrarMensaje("Información", "Automotor " + automotor.getDominio() + " eliminado correctamente.", Alert.AlertType.INFORMATION);
+            }
         }
     }
 
     private boolean recolectarDatosFormulario(Automotor automotor) {
+
+
         automotor.setDominio(dominioTextField.getText());
+        if(automotorServicio.buscarAutomotor(automotor.getDominio()) == null) {
+            mensajero.mostrarMensaje("Error", "El automotor no existe", Alert.AlertType.ERROR);
+            return false;
+        }
         Titular titular = titularServicio.buscarTitular(Integer.valueOf(dniTextField.getText()));
         if (titular == null) {
             mensajero.mostrarMensaje("Error", "Titular no encontrado.", Alert.AlertType.ERROR);
             return false;
         }
         automotor.setDniTitular(titular);
+
         return true;
     }
 
