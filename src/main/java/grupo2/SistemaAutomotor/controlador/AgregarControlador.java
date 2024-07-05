@@ -119,6 +119,7 @@ public class AgregarControlador implements Initializable {
 
     private void listarMunicipios() {
         List<Municipio> municipioList = municipioServicio.listarMunicipios();
+        municipioList.sort(Comparator.comparing(Municipio::getNombre));
         for (Municipio municipio : municipioList) {
             municipioComboBox.getItems().add(municipio);
         }
@@ -221,7 +222,7 @@ public class AgregarControlador implements Initializable {
         automotor.setMarca(marcaTextField.getText());
         automotor.setModelo(modeloTextField.getText());
         automotor.setAnioFabricacion(Integer.parseInt(anioTextField.getText()));
-        Municipio municipio = municipioServicio.buscarMunicipio(municipioComboBox.getSelectionModel().getSelectedIndex()+1);
+        Municipio municipio = municipioServicio.buscarMunicipio(municipioComboBox.getSelectionModel().getSelectedItem().getId());
 
         if(municipio == null) {
             mensajero.mostrarMensaje("Error", "Municipio no encontrado.", Alert.AlertType.ERROR);

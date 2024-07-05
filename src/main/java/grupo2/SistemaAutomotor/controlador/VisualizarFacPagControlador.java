@@ -113,6 +113,7 @@ public class VisualizarFacPagControlador implements Initializable {
         if (boletas == null) return;
         boletaList.addAll(boletas);
         boletaTabla.setItems(boletaList);
+        buscarButton.requestFocus();
     }
 
     private List<Boleta> getBoletas() {
