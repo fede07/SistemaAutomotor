@@ -19,16 +19,16 @@
                 </Text>
             </VBox>
             <VBox alignment="CENTER" prefHeight="1080.0" styleClass="menu_container">
-                <TableView fx:id="recaudacionTable" maxWidth="800.0" prefHeight="1000.0" prefWidth="600.0">
+                <TableView fx:id="recaudacionTable" maxWidth="400.0" prefHeight="1000.0" prefWidth="400.0">
                     <columns>
                         <TableColumn fx:id="municipioColumna" prefWidth="387.0" text="Municipio" />
-                        <TableColumn fx:id="recaudacionColumna" prefWidth="381.0" text="Recaudación" />
+                        <TableColumn fx:id="recaudacionColumna" prefWidth="381.0" sortType="DESCENDING" text="Recaudación" />
                     </columns>
                     <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                     </columnResizePolicy>
                <VBox.margin>
-                  <Insets bottom="75.0" left="75.0" right="75.0" top="75.0" />
+                  <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
                </VBox.margin>
                 </TableView>
             </VBox>
