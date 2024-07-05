@@ -14,25 +14,23 @@
             <VBox alignment="TOP_CENTER" maxHeight="150.0" minHeight="150.0" styleClass="title_container">
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gestionar" />
             </VBox>
-            <VBox alignment="TOP_CENTER" prefHeight="1080.0" styleClass="menu_container">
-                <TabPane prefHeight="1080.0" snapToPixel="false" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="500.0" tabMaxWidth="500.0" tabMinWidth="245.0">
-                    <opaqueInsets>
-                        <Insets />
-                    </opaqueInsets>
-                    <Tab text="Agregar">
-                        <fx:include source="agregarScene.fxml" />
-                    </Tab>
-                    <Tab text="Modificar">
-                        <fx:include source="modificarScene.fxml" />
-                    </Tab>
-                    <Tab text="Eliminar">
-                        <fx:include source="eliminarScene.fxml" />
-                    </Tab>
-                    <Tab text="Consultar">
-                        <fx:include source="consultarScene.fxml" />
-                    </Tab>
-                </TabPane>
-            </VBox>
+             <TabPane prefHeight="1080.0" snapToPixel="false" styleClass="menu_container" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="500.0" tabMaxWidth="500.0" tabMinWidth="245.0">
+                 <opaqueInsets>
+                     <Insets />
+                 </opaqueInsets>
+                 <Tab text="Agregar">
+                     <fx:include source="agregarScene.fxml" />
+                 </Tab>
+                 <Tab text="Modificar">
+                     <fx:include source="modificarScene.fxml" />
+                 </Tab>
+                 <Tab text="Eliminar">
+                     <fx:include source="eliminarScene.fxml" />
+                 </Tab>
+                 <Tab text="Consultar">
+                     <fx:include source="consultarScene.fxml" />
+                 </Tab>
+             </TabPane>
         </VBox>
     </center>
 </BorderPane>
