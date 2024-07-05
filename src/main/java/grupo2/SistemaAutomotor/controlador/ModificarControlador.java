@@ -17,6 +17,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -224,7 +225,7 @@ public class ModificarControlador implements Initializable {
 
         automotor.setDniTitular(titular);
 
-        Municipio municipio = municipioServicio.buscarMunicipio(municipioComboBox.getSelectionModel().getSelectedIndex()+1);
+        Municipio municipio = municipioServicio.buscarMunicipio(municipioComboBox.getSelectionModel().getSelectedItem().getId());
 
         if(municipio == null) {
             mensajero.mostrarMensaje("Advertencia", "Municipio no encontrado", Alert.AlertType.WARNING);
@@ -238,6 +239,7 @@ public class ModificarControlador implements Initializable {
 
     private void listarMunicipios() {
         List<Municipio> municipioList = municipioServicio.listarMunicipios();
+        municipioList.sort(Comparator.comparing(Municipio::getNombre));
         for (Municipio municipio : municipioList) {
             municipioComboBox.getItems().add(municipio);
         }

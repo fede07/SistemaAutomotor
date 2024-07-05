@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.text.NumberFormat;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -55,6 +56,7 @@ public class RecaudacionMunicipioControlador implements Initializable {
     private void listarRecaudacion() {
         recaudacionList.clear();
         List<Municipio> municipioList = municipioServicio.listarMunicipios();
+        municipioList.sort(Comparator.comparing(Municipio::getNombre));
         for(Municipio municipio : municipioList) {
             Recaudacion recaudacion = new Recaudacion();
             recaudacion.setNombreMunicipio(municipio.getNombre());
