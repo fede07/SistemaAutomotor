@@ -128,7 +128,7 @@ public class ModificarControlador implements Initializable {
         if(recolectarDatosFormulario(automotor)){
             System.out.println(automotor);
             automotorServicio.guardarAutomotor(automotor);
-            mensajero.mostrarMensaje("Información", "Automotor modificado correctamente", Alert.AlertType.CONFIRMATION);
+            mensajero.mostrarMensaje("Información", "Automotor modificado correctamente", Alert.AlertType.INFORMATION);
             listarAutomotor();
             limpiarFormulario();
         }
