@@ -108,7 +108,7 @@ public class ConsultarControlador implements Initializable {
 
     private void listarAutomotor() {
         automotorList.clear();
-        automotorList.addAll(automotorServicio.buscarAutomotor(dominioTextField.getText()));
+        automotorList.addAll(automotorServicio.buscarAutomotor(dominioTextField.getText().toUpperCase()));
         automotorTableView.setItems(automotorList);
     }
 

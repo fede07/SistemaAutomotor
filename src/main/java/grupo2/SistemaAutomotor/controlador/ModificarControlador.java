@@ -210,7 +210,7 @@ public class ModificarControlador implements Initializable {
             dni = dniTextField.getText();
         }
 
-        if(dni.isEmpty()) {
+        if(dni.isEmpty() || validador.isNotNumeric(dni)) {
             mensajero.mostrarMensaje("Error", "Debe ingresar un DNI", Alert.AlertType.ERROR);
             dniTextField.requestFocus();
             return false;
@@ -248,7 +248,7 @@ public class ModificarControlador implements Initializable {
 
     private void listarAutomotor() {
         automotorList.clear();
-        automotorList.addAll(automotorServicio.buscarAutomotor(dominioTextField.getText()));
+        automotorList.addAll(automotorServicio.buscarAutomotor(dominioTextField.getText().toUpperCase()));
         automotorTableView.setItems(automotorList);
     }
 
