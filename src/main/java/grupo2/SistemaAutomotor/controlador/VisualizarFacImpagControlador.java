@@ -90,7 +90,7 @@ public class VisualizarFacImpagControlador implements Initializable {
     }
 
     public void buscarBoletas() {
-        String dominio = dominioTextField.getText();
+        String dominio = dominioTextField.getText().toUpperCase();
         if (dominio.isEmpty()) {
             mensajero.mostrarMensaje("Error", "El dominio no puede estar vacio", Alert.AlertType.WARNING);
             return;

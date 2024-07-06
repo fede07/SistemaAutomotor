@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo2.SistemaAutomotor.controlador.VisualizarFacPagControlador">
+<BorderPane prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo2.SistemaAutomotor.controlador.VisualizarFacPagControlador">
     <left>
         <fx:include source="mainScene.fxml" />
     </left>
@@ -75,6 +75,9 @@
                     <HBox alignment="BOTTOM_CENTER" spacing="30.0">
                         <Button fx:id="detalleButton" maxHeight="32.0" mnemonicParsing="false" text="Visualizar Detalle" />
                         <Button fx:id="exportarButton" maxHeight="32.0" mnemonicParsing="false" text="Exportar Facturas" />
+                  <VBox.margin>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </VBox.margin>
                     </HBox>
                <VBox.margin>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />

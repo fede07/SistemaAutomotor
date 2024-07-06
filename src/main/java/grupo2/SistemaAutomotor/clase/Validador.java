@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class Validador {
 
-    public boolean isNotNumeric(String str) {
+    public boolean isNotDNI(String str) {
         if (str == null || str.isEmpty()) {
             return true;
         }
@@ -14,7 +14,7 @@ public class Validador {
         }catch (NumberFormatException e) {
             return true;
         }
-        return false;
+        return str.length() != 8;
     }
 
     public boolean isNotDominio(String dominio) {

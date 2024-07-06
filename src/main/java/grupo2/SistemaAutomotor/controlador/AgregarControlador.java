@@ -71,6 +71,7 @@ public class AgregarControlador implements Initializable {
     private Button agregarButton;
     private final ObservableList<Automotor> automotorList = FXCollections.observableArrayList();
     private final Mensajero mensajero = new Mensajero();
+    private List<Automotor> automotorListAux = new ArrayList<>();
 
     public AgregarControlador(AutomotorServicio automotorServicio, TitularServicio titularServicio, MunicipioServicio municipioServicio, BoletaServicio boletaServicio) {
         this.automotorServicio = automotorServicio;
@@ -113,7 +114,11 @@ public class AgregarControlador implements Initializable {
 
     private void listarAutomotor() {
         automotorList.clear();
-        automotorList.addAll(automotorServicio.buscarAutomotor(dominioTextField.getText().toUpperCase()));
+        automotorListAux.add(automotorServicio.buscarAutomotor(dominioTextField.getText().toUpperCase()));
+        if(automotorListAux.size() > 10) {
+            automotorListAux = automotorListAux.subList(1, 11);
+        }
+        automotorList.addAll(automotorListAux);
         automotorTableView.setItems(automotorList);
     }
 
@@ -138,7 +143,7 @@ public class AgregarControlador implements Initializable {
     private boolean agregarTitular() {
         Titular titular = new Titular();
         String dni = dniTextField.getText();
-        if(dni.isEmpty() || validador.isNotNumeric(dni)) {
+        if(dni.isEmpty() || validador.isNotDNI(dni)) {
             mensajero.mostrarMensaje("Error", "DNI inválido.", Alert.AlertType.ERROR);
             return false;
         }
@@ -238,6 +243,14 @@ public class AgregarControlador implements Initializable {
         marcaTextField.clear();
         anioTextField.clear();
         municipioComboBox.getSelectionModel().clearSelection();
+        nombreTextField.clear();
+        apellidoTextField.clear();
     }
+
+//    public void listarAutomotoresTesting(){
+//        automotorList.clear();
+//        automotorList.addAll(automotorServicio.listarAutomotor().subList(0,10));
+//        automotorTableView.setItems(automotorList);
+//    }
 
 }

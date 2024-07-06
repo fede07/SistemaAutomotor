@@ -118,8 +118,8 @@ public class ConsultarControlador implements Initializable {
             mensajero.mostrarMensaje("Error", "El DNI no puede estar vacío", Alert.AlertType.ERROR);
             return;
         }
-        if(validador.isNotNumeric(dni)){
-            mensajero.mostrarMensaje("Error", "El DNI no puede ser alfanumerico", Alert.AlertType.ERROR);
+        if(validador.isNotDNI(dni)){
+            mensajero.mostrarMensaje("Error", "El DNI es inválido", Alert.AlertType.ERROR);
             return;
         }
         Titular titular = titularServicio.buscarTitular(Integer.valueOf(dni));

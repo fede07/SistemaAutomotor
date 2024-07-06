@@ -59,7 +59,7 @@ public class EliminarControlador implements Initializable {
             return;
         }
 
-        if(validador.isNotNumeric(dni)) {
+        if(validador.isNotDNI(dni)) {
             mensajero.mostrarMensaje("Error", "El DNI no es válido.", Alert.AlertType.ERROR);
             return;
         }

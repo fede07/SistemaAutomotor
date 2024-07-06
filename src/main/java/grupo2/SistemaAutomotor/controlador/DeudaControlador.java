@@ -27,7 +27,8 @@ public class DeudaControlador implements Initializable {
 
     private final AutomotorServicio automotorServicio;
     private final BoletaServicio boletaServicio;
-
+    @FXML
+    private Label cantVehiculos;
     @FXML
     private TableView<AutomotorDeuda> deudaTable = new TableView<>();
     @FXML
@@ -47,9 +48,9 @@ public class DeudaControlador implements Initializable {
     @FXML
     private Label porVehiDeuda;
     @FXML
-    public Button bottonBuscarDeuda;
+    private Button bottonBuscarDeuda;
     @FXML
-    public TextField InputBuscarDeuda;
+    private TextField InputBuscarDeuda;
 
     private final ObservableList<AutomotorDeuda> deudaList = FXCollections.observableArrayList();
     private final Mensajero mensajero = new Mensajero();
@@ -59,12 +60,12 @@ public class DeudaControlador implements Initializable {
         this.boletaServicio = boletaServicio;
     }
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         deudaTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         setearParametros();
         configurarColumnas();
+        bottonBuscarDeuda.setOnAction(e->buscarDeuda());
     }
 
     public void actualizar(){
@@ -131,10 +132,13 @@ public class DeudaControlador implements Initializable {
             automotoresDeudas.add(automotorDeuda);
             deudaTotal += automotorDeuda.getDeuda();
         }
+        int total =automotorServicio.cantidadAutomotores();
+
         totalAdeudado.setText("$"+ String.format("%.2f", deudaTotal));
-        float porcentaje = ((float) automotoresDeudas.size() /automotorServicio.cantidadAutomotores())*100;
+        float porcentaje = ((float) automotoresDeudas.size() /total)*100;
         porVehiDeuda.setText(String.format("%.2f", porcentaje) +"%");
         cantVehiDeuda.setText(Integer.toString(automotoresDeudas.size()));
+        cantVehiculos.setText(Integer.toString(total));
     }
 
 }

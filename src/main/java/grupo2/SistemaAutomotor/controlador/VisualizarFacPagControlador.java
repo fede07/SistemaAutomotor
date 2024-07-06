@@ -2,6 +2,7 @@ package grupo2.SistemaAutomotor.controlador;
 
 import grupo2.SistemaAutomotor.clase.Escritor;
 import grupo2.SistemaAutomotor.clase.Mensajero;
+import grupo2.SistemaAutomotor.clase.Validador;
 import grupo2.SistemaAutomotor.modelo.Automotor;
 import grupo2.SistemaAutomotor.modelo.Boleta;
 import grupo2.SistemaAutomotor.modelo.Titular;
@@ -63,6 +64,7 @@ public class VisualizarFacPagControlador implements Initializable {
     private final ObservableList<Boleta> boletaList = FXCollections.observableArrayList();
     private final ObservableList<Integer> mesesList = FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
     private final Mensajero mensajero = new Mensajero();
+    private final Validador validador = new Validador();
     private List<Boleta> boletasCache;
 
     public VisualizarFacPagControlador(BoletaServicio boletaServicio, Escritor escritor, AutomotorServicio automotorServicio, TitularServicio titularServicio) {
@@ -117,11 +119,17 @@ public class VisualizarFacPagControlador implements Initializable {
     }
 
     private List<Boleta> getBoletas() {
-        String dominio = dominioTextField.getText();
+        String dominio = dominioTextField.getText().toUpperCase();
         if (dominio.isEmpty()) {
             mensajero.mostrarMensaje("Error", "El dominio no puede estar vacio", Alert.AlertType.WARNING);
             return null;
         }
+
+        if(validador.isNotDominio(dominio)){
+            mensajero.mostrarMensaje("Error", "El dominio no es valido", Alert.AlertType.WARNING);
+            return null;
+        }
+
         boletaList.clear();
         Automotor automotor = new Automotor();
         automotor.setDominio(dominio);
@@ -136,11 +144,11 @@ public class VisualizarFacPagControlador implements Initializable {
 
     public void exportarFacturasPagadas() {
         if (boletaList.isEmpty()) {
-            mensajero.mostrarMensaje("Error", "No hay facturas para exportar", Alert.AlertType.CONFIRMATION);
+            mensajero.mostrarMensaje("Error", "No hay facturas para exportar", Alert.AlertType.WARNING);
             return;
         }
         if (escritor.exportar(boletasCache)) {
-            mensajero.mostrarMensaje("Información", "Factura exportada correctamente", Alert.AlertType.CONFIRMATION);
+            mensajero.mostrarMensaje("Información", "Factura exportada correctamente", Alert.AlertType.INFORMATION);
         } else {
             mensajero.mostrarMensaje("Error", "Error de Exportacion", Alert.AlertType.ERROR);
         }
@@ -155,7 +163,7 @@ public class VisualizarFacPagControlador implements Initializable {
             return;
         }
 
-        Automotor automotor = automotorServicio.buscarAutomotor(boleta.getDominio());
+        Automotor automotor = automotorServicio.buscarAutomotor(boleta.getDominio().toUpperCase());
         Titular titular = titularServicio.buscarTitular(automotor.getDniTitular());
 
         Alert alert = getAlert(titular, automotor, boleta);
@@ -170,7 +178,7 @@ public class VisualizarFacPagControlador implements Initializable {
 
         String message =
                 "Cliente: " + titular.getNombre() + " " + titular.getApellido() + "\n" +
-                        "Dominio: " + automotor.getDominio() + "\n\n" +
+                        "Dominio: " + automotor.getDominio().toUpperCase() + "\n\n" +
                         "Id Factura: " + boleta.getIdBoleta() + "\n" +
                         "Cuota: " + boleta.getCuota() + "\n" +
                         "Importe: $" + boleta.getImporte() + "\n" +

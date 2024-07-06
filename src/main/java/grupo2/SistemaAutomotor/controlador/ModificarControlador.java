@@ -27,6 +27,10 @@ public class ModificarControlador implements Initializable {
     private final TitularServicio titularServicio;
     private final MunicipioServicio municipioServicio;
     @FXML
+    private Label titularNuevoLabel;
+    @FXML
+    private CheckBox cambioTitularCheckBox;
+    @FXML
     private TextField dniNuevoTextField;
     @FXML
     private Label nombreLabel;
@@ -65,7 +69,6 @@ public class ModificarControlador implements Initializable {
 
     private final ObservableList<Automotor> automotorList = FXCollections.observableArrayList();
     private final Validador validador = new Validador();
-
     private final Mensajero mensajero = new Mensajero();
 
     public ModificarControlador(AutomotorServicio automotorServicio, TitularServicio titularServicio, MunicipioServicio municipioServicio) {
@@ -101,6 +104,15 @@ public class ModificarControlador implements Initializable {
                 apellidoTextField.setDisable(true);
                 nombreLabel.setDisable(true);
                 apellidoLabel.setDisable(true);
+            }
+        });
+        cambioTitularCheckBox.setOnAction(e-> {
+            if(cambioTitularCheckBox.isSelected()){
+                dniNuevoTextField.setDisable(false);
+                titularNuevoLabel.setDisable(false);
+            }else {
+                dniNuevoTextField.setDisable(true);
+                titularNuevoLabel.setDisable(true);
             }
         });
 
@@ -144,17 +156,24 @@ public class ModificarControlador implements Initializable {
             return false;
         }
 
-        String dni = dniTextField.getText();
+        String dni;
+
+        if(nuevoTitularCheckBox.isSelected()){
+            dni = dniNuevoTextField.getText();
+        }else {
+            dni = dniTextField.getText();
+        }
 
         if(dni.isEmpty()) {
             mensajero.mostrarMensaje("Información", "El campo DNI no puede estar vacío", Alert.AlertType.WARNING);
             return false;
         }
 
-        if(validador.isNotNumeric(dni)) {
+        if(validador.isNotDNI(dni)) {
             mensajero.mostrarMensaje("Error", "El DNI es inválido", Alert.AlertType.ERROR);
             return false;
         }
+
 
         Titular titular = new Titular();
         titular.setNombre(nombreTextField.getText());
@@ -210,9 +229,14 @@ public class ModificarControlador implements Initializable {
             dni = dniTextField.getText();
         }
 
-        if(dni.isEmpty() || validador.isNotNumeric(dni)) {
+        if(dni.isEmpty()) {
             mensajero.mostrarMensaje("Error", "Debe ingresar un DNI", Alert.AlertType.ERROR);
             dniTextField.requestFocus();
+            return false;
+        }
+
+        if(validador.isNotDNI(dni)) {
+            mensajero.mostrarMensaje("Error", "El DNI es inválido", Alert.AlertType.ERROR);
             return false;
         }
 
