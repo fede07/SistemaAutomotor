@@ -113,7 +113,7 @@ public class AgregarControlador implements Initializable {
 
     private void listarAutomotor() {
         automotorList.clear();
-        automotorList.addAll(automotorServicio.buscarAutomotor(dominioTextField.getText()));
+        automotorList.addAll(automotorServicio.buscarAutomotor(dominioTextField.getText().toUpperCase()));
         automotorTableView.setItems(automotorList);
     }
 
@@ -150,7 +150,7 @@ public class AgregarControlador implements Initializable {
     }
 
     public boolean agregarAutomotor() {
-        String dominio = dominioTextField.getText();
+        String dominio = dominioTextField.getText().toUpperCase();
 
         if(dominio.isEmpty()) {
             mensajero.mostrarMensaje("Error", "El campo Dominio no puede estar vacio.", Alert.AlertType.ERROR);
@@ -170,6 +170,7 @@ public class AgregarControlador implements Initializable {
         }
 
         var automotor = new Automotor();
+        automotor.setDominio(dominio);
         if (recolectarDatosFormulario(automotor)){
             System.out.println(automotor);
             automotorServicio.guardarAutomotor(automotor);
@@ -208,8 +209,6 @@ public class AgregarControlador implements Initializable {
     }
 
     private boolean recolectarDatosFormulario(Automotor automotor) {
-
-        automotor.setDominio(dominioTextField.getText());
 
         Titular titular = titularServicio.buscarTitular(Integer.valueOf(dniTextField.getText()));
 
