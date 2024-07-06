@@ -8,76 +8,77 @@
     <HBox>
         <VBox alignment="CENTER" minWidth="300.0" prefHeight="697.0" prefWidth="500.0" spacing="10.0">
             <HBox alignment="CENTER">
-                <Label text="Dominio"/>
-                <TextField fx:id="dominioTextField"/>
+                <Label text="Dominio" />
+                <TextField fx:id="dominioTextField" />
             </HBox>
             <HBox alignment="CENTER">
-                <Label text="Marca"/>
-                <TextField fx:id="marcaTextField"/>
+                <Label text="Marca" />
+                <TextField fx:id="marcaTextField" />
             </HBox>
             <HBox alignment="CENTER">
-                <Label text="Modelo"/>
+                <Label text="Modelo" />
                 <HBox alignment="CENTER">
-                    <TextField fx:id="modeloTextField"/>
+                    <TextField fx:id="modeloTextField" />
                 </HBox>
             </HBox>
             <HBox alignment="CENTER">
-                <Label text="Año"/>
-                <TextField fx:id="anioTextField"/>
+                <Label text="Año" />
+                <TextField fx:id="anioTextField" />
             </HBox>
             <HBox alignment="CENTER">
-                <Label text="Municipio"/>
+                <Label text="Municipio" />
                 <HBox alignment="CENTER">
-                    <ComboBox fx:id="municipioComboBox" prefWidth="150.0"/>
+                    <ComboBox fx:id="municipioComboBox" prefWidth="150.0" />
                 </HBox>
             </HBox>
             <HBox alignment="CENTER">
-                <Label text="DNI Titular"/>
+                <Label text="DNI Titular" />
                 <HBox alignment="CENTER">
-                    <TextField fx:id="dniTextField"/>
+                    <TextField fx:id="dniTextField" />
                 </HBox>
             </HBox>
             <HBox alignment="CENTER">
-                <CheckBox fx:id="nuevoTitularCheckBox" mnemonicParsing="false" text="Titular Nuevo"/>
+                <CheckBox fx:id="nuevoTitularCheckBox" mnemonicParsing="false" text="Titular Nuevo" />
             </HBox>
             <HBox alignment="CENTER">
-                <Label fx:id="nombreLabel" disable="true" text="Nombre"/>
+                <Label fx:id="nombreLabel" disable="true" text="Nombre" />
                 <HBox alignment="CENTER">
-                    <TextField fx:id="nombreTextField" disable="true"/>
+                    <TextField fx:id="nombreTextField" disable="true" />
                 </HBox>
             </HBox>
             <HBox alignment="CENTER">
-                <Label fx:id="apellidoLabel" disable="true" text="Apellido"/>
+                <Label fx:id="apellidoLabel" disable="true" text="Apellido" />
                 <HBox alignment="CENTER">
-                    <TextField fx:id="apellidoTextField" disable="true"/>
+                    <TextField fx:id="apellidoTextField" disable="true" />
                 </HBox>
             </HBox>
             <HBox alignment="CENTER">
-                <Button fx:id="agregarButton" mnemonicParsing="false" onAction="#agregarAutomotor" text="Agregar"/>
+                <Button fx:id="agregarButton" mnemonicParsing="false" onAction="#agregarAutomotor" text="Agregar" />
             </HBox>
         </VBox>
         <VBox alignment="CENTER">
-            <TableView fx:id="automotorTableView" maxHeight="335.0" maxWidth="800.0" minHeight="65.0"
-                       prefHeight="650.0" prefWidth="760.0">
+            <TableView fx:id="automotorTableView" maxHeight="335.0" maxWidth="800.0" minHeight="65.0" minWidth="440.0" prefHeight="650.0" prefWidth="760.0">
                 <placeholder>
-                    <Label alignment="CENTER" prefHeight="42.0" prefWidth="200.0" styleClass="label_aux"
-                           stylesheets="@../styles/content.css" text=" " textAlignment="CENTER">
+                    <Label alignment="CENTER" prefHeight="42.0" prefWidth="200.0" styleClass="label_aux" stylesheets="@../styles/content.css" text=" " textAlignment="CENTER">
                         <padding>
-                            <Insets bottom="10.0" top="10.0"/>
+                            <Insets bottom="10.0" top="10.0" />
                         </padding>
                     </Label>
                 </placeholder>
                 <columns>
-                    <TableColumn fx:id="dominioColumna" prefWidth="75.0" text="Dominio"/>
-                    <TableColumn fx:id="dniColumna" prefWidth="75.0" text="DNI Titular"/>
-                    <TableColumn fx:id="modeloColumna" prefWidth="75.0" text="Modelo"/>
-                    <TableColumn fx:id="marcaColumna" prefWidth="75.0" text="Marca"/>
-                    <TableColumn fx:id="anioColumna" prefWidth="75.0" text="Año"/>
-                    <TableColumn fx:id="municipioColumna" prefWidth="75.0" text="Municipio"/>
+                    <TableColumn fx:id="dominioColumna" prefWidth="75.0" text="Dominio" />
+                    <TableColumn fx:id="dniColumna" prefWidth="75.0" text="DNI Titular" />
+                    <TableColumn fx:id="modeloColumna" prefWidth="75.0" text="Modelo" />
+                    <TableColumn fx:id="marcaColumna" prefWidth="75.0" text="Marca" />
+                    <TableColumn fx:id="anioColumna" prefWidth="75.0" text="Año" />
+                    <TableColumn fx:id="municipioColumna" prefWidth="75.0" text="Municipio" />
                 </columns>
                 <columnResizePolicy>
-                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                 </columnResizePolicy>
+            <VBox.margin>
+               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </VBox.margin>
             </TableView>
         </VBox>
     </HBox>
